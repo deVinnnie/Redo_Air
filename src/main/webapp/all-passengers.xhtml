@@ -1,0 +1,73 @@
+<ui:composition template="/WEB-INF/template.xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <ui:define name="pageTitle">All Passengers</ui:define>
+
+    <ui:define name="content">
+        <h:form id="search_form">
+            <h:outputLabel for="search_field">
+                <h:outputFormat value="#{msg['pages.passengers.search']}"/>
+            </h:outputLabel>
+            <h:inputText id="search_field" value="#{allPassengerBean.searchTerm}">
+                <f:ajax event="keyup" render=":passengers_table" listener="#{allPassengerBean.findPassengers}"/>
+            </h:inputText>
+        </h:form>
+
+        <h:dataTable id="passengers_table" value="#{allPassengerBean.passengers}" var="passenger">
+            <h:column>
+                <f:facet name="header">
+                    SSN
+                </f:facet>
+                <h:outputText value="#{passenger.id.ssn}"/>
+            </h:column>
+
+            <h:column>
+                <f:facet name="header">
+                    First Name
+                </f:facet>
+                <h:outputText value="#{passenger.firstName}"/>
+            </h:column>
+
+            <h:column>
+                <f:facet name="header">
+                    Last Name
+                </f:facet>
+                <h:outputText value="#{passenger.id.lastName}"/>
+            </h:column>
+
+            <h:column>
+                <f:facet name="header">
+                    Age
+                </f:facet>
+                <h:outputText value="#{passenger.age}"/>
+            </h:column>
+
+            <h:column>
+                <f:facet name="header">
+                    Type
+                </f:facet>
+
+                <h:outputText value="#{passenger.type}"/>
+            </h:column>
+
+            <h:column>
+                <h:link outcome="register.xhtml">
+                    Edit
+                    <f:param name="ssn" value="#{passenger.id.ssn}"/>
+                    <f:param name="lastName" value="#{passenger.id.lastName}"/>
+                </h:link>
+            </h:column>
+
+            <h:column>
+                <h:form>
+                    <h:commandLink action="#{passengerBean.delete(passenger.id)}">
+                        Delete
+                    </h:commandLink>
+                </h:form>
+            </h:column>
+        </h:dataTable>
+
+        <h:link outcome="main.xhtml">Back to Main Page</h:link>
+    </ui:define>
+</ui:composition>

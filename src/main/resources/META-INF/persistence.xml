@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<persistence xmlns="http://xmlns.jcp.org/xml/ns/persistence"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd"
+        version="2.1">
+
+    <persistence-unit name="MyPersistenceUnit" transaction-type="JTA">
+        <jta-data-source>java:/rd/datasources/RealDolmenDataSource</jta-data-source>
+    </persistence-unit>
+
+    <!--
+        Automatic schema export has been deliberately disabled. When you want to reload your dataschema, run a
+        persistence unit test. Otherwise all your data will disappear whenever you restart Wildfly.
+    -->
+
+</persistence>

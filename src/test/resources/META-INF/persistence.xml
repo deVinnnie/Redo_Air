@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+    Due to JPA's reluctance to allow more flexible persistence.xml configurations, (which by the way is
+    unspeakably lame) we are forced to duplicate the entire context for the tests, strip out the managed stuff,
+    and manually list all entity classes.
+    Check with teacher for details on this subject, or wait for the wonderful world of Spring.
+
+    Alternative testing strategies (possibly in combination):
+        - Use commit strategy for tests
+                + Eyeball asserts!
+                + Almost transparent schema updates (by using hbm2ddl.auto = create)
+                - Slower
+                - Need to reload Database each time (using DBUnit or other frameworks)
+        - Use rollback instead of commit at end of tests
+                + No need to reload database every time (using something like DBUnit)
+                - No eyeball asserts
+        - Use in-memory db strategy for unit tests
+                + Fastest
+                - Not as close to real environment
+                - No eyeball asserts (in-memory data is gone after test completes)
+        - Use in-container tests (such as with Arquillian)
+                + Less hassle once (if ever) you figure out how to configure it
+                - Tests rely on app server (maybe not a real issue if also adding functional tests such as with Selenium)
+                - Slow
+                - No mocking/stubbing
+                - No breakpoints (!!!) (runs in separate VM)
+        - Use mocks/stubs
+                + Fast
+                + The way of TDD
+                + True unit tests (less integration)
+                + Easier to run on CI servers (since it is more self-contained)
+
+    The choice made here is:
+        - Commit strategy using DBUnit and actual database (mysql).
+        - Prefer mocks/stubs for non-persistence layers
+        ==> Maximize true unit tests, mocks and stubs, allow eyeball assertions (manually verifying with your own eyes)
+        on database.
+
+    When you start with your project, you decide which strategy is best for your situation.
+-->
+<persistence xmlns="http://xmlns.jcp.org/xml/ns/persistence"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd"
+        version="2.1">
+
+    <persistence-unit name="MyTestPersistenceUnit" transaction-type="RESOURCE_LOCAL">
+        <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+
+        <!--
+            Sadly, we have to add each Entity here (only needed for the persistence.xml in src/test/java.
+            This is due to the fact that JPA only scans automatically in the classpath root where its persistence.xml is
+            found. Thus when loading JPA using this persistence.xml (in the unit tests), it does not 'see' the entities
+            from src/main/java because they are in another source root.
+            Currently haven't found an elegant way around this.
+         -->
+        <class>com.realdolmen.course.domain.Person</class>
+        <class>com.realdolmen.course.domain.Passenger</class>
+        <class>com.realdolmen.course.domain.Flight</class>
+        <class>com.realdolmen.course.domain.Ticket</class>
+        <class>com.realdolmen.course.domain.Airport</class>
+        <class>com.realdolmen.course.domain.Plane</class>
+        <class>com.realdolmen.course.domain.DomesticFlight</class>
+        <class>com.realdolmen.course.domain.InternationalFlight</class>
+        <class>com.realdolmen.course.domain.AccountNumber</class>
+        <class>com.realdolmen.course.domain.Tankbeurt</class>
+
+        <properties>
+            <property name="hibernate.dialect" value="org.hibernate.dialect.MySQL5InnoDBDialect" />
+
+            <!--
+                Using create (is really drop-create) is better than create-drop, because this way you can still see
+                the final results in the database after running the unit tests.
+                Also cleanup should be done _before_ running unit tests because otherwise you assume the previous run
+                has been successful. If this was not the case, you would end up in a fail-cascade because the next run
+                would fail due to the previous one not cleaning up correctly.
+            -->
+            <property name="hibernate.hbm2ddl.auto" value="create" />
+
+            <!--
+                The default transaction isolation level of java.sql.Connection is to use the used DBMS's default.
+                Using MySQL, this is to use REPEATABLE_READ which is usually a sensible value for production
+                environments. However, in a unit test this can occasionally backfire, because it becomes difficult for
+                a transaction spawned in a test to "see" the values of another (already committed) transaction (under
+                test) to perform asserts on. This is why we set lower the isolation level just a notch to
+                READ_COMMITTED. The test will still only see changes that the system under test has committed (thus
+                preventing a false-positive assertion, but allows the testing transaction to see the changes they are
+                interested in seeing to happen. Note that we only use this on the test persistence.xml!
+            -->
+            <property name="hibernate.connection.isolation" value="TRANSACTION_READ_COMMITTED" />
+        </properties>
+    </persistence-unit>
+</persistence>

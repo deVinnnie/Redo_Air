@@ -1,0 +1,32 @@
+<ui:composition template="WEB-INF/template.xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:c="http://java.sun.com/jsp/jstl/core"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:mp="http://primefaces.org/ui/material">
+    <ui:define name="content">
+        <style>
+            .ui-steps .ui-steps-item {
+                width: 24%;
+            }
+
+            .ui-steps.custom .ui-steps-item .ui-steps-number {
+                background-color: #0081c2;
+                color: #FFFFFF;
+                display: inline-block;
+                width: 30px;
+                border-radius: 10px;
+                margin-top: -10px;
+                margin-bottom: 10px;
+            }
+
+        </style>
+        <p:steps>
+            <p:menuitem value="Personal" />
+            <p:menuitem value="Seat Selection" />
+            <p:menuitem value="Payment" />
+            <p:menuitem value="Confirmation" />
+        </p:steps>
+    </ui:define>
+</ui:composition>

@@ -1,0 +1,32 @@
+<ui:composition template="WEB-INF/template.xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <ui:define name="pageTitle">
+        Nieuwe Tankbeurt Registeren
+    </ui:define>
+    <ui:define name="content">
+        <h:form>
+            <h:panelGrid columns="2">
+                <h:outputLabel for="nummerplaat">Nummerplaat</h:outputLabel>
+                <h:inputText id="nummerplaat" value="#{tankbeurtBean.tankbeurt.nummerplaat}"/>
+
+                <h:outputLabel for="nKilometers">Aantal Kilometer</h:outputLabel>
+                <h:inputText id="nKilometers" value="#{tankbeurtBean.tankbeurt.nKilometers}"/>
+
+                <h:outputLabel for="nLiter">Aantal Liter</h:outputLabel>
+                <h:inputText id="nLiter" value="#{tankbeurtBean.tankbeurt.nLiter}"/>
+
+                <h:outputLabel for="prijsPerLiter">Prijs per liter</h:outputLabel>
+                <h:inputText id="prijsPerLiter" value="#{tankbeurtBean.tankbeurt.prijsPerLiter}"/>
+
+                <h:outputLabel for="datum">Datum</h:outputLabel>
+                <h:inputText id="datum" value="#{tankbeurtBean.tankbeurt.datum}">
+                    <f:convertDateTime pattern="YYYY-MM-d"/>
+                </h:inputText>
+
+                <h:commandButton action="#{tankbeurtBean.saveTankbeurt()}" value="Opslaan"/>
+            </h:panelGrid>
+        </h:form>
+    </ui:define>
+</ui:composition>

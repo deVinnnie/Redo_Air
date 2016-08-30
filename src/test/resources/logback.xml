@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+    This configuration file for Logback is _only_ used by the unit tests, where logback is used as a test-scope
+    dependency.
+    Application logic should use the slf4j API to log against (using Logger and LoggerFactory), which is included as
+    an compile-scope dependency. SLF4J is supported by logback as well as Wildfly.
+
+    To change the log level on Wildfly, all you need to do is modify standalone.xml to:
+        - Set the console-handler (and/or file-handler if you want to) threshold appropriately (probably to DEBUG)
+        - Add a logger category to the desired logger level (for example, org.hibernate.SQL to DEBUG)
+-->
+<configuration>
+    <appender name="console" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <logger name="com.realdolmen" level="TRACE"/>
+
+    <logger name="org" level="INFO"/>
+    <logger name="io" level="INFO"/>
+
+    <logger name="org.hibernate.SQL" level="DEBUG" />
+
+    <!-- Enable if you want to show the bound parameters for prepared statement placeholders. -->
+    <!--<logger name="org.hibernate.type" level="TRACE" />-->
+
+    <root level="DEBUG">
+        <appender-ref ref="console"/>
+    </root>
+</configuration>

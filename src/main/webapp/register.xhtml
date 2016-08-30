@@ -1,0 +1,102 @@
+<ui:composition template="/WEB-INF/template.xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:c="http://java.sun.com/jsp/jstl/core">
+
+    <ui:define name="pageTitle">
+        JSF Registration App
+    </ui:define>
+
+    <ui:define name="content">
+        <f:metadata>
+            <f:viewParam name="ssn" value="#{passengerBean.currentId.ssn}"/>
+            <f:viewParam name="lastName" value="#{passengerBean.currentId.lastName}"/>
+            <f:viewAction action="#{passengerBean.setUpAfterParam()}" />
+        </f:metadata>
+
+        <c:choose>
+            <c:when test="#{passengerBean.editable}">
+                <h2>Registration Form</h2>
+            </c:when>
+
+            <c:otherwise>
+                <h2>Confirmation</h2>
+            </c:otherwise>
+        </c:choose>
+
+        <h:form id="registerForm">
+            <h:panelGrid columns="2">
+                <h:outputLabel>First Name</h:outputLabel>
+
+                <h:panelGroup>
+                    <h:inputText id="firstName" value="#{passengerBean.passenger.firstName}" rendered="#{passengerBean.editable}">
+                        <f:ajax event="blur" render="errorFirstName"/>
+                    </h:inputText>
+                    <h:outputText class="inputLocked" value="#{passengerBean.passenger.firstName}" rendered="#{not passengerBean.editable}"/>
+                    <h:message id="errorFirstName" for="firstName"/>
+                </h:panelGroup>
+
+                <h:outputLabel>Last Name</h:outputLabel>
+
+                <h:panelGroup>
+                    <h:inputText id="lastName" value="#{passengerBean.passenger.id.lastName}" rendered="#{passengerBean.editable}"/>
+                    <h:outputText class="inputLocked" value="#{passengerBean.passenger.id.lastName}" rendered="#{not passengerBean.editable}"/>
+                    <h:message for="lastName"/>
+                </h:panelGroup>
+
+                <h:outputLabel>Date of Birth</h:outputLabel>
+
+                <h:panelGroup>
+                    <h:inputText id="dateOfBirth" value="#{passengerBean.passenger.dateOfBirth}" rendered="#{passengerBean.editable}">
+                        <f:convertDateTime timeZone="EST" type="date" pattern="MM-dd-yyyy"/>
+                    </h:inputText>
+                    <h:outputText class="inputLocked" value="#{passengerBean.passenger.dateOfBirth}" rendered="#{not passengerBean.editable}"/>
+                    <h:message for="dateOfBirth"/>
+                </h:panelGroup>
+
+                <h:outputLabel>SSN</h:outputLabel>
+
+                <h:panelGroup>
+                    <h:inputText id="ssn" value="#{passengerBean.passenger.id.ssn}" rendered="#{passengerBean.editable}"/>
+                    <h:outputText class="inputLocked" value="#{passengerBean.passenger.id.ssn}" rendered="#{not passengerBean.editable}"/>
+                    <h:message for="ssn"/>
+                </h:panelGroup>
+
+                <h:outputLabel value="Type"/>
+
+                <h:panelGroup>
+                    <h:selectOneListbox id="passengerType" value="#{passengerBean.passenger.type}" rendered="#{passengerBean.editable}">
+                        <f:selectItem itemLabel="Occasional" itemValue="OCCASIONAL"/>
+                        <f:selectItem itemLabel="Regular" itemValue="REGULAR"/>
+                    </h:selectOneListbox>
+                    <h:outputText class="inputLocked" value="#{passengerBean.passenger.type}" rendered="#{not passengerBean.editable}"/>
+                    <h:message for="passengerType"/>
+                </h:panelGroup>
+
+                <h:outputLabel value="Account Number"/>
+
+                <h:panelGroup>
+                    <h:inputText id="accountNumber" value="#{passengerBean.passenger.accountNumber}" rendered="#{passengerBean.editable}"/>
+                    <h:outputText class="inputLocked" value="#{passengerBean.passenger.accountNumber}" rendered="#{not passengerBean.editable}"/>
+                    <h:message for="accountNumber"/>
+                </h:panelGroup>
+
+                <h:commandButton value="Register" action="#{passengerBean.register()}" rendered="#{passengerBean.editable}"/>
+
+                <h:commandButton value="Edit" action="#{passengerBean.review()}" rendered="#{not passengerBean.editable}"/>
+
+                <c:if test="#{not passengerBean.editable}">
+                    <c:choose>
+                        <c:when test="#{not empty passengerBean.passenger.version and passengerBean.passenger.version ge 0}">
+                            <h:commandButton value="Update" action="#{passengerBean.update()}"/>
+                        </c:when>
+                        <c:otherwise>
+                            <h:commandButton value="Confirm" action="#{passengerBean.confirm()}"/>
+                        </c:otherwise>
+                    </c:choose>
+                </c:if>
+            </h:panelGrid>
+        </h:form>
+    </ui:define>
+</ui:composition>

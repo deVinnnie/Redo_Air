@@ -1,0 +1,34 @@
+<ui:composition template="WEB-INF/template.xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <ui:define name="pageTitle">
+        JSF Registration App
+    </ui:define>
+
+    <ui:define name="content">
+
+        <h2>Confirmation</h2>
+
+        <dl>
+            <dt>SSN</dt>
+            <dd><h:outputText value="#{passengerBean.ssn}"/></dd>
+
+            <dt>First Name</dt>
+            <dd><h:outputText value="#{passengerBean.firstName}"/></dd>
+
+            <dt>Last Name</dt>
+            <dd><h:outputText value="#{passengerBean.lastName}"/></dd>
+
+            <dt>Date of Birth</dt>
+            <dd><h:outputText value="#{passengerBean.dateOfBirth}"/></dd>
+
+            <dt>Type</dt>
+            <dd><h:outputText value="#{passengerBean.type}"/></dd>
+        </dl>
+
+        <h:form>
+            <h:commandButton value="Edit" action="register.xhtml"/>
+            <h:commandButton value="Confirm" action="#{passengerBean.confirm()}"/>
+        </h:form>
+    </ui:define>
+</ui:composition>

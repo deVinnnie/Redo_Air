@@ -1,0 +1,31 @@
+<dataset>
+    <person id="1000" firstName="John" lastName="Doe"/>
+    <person id="2000" firstName="Jane" lastName="Doe"/>
+
+    <passenger lastName="Potter" firstName="Harry" ssn="456487938" city="Little Whinging"
+               country="United Kingdom" street1="Privet Drive" street2="4" zipcode="4500"
+               dateOfBirth="1980-07-31" type="REGULAR" frequentFlyerMiles="0" version="1"/>
+
+    <passenger lastName="Black" firstName="Sirius" ssn="457864818" city="Islington"
+               country="United Kingdom" street1="Grimmauld Place" street2="12" zipcode="1540"
+               dateOfBirth="1959-06-18" type="OCCASIONAL" frequentFlyerMiles="0" version="1"/>
+
+    <passenger lastName="Dumbledore" firstName="Albus Percival Wulfric Brian" ssn="457864818" city="Hogsmeade"
+               country="United Kingdom" street1="Hogwarts Castle" street2="1" zipcode="1680"
+               dateOfBirth="1881-06-01" type="REGULAR" frequentFlyerMiles="0" version="1"/>
+
+
+    <!--<flight id="200" number="ASI-1234" departureTime="2017-05-05 18:00:00" arrivalTime="2017-05-05 19:15:10"/>-->
+
+    <airport id="100" code="EBGB" name="Grimbergen Airfield" version="1"/>
+    <airport id="200" code="BRU" name="Brussels Airport" version="1"/>
+    <airport id="300" code="RKE" name="Copenhagen Roskilde Airport" version="1"/>
+    <airport id="400" code="LHR" name="London Heathrow Airport" version="1"/>
+    <airport id="500" code="LGW" name="Gatwick Airport" version="1"/>
+
+    <plane id="50" type="AIRBUS A300"/>
+    <plane id="60" type="Boeing 737"/>
+    <plane id="70" type="Boeing 747"/>
+    <plane id="80" type="Boeing 747"/>
+    <plane id="90" type="Boeing 747"/>
+</dataset>
