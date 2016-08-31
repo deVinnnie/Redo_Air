@@ -65,7 +65,6 @@
         <class>com.realdolmen.air.domain.Booking</class>
         <class>com.realdolmen.air.domain.Customer</class>
 
-
         <properties>
             <property name="hibernate.dialect" value="org.hibernate.dialect.MySQL5InnoDBDialect" />
 

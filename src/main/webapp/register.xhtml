@@ -10,92 +10,66 @@
 
     <ui:define name="content">
         <f:metadata>
-            <f:viewParam name="ssn" value="#{passengerBean.currentId.ssn}"/>
-            <f:viewParam name="lastName" value="#{passengerBean.currentId.lastName}"/>
-            <f:viewAction action="#{passengerBean.setUpAfterParam()}" />
+            <!--<f:viewParam name="ssn" value="#{passengerBean.currentId.ssn}"/>-->
+            <!--<f:viewParam name="lastName" value="#{passengerBean.currentId.lastName}"/>-->
+            <!--<f:viewAction action="#{passengerBean.setUpAfterParam()}" />-->
         </f:metadata>
 
-        <c:choose>
-            <c:when test="#{passengerBean.editable}">
-                <h2>Registration Form</h2>
-            </c:when>
-
-            <c:otherwise>
-                <h2>Confirmation</h2>
-            </c:otherwise>
-        </c:choose>
+        <h2><h:outputFormat value="#{msg['registration.registration']}"/></h2>
 
         <h:form id="registerForm">
             <h:panelGrid columns="2">
-                <h:outputLabel>First Name</h:outputLabel>
-
+                <h:outputLabel>
+                    <h:outputFormat value="#{msg['registration.customer.firstName']}"/>
+                </h:outputLabel>
                 <h:panelGroup>
-                    <h:inputText id="firstName" value="#{passengerBean.passenger.firstName}" rendered="#{passengerBean.editable}">
+                    <h:inputText id="firstName" value="#{registerBean.customer.firstName}">
                         <f:ajax event="blur" render="errorFirstName"/>
                     </h:inputText>
-                    <h:outputText class="inputLocked" value="#{passengerBean.passenger.firstName}" rendered="#{not passengerBean.editable}"/>
                     <h:message id="errorFirstName" for="firstName"/>
                 </h:panelGroup>
 
-                <h:outputLabel>Last Name</h:outputLabel>
-
+                <h:outputLabel>
+                    <h:outputFormat value="#{msg['registration.customer.lastName']}"/>
+                </h:outputLabel>
                 <h:panelGroup>
-                    <h:inputText id="lastName" value="#{passengerBean.passenger.id.lastName}" rendered="#{passengerBean.editable}"/>
-                    <h:outputText class="inputLocked" value="#{passengerBean.passenger.id.lastName}" rendered="#{not passengerBean.editable}"/>
-                    <h:message for="lastName"/>
-                </h:panelGroup>
-
-                <h:outputLabel>Date of Birth</h:outputLabel>
-
-                <h:panelGroup>
-                    <h:inputText id="dateOfBirth" value="#{passengerBean.passenger.dateOfBirth}" rendered="#{passengerBean.editable}">
-                        <f:convertDateTime timeZone="EST" type="date" pattern="MM-dd-yyyy"/>
+                    <h:inputText id="lastName" value="#{registerBean.customer.lastName}">
+                        <f:ajax event="blur" render="errorLastName"/>
                     </h:inputText>
-                    <h:outputText class="inputLocked" value="#{passengerBean.passenger.dateOfBirth}" rendered="#{not passengerBean.editable}"/>
-                    <h:message for="dateOfBirth"/>
+                    <h:message id="errorLastName" for="lastName"/>
                 </h:panelGroup>
 
-                <h:outputLabel>SSN</h:outputLabel>
-
+                <h:outputLabel>
+                    <h:outputFormat value="#{msg['registration.customer.email']}"/>
+                </h:outputLabel>
                 <h:panelGroup>
-                    <h:inputText id="ssn" value="#{passengerBean.passenger.id.ssn}" rendered="#{passengerBean.editable}"/>
-                    <h:outputText class="inputLocked" value="#{passengerBean.passenger.id.ssn}" rendered="#{not passengerBean.editable}"/>
-                    <h:message for="ssn"/>
+                    <h:inputText id="email" value="#{registerBean.customer.email}">
+                        <f:ajax event="blur" render="errorEmail"/>
+                    </h:inputText>
+                    <h:message id="errorEmail" for="email"/>
                 </h:panelGroup>
 
-                <h:outputLabel value="Type"/>
-
+                <h:outputLabel>
+                    <h:outputFormat value="#{msg['registration.customer.password']}"/>
+                </h:outputLabel>
                 <h:panelGroup>
-                    <h:selectOneListbox id="passengerType" value="#{passengerBean.passenger.type}" rendered="#{passengerBean.editable}">
-                        <f:selectItem itemLabel="Occasional" itemValue="OCCASIONAL"/>
-                        <f:selectItem itemLabel="Regular" itemValue="REGULAR"/>
-                    </h:selectOneListbox>
-                    <h:outputText class="inputLocked" value="#{passengerBean.passenger.type}" rendered="#{not passengerBean.editable}"/>
-                    <h:message for="passengerType"/>
+                    <h:inputSecret id="password" binding="#{passwordComponent}" value="#{registerBean.password}"/>
+                    <h:message for="password" />
                 </h:panelGroup>
 
-                <h:outputLabel value="Account Number"/>
-
+                <h:outputLabel>
+                    <h:outputFormat value="#{msg['registration.customer.passwordRepeat']}"/>
+                </h:outputLabel>
                 <h:panelGroup>
-                    <h:inputText id="accountNumber" value="#{passengerBean.passenger.accountNumber}" rendered="#{passengerBean.editable}"/>
-                    <h:outputText class="inputLocked" value="#{passengerBean.passenger.accountNumber}" rendered="#{not passengerBean.editable}"/>
-                    <h:message for="accountNumber"/>
+                    <h:inputSecret id="confirmPassword" required="#{not empty passwordComponent.value}">
+                        <f:validator validatorId="passwordValidator" />
+                        <f:attribute name="otherValue" value="#{passwordComponent.value}" />
+                    </h:inputSecret>
+                    <h:message for="confirmPassword" />
                 </h:panelGroup>
 
-                <h:commandButton value="Register" action="#{passengerBean.register()}" rendered="#{passengerBean.editable}"/>
+                <h:commandButton value="#{msg['registration.customer.saveButton']}" action="#{registerBean.persistCustomer}"/>
 
-                <h:commandButton value="Edit" action="#{passengerBean.review()}" rendered="#{not passengerBean.editable}"/>
-
-                <c:if test="#{not passengerBean.editable}">
-                    <c:choose>
-                        <c:when test="#{not empty passengerBean.passenger.version and passengerBean.passenger.version ge 0}">
-                            <h:commandButton value="Update" action="#{passengerBean.update()}"/>
-                        </c:when>
-                        <c:otherwise>
-                            <h:commandButton value="Confirm" action="#{passengerBean.confirm()}"/>
-                        </c:otherwise>
-                    </c:choose>
-                </c:if>
             </h:panelGrid>
         </h:form>
     </ui:define>

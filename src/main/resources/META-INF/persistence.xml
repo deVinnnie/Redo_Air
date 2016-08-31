@@ -7,6 +7,32 @@
 
     <persistence-unit name="MyPersistenceUnit" transaction-type="JTA">
         <jta-data-source>java:/rd/datasources/RealDolmenDataSource</jta-data-source>
+
+
+    <properties>
+        <property name="hibernate.dialect" value="org.hibernate.dialect.MySQL5InnoDBDialect" />
+
+        <!--
+            Using create (is really drop-create) is better than create-drop, because this way you can still see
+            the final results in the database after running the unit tests.
+            Also cleanup should be done _before_ running unit tests because otherwise you assume the previous run
+            has been successful. If this was not the case, you would end up in a fail-cascade because the next run
+            would fail due to the previous one not cleaning up correctly.
+        -->
+        <property name="hibernate.hbm2ddl.auto" value="create" />
+
+        <!--
+            The default transaction isolation level of java.sql.Connection is to use the used DBMS's default.
+            Using MySQL, this is to use REPEATABLE_READ which is usually a sensible value for production
+            environments. However, in a unit test this can occasionally backfire, because it becomes difficult for
+            a transaction spawned in a test to "see" the values of another (already committed) transaction (under
+            test) to perform asserts on. This is why we set lower the isolation level just a notch to
+            READ_COMMITTED. The test will still only see changes that the system under test has committed (thus
+            preventing a false-positive assertion, but allows the testing transaction to see the changes they are
+            interested in seeing to happen. Note that we only use this on the test persistence.xml!
+        -->
+        <property name="hibernate.connection.isolation" value="TRANSACTION_READ_COMMITTED" />
+    </properties>
     </persistence-unit>
 
     <!--

@@ -1,4 +1,4 @@
-package com.realdolmen.course.web.controller;
+package com.realdolmen.air.web.controller;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.SessionScoped;
