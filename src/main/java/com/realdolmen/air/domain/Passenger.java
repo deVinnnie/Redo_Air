@@ -3,7 +3,7 @@ package com.realdolmen.air.domain;
 import javax.persistence.Embeddable;
 
 @Embeddable
-public class Passenger extends AbstractEntity{
+public class Passenger{
     String firstName;
 
     String lastName;

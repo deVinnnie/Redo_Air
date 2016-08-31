@@ -1,12 +1,10 @@
 package com.realdolmen.air.domain;
 
-import com.realdolmen.course.domain.*;
-
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 
 @Entity
-public class Airport extends com.realdolmen.course.domain.AbstractEntity {
+public class Airport extends AbstractEntity {
 
     /**
      * International Airport Code

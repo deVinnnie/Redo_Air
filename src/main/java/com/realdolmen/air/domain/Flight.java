@@ -2,13 +2,14 @@ package com.realdolmen.air.domain;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 
 @Entity
-@Inheritance(strategy = InheritanceType.JOINED)
 public class Flight extends AbstractEntity implements Serializable{
+
+    @Transient
+    private static final int DEFAULT_MARGIN = 5;
 
     private String number;
 
@@ -27,10 +28,19 @@ public class Flight extends AbstractEntity implements Serializable{
     @ManyToOne
     private Airport departure;
 
-    private BigDecimal basePrice;
+    /*@ElementCollection(fetch = FetchType.LAZY)
+    @CollectionTable(name = "TravelClass")
+    @Column(name = "flight")
+    private List<TravelClass> travelClasses;*/
 
     @OneToMany
     private List<Ticket> tickets;
+
+
+    /*@ElementCollection(fetch = FetchType.LAZY)
+    @CollectionTable(name = "BulkDiscount")
+    @Column(name = "flight")
+    private List<BulkDiscount> discounts;*/
 
     public Flight() {
     }
@@ -90,14 +100,6 @@ public class Flight extends AbstractEntity implements Serializable{
         this.airlineCompany = airlineCompany;
     }
 
-    public BigDecimal getBasePrice() {
-        return basePrice;
-    }
-
-    public void setBasePrice(BigDecimal basePrice) {
-        this.basePrice = basePrice;
-    }
-
     public List<Ticket> getTickets() {
         return tickets;
     }
@@ -106,5 +108,12 @@ public class Flight extends AbstractEntity implements Serializable{
         this.tickets = tickets;
     }
 
+    /*public List<TravelClass> getTravelClasses() {
+        return travelClasses;
+    }
+
+    public void setTravelClasses(List<TravelClass> travelClasses) {
+        this.travelClasses = travelClasses;
+    }*/
     //</editor-fold>
 }
