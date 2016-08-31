@@ -1,6 +1,6 @@
 package com.realdolmen.course.repository;
 
-import com.realdolmen.course.domain.Ticket;
+import com.realdolmen.air.domain.Ticket;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;

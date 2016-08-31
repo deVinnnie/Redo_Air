@@ -56,9 +56,9 @@
          -->
         <class>com.realdolmen.course.domain.Person</class>
         <class>com.realdolmen.course.domain.Passenger</class>
-        <class>com.realdolmen.course.domain.Flight</class>
-        <class>com.realdolmen.course.domain.Ticket</class>
-        <class>com.realdolmen.course.domain.Airport</class>
+        <class>com.realdolmen.air.domain.Flight</class>
+        <class>com.realdolmen.air.domain.Ticket</class>
+        <class>com.realdolmen.air.domain.Airport</class>
         <class>com.realdolmen.course.domain.Plane</class>
         <class>com.realdolmen.course.domain.DomesticFlight</class>
         <class>com.realdolmen.course.domain.InternationalFlight</class>

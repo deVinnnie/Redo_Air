@@ -1,4 +1,4 @@
-package com.realdolmen.course.domain;
+package com.realdolmen.air.domain;
 
 public enum Status {
     PENDING,

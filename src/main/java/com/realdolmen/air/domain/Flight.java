@@ -1,15 +1,19 @@
-package com.realdolmen.course.domain;
+package com.realdolmen.air.domain;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
-public abstract class Flight extends AbstractEntity implements Serializable{
+public class Flight extends AbstractEntity implements Serializable{
 
     private String number;
+
+    @ManyToOne
+    private AirlineCompany airlineCompany;
 
     @Temporal(TemporalType.TIMESTAMP)
     private Date departureTime;
@@ -17,18 +21,16 @@ public abstract class Flight extends AbstractEntity implements Serializable{
     @Temporal(TemporalType.TIMESTAMP)
     private Date arrivalTime;
 
-    @ManyToMany
-    private List<Passenger> passengerList;
-
     @ManyToOne
     private Airport arrival;
 
     @ManyToOne
     private Airport departure;
 
-    @ManyToOne
-    private Plane plane;
+    private BigDecimal basePrice;
 
+    @OneToMany
+    private List<Ticket> tickets;
 
     public Flight() {
     }
@@ -64,14 +66,6 @@ public abstract class Flight extends AbstractEntity implements Serializable{
         this.arrivalTime = arrivalTime;
     }
 
-    public List<Passenger> getPassengerList() {
-        return passengerList;
-    }
-
-    public void setPassengerList(List<Passenger> passengerList) {
-        this.passengerList = passengerList;
-    }
-
     public Airport getArrival() {
         return arrival;
     }
@@ -88,12 +82,29 @@ public abstract class Flight extends AbstractEntity implements Serializable{
         this.departure = departure;
     }
 
-    public Plane getPlane() {
-        return plane;
+    public AirlineCompany getAirlineCompany() {
+        return airlineCompany;
     }
 
-    public void setPlane(Plane plane) {
-        this.plane = plane;
+    public void setAirlineCompany(AirlineCompany airlineCompany) {
+        this.airlineCompany = airlineCompany;
     }
+
+    public BigDecimal getBasePrice() {
+        return basePrice;
+    }
+
+    public void setBasePrice(BigDecimal basePrice) {
+        this.basePrice = basePrice;
+    }
+
+    public List<Ticket> getTickets() {
+        return tickets;
+    }
+
+    public void setTickets(List<Ticket> tickets) {
+        this.tickets = tickets;
+    }
+
     //</editor-fold>
 }

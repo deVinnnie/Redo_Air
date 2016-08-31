@@ -1,10 +1,10 @@
 package com.realdolmen.course.domain;
 
+import com.realdolmen.air.domain.Ticket;
+
 import javax.persistence.*;
-import javax.validation.Valid;
 import javax.validation.constraints.*;
 import java.io.Serializable;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
