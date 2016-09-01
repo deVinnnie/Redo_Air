@@ -104,7 +104,9 @@
 
 
 
-    <flight id="200" version="1" number="ASI-1234" departureTime="2017-05-05 18:00:00" arrivalTime="2017-05-05 19:15:10" airlineCompany_id="10"/>
+    <flight id="200" version="1" number="ASI-1234" departureTime="2017-05-05 18:00:00" arrivalTime="2017-05-05 19:15:10" airlineCompany_id="10"
+                arrival_id="9200" departure_id="8000"
+    />
     <flight id="300" version="1" number="ASI-1234" departureTime="2017-05-10 18:30:00" arrivalTime="2017-05-10 20:00:10" airlineCompany_id="10"/>
 
     <travelclass version="1" flight_id="200" id="200100" basePrice="110.0" name="Economy" remainingSeats="55"/>
@@ -119,7 +121,7 @@
 
     <travelclass version="1" flight_id="400" id="400100" basePrice="100.0" name="Economy" remainingSeats="100"/>
     <travelclass version="1" flight_id="400" id="400200" basePrice="150.0" name="Business" remainingSeats="100"/>
-    
+
     <travelclass version="1" flight_id="500" id="500100" basePrice="100.0" name="Economy" remainingSeats="100"/>
     <travelclass version="1" flight_id="500" id="500200" basePrice="150.0" name="Business" remainingSeats="100"/>
     <travelclass version="1" flight_id="500" id="500300" basePrice="200.0" name="First Class" remainingSeats="50"/>
