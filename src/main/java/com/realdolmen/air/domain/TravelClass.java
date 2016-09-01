@@ -16,7 +16,8 @@ public class TravelClass extends AbstractEntity{
      *
      * Example: A value of 1.05 corresponds to a profit margin of 5%.
      */
-    public BigDecimal margin = new BigDecimal("1.05");
+    @Transient
+    private BigDecimal margin = new BigDecimal("1.05");
 
     /**
      * Name of the travel class.

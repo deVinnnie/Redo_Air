@@ -13,9 +13,9 @@
                dateOfBirth="1881-06-01" type="REGULAR" frequentFlyerMiles="0" version="1"/>
 
     -->
-    <flight id="200" version="1" number="ASI-1234" departureTime="2017-05-05 18:00:00" arrivalTime="2017-05-05 19:15:10"/>
 
-    <travelclass version="1" margin="1.05" flight_id="200" id="200100" basePrice="100.0" name="Business" remainingSeats="5" retailPrice="50.40"/>
+
+
 
     <!--<airport id="100" code="EBGB" name="Grimbergen Airfield" version="1"/>
     <airport id="200" code="BRU" name="Brussels Airport" version="1"/>
@@ -93,4 +93,34 @@
     <airport id="8300" name="West Georgia Regional Airport - O V Gray Field" country="United States" code="CTJ" version="1" region_id="1"></airport>
     <airport id="8800" name="CedarKey" country="United States" code="CDK" version="1" region_id="1"></airport>
     <airport id="9200" name="Sebastian Municipal" country="United States" code="X26" version="1" region_id="1"></airport>
+
+
+    <airlinecompany id="10" name="Jetairfly"/>
+    <airlinecompany id="20" name="British Airways"/>
+    <airlinecompany id="30" name="Thomas Coock Airlines"/>
+    <airlinecompany id="40" name="ABX Air"/>
+
+
+
+
+
+    <flight id="200" version="1" number="ASI-1234" departureTime="2017-05-05 18:00:00" arrivalTime="2017-05-05 19:15:10" airlineCompany_id="10"/>
+    <flight id="300" version="1" number="ASI-1234" departureTime="2017-05-10 18:30:00" arrivalTime="2017-05-10 20:00:10" airlineCompany_id="10"/>
+
+    <travelclass version="1" flight_id="200" id="200100" basePrice="110.0" name="Economy" remainingSeats="55"/>
+    <travelclass version="1" flight_id="200" id="200200" basePrice="120.0" name="Business" remainingSeats="5"/>
+
+    <travelclass version="1" flight_id="300" id="300100" basePrice="100.0" name="Economy" remainingSeats="50"/>
+    <travelclass version="1" flight_id="300" id="300200" basePrice="110.0" name="Business" remainingSeats="5"/>
+    <travelclass version="1" flight_id="300" id="300300" basePrice="120.0" name="First Class" remainingSeats="10"/>
+
+    <flight id="400" version="1" number="ASI-1234" departureTime="2017-06-05 18:00:00" arrivalTime="2017-06-05 19:15:10" airlineCompany_id="20"/>
+    <flight id="500" version="1" number="ASI-1234" departureTime="2017-06-10 18:30:00" arrivalTime="2017-06-10 20:00:10" airlineCompany_id="20"/>
+
+    <travelclass version="1" flight_id="400" id="400100" basePrice="100.0" name="Economy" remainingSeats="100"/>
+    <travelclass version="1" flight_id="400" id="400200" basePrice="150.0" name="Business" remainingSeats="100"/>
+    
+    <travelclass version="1" flight_id="500" id="500100" basePrice="100.0" name="Economy" remainingSeats="100"/>
+    <travelclass version="1" flight_id="500" id="500200" basePrice="150.0" name="Business" remainingSeats="100"/>
+    <travelclass version="1" flight_id="500" id="500300" basePrice="200.0" name="First Class" remainingSeats="50"/>
 </dataset>
