@@ -17,9 +17,80 @@
 
     <travelclass version="1" margin="1.05" flight_id="200" id="200100" basePrice="100.0" name="Business" remainingSeats="5" retailPrice="50.40"/>
 
-    <airport id="100" code="EBGB" name="Grimbergen Airfield" version="1"/>
+    <!--<airport id="100" code="EBGB" name="Grimbergen Airfield" version="1"/>
     <airport id="200" code="BRU" name="Brussels Airport" version="1"/>
     <airport id="300" code="RKE" name="Copenhagen Roskilde Airport" version="1"/>
     <airport id="400" code="LHR" name="London Heathrow Airport" version="1"/>
-    <airport id="500" code="LGW" name="Gatwick Airport" version="1"/>
+    <airport id="500" code="LGW" name="Gatwick Airport" version="1"/>-->
+
+    <!-- Regions -->
+    <region id="0" name="Pacific"></region>
+    <region id="1" name="America"></region>
+    <region id="2" name="Atlantic"></region>
+    <region id="3" name="Africa"></region>
+    <region id="4" name="Europe"></region>
+    <region id="5" name="Arctic"></region>
+    <region id="6" name="Indian"></region>
+    <region id="7" name="Asia"></region>
+    <region id="9" name="Australia"></region>
+    <region id="10" name="Antarctica"></region>
+
+    <!-- Airports -->
+    <airport id="100" name="Ottawa Macdonald Cartier Intl" country="Canada" code="YOW" version="1" region_id="1"></airport>
+    <airport id="200" name="Port Hardy" country="Canada" code="YZT" version="1" region_id="1"></airport>
+    <airport id="400" name="Kassel Calden" country="Germany" code="KSF" version="1" region_id="4"></airport>
+    <airport id="500" name="Shoreham" country="United Kingdom" code="ESH" version="1" region_id="4"></airport>
+    <airport id="600" name="Ireland West Knock" country="Ireland" code="NOC" version="1" region_id="4"></airport>
+    <airport id="800" name="East London" country="South Africa" code="ELS" version="1" region_id="3"></airport>
+    <airport id="900" name="Ngaoundere" country="Cameroon" code="NGE" version="1" region_id="3"></airport>
+    <airport id="1000" name="Faya Largeau" country="Chad" code="FYT" version="1" region_id="3"></airport>
+    <airport id="1100" name="Faranah" country="Guinea" code="FAA" version="1" region_id="3"></airport>
+    <airport id="1200" name="Dubrovnik" country="Croatia" code="DBV" version="1" region_id="4"></airport>
+    <airport id="1300" name="St Agnant" country="France" code="RCO" version="1" region_id="4"></airport>
+    <airport id="1500" name="Crotone" country="Italy" code="CRV" version="1" region_id="4"></airport>
+    <airport id="1800" name="Cozumel Intl" country="Mexico" code="CZM" version="1" region_id="1"></airport>
+    <airport id="1900" name="Maximo Gomez" country="Cuba" code="AVI" version="1" region_id="1"></airport>
+    <airport id="2000" name="Lifou" country="New Caledonia" code="LIF" version="1" region_id="0"></airport>
+    <airport id="2300" name="Okushiri" country="Japan" code="OIR" version="1" region_id="7"></airport>
+    <airport id="2400" name="Cagayan De Oro" country="Philippines" code="CGY" version="1" region_id="7"></airport>
+    <airport id="2500" name="Santa Cruz" country="Argentina" code="RZA" version="1" region_id="1"></airport>
+    <airport id="2800" name="Chachapoyas" country="Peru" code="CHH" version="1" region_id="1"></airport>
+    <airport id="2900" name="Wallblake" country="Anguilla" code="AXA" version="1" region_id="1"></airport>
+    <airport id="3000" name="Belgaum" country="India" code="IXG" version="1" region_id="7"></airport>
+    <airport id="6800" name="Delta County Airport" country="United States" code="ESC" version="1" region_id="1"></airport>
+    <airport id="3100" name="Jammu" country="India" code="IXJ" version="1" region_id="7"></airport>
+    <airport id="3200" name="Nhatrang" country="Vietnam" code="NHA" version="1" region_id="7"></airport>
+    <airport id="3300" name="Kerteh" country="Malaysia" code="KTE" version="1" region_id="7"></airport>
+    <airport id="3400" name="Taiping" country="China" code="HRB" version="1" region_id="7"></airport>
+    <airport id="3500" name="Maxwell Afb" country="United States" code="MXF" version="1" region_id="1"></airport>
+    <airport id="3600" name="Bowman Fld" country="United States" code="LOU" version="1" region_id="1"></airport>
+    <airport id="3700" name="Waco Rgnl" country="United States" code="ACT" version="1" region_id="1"></airport>
+    <airport id="3800" name="Sherman Aaf" country="United States" code="FLV" version="1" region_id="1"></airport>
+    <airport id="3900" name="Pondok Cabe" country="Indonesia" code="PCB" version="1" region_id="7"></airport>
+    <airport id="4000" name="Surat Thani" country="Thailand" code="URT" version="1" region_id="7"></airport>
+    <airport id="4100" name="Idaho Falls Rgnl" country="United States" code="IDA" version="1" region_id="1"></airport>
+    <airport id="4200" name="Butuan" country="Philippines" code="BXU" version="1" region_id="7"></airport>
+    <airport id="4300" name="Chumphon" country="Thailand" code="CJM" version="1" region_id="7"></airport>
+    <airport id="6000" name="Odate Noshiro Airport" country="Japan" code="ONJ" version="1" region_id="7"></airport>
+    <airport id="5900" name="Tavie Airport" country="Vanuatu" code="PBJ" version="1" region_id="0"></airport>
+    <airport id="5800" name="Adiyaman Airport" country="Turkey" code="ADF" version="1" region_id="4"></airport>
+    <airport id="5700" name="Atbara Airport" country="Sudan" code="ATB" version="1" region_id="3"></airport>
+    <airport id="5600" name="Shilavo Airport" country="Ethiopia" code="HIL" version="1" region_id="3"></airport>
+    <airport id="5500" name="Vancouver Harbour Water Airport" country="Canada" code="YHC" version="1" region_id="1"></airport>
+    <airport id="6100" name="Ujae Atoll Airport" country="Marshall Islands" code="UJE" version="1" region_id="0"></airport>
+    <airport id="6200" name="Mawlamyine Airport" country="Burma" code="MNU" version="1" region_id="7"></airport>
+    <airport id="6300" name="Moree Airport" country="Australia" code="MRZ" version="1" region_id="9"></airport>
+    <airport id="6400" name="Mianyang Airport" country="China" code="MIG" version="1" region_id="7"></airport>
+    <airport id="6500" name="Mason City Municipal" country="United States" code="MCW" version="1" region_id="1"></airport>
+    <airport id="7000" name="Malad City" country="United States" code="MLD" version="1" region_id="1"></airport>
+    <airport id="7100" name="Ekwok Airport" country="United States" code="KEK" version="1" region_id="1"></airport>
+    <airport id="7200" name="Sheldon Point Airport" country="United States" code="SXP" version="1" region_id="1"></airport>
+    <airport id="7500" name="Zaranj Airport" country="Afghanistan" code="ZAJ" version="1" region_id="7"></airport>
+    <airport id="7700" name="Phan Rang Airport" country="Vietnam" code="PHA" version="1" region_id="7"></airport>
+    <airport id="7800" name="Essen HBF" country="Germany" code="ESX" version="1" region_id="4"></airport>
+    <airport id="8000" name="Gostomel Antonov" country="Ukraine" code="GML" version="1" region_id="4"></airport>
+    <airport id="8200" name="Toksook Bay Airport" country="United States" code="OOK" version="1" region_id="1"></airport>
+    <airport id="8300" name="West Georgia Regional Airport - O V Gray Field" country="United States" code="CTJ" version="1" region_id="1"></airport>
+    <airport id="8800" name="CedarKey" country="United States" code="CDK" version="1" region_id="1"></airport>
+    <airport id="9200" name="Sebastian Municipal" country="United States" code="X26" version="1" region_id="1"></airport>
 </dataset>

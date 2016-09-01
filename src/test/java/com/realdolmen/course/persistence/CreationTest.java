@@ -1,6 +1,6 @@
 package com.realdolmen.course.persistence;
 
-import com.realdolmen.course.utilities.persistence.JpaPersistenceTest;
+import com.realdolmen.util.persistence.JpaPersistenceTest;
 import org.junit.Test;
 
 
