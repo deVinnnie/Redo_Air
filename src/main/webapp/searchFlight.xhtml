@@ -1,0 +1,64 @@
+<ui:composition template="/WEB-INF/template.xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:c="http://java.sun.com/jsp/jstl/core"
+                xmlns:p="http://primefaces.org/ui">
+
+    <ui:define name="pageTitle">
+        JSF Registration App
+    </ui:define>
+
+    <ui:define name="content">
+        <f:metadata>
+            <!--<f:viewParam name="ssn" value="#{passengerBean.currentId.ssn}"/>-->
+            <!--<f:viewParam name="lastName" value="#{passengerBean.currentId.lastName}"/>-->
+            <!--<f:viewAction action="#{passengerBean.setUpAfterParam()}" />-->
+        </f:metadata>
+
+        <h2><h:outputFormat value="#{msg['searchFlight.title']}"/></h2>
+
+        <h:form id="registerForm">
+            <h:panelGrid columns="2">
+                <h:outputLabel>
+                    <h:outputFormat value="#{msg['searchFlight.search.searchCompany']}"/>
+                </h:outputLabel>
+                <h:panelGroup>
+                    <p:selectOneMenu id="advanced" value="#{searchFlightBean.flightClass}" panelStyle="width:180px"
+                                     effect="fade" var="t" style="width:160px" filter="true" filterMatchMode="startsWith">
+                        <f:selectItems value="#{searchFlightBean.airlineCompanies}" var="airlineComp" itemLabel="#{airlineComp.name}" itemValue="#{airlineComp.name}" />
+
+                        <p:column>
+                            <h:outputText value="#{t.name}" />
+                        </p:column>
+                    </p:selectOneMenu>
+                </h:panelGroup>
+
+                <h:outputLabel>
+                    <h:outputFormat value="#{msg['searchFlight.search.searchClass']}"/>
+                </h:outputLabel>
+                <h:panelGroup>
+                    <p:selectOneMenu id="flightClass" value="#{searchFlightBean.flightClass}" style="width:125px">
+                        <f:selectItem itemLabel="First" itemValue="first" />
+                        <f:selectItem itemLabel="Bussiness" itemValue="bussiness" />
+                        <f:selectItem itemLabel="Economy" itemValue="economy" />
+                    </p:selectOneMenu>
+                </h:panelGroup>
+
+                <h:outputLabel>
+                    <h:outputFormat value="#{msg['searchFlight.search.searchSeats']}"/>
+                </h:outputLabel>
+                <h:panelGroup>
+                    <h:inputText id="numberOfSeats" value="#{searchFlightBean.numberOfSeats}"/>
+                    <h:message id="errorNumberOfSeats" for="numberOfSeats"/>
+                </h:panelGroup>
+
+
+
+
+
+
+            </h:panelGrid>
+        </h:form>
+    </ui:define>
+</ui:composition>
