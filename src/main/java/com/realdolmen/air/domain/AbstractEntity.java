@@ -2,13 +2,14 @@ package com.realdolmen.air.domain;
 
 import javax.persistence.*;
 import javax.xml.bind.annotation.XmlTransient;
+import java.io.Serializable;
 import java.util.Date;
 
 /**
  * Defines common fields used by most AirportEntities.
  */
 @MappedSuperclass
-public abstract class AbstractEntity {
+public abstract class AbstractEntity implements Serializable{
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

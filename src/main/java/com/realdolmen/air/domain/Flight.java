@@ -4,13 +4,15 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 
 @Entity
-public class Flight extends AbstractEntity implements Serializable{
+public class Flight extends AbstractEntity{
 
-    @Transient
-    private static final int DEFAULT_MARGIN = 5;
-
+    /**
+     * Identification number of the flight.
+     *
+     */
     private String number;
 
     @ManyToOne
@@ -28,19 +30,20 @@ public class Flight extends AbstractEntity implements Serializable{
     @ManyToOne
     private Airport departure;
 
-    /*@ElementCollection(fetch = FetchType.LAZY)
-    @CollectionTable(name = "TravelClass")
+    @OneToMany(mappedBy = "flight")
+    private List<TravelClass> travelClasses;
+
+    /**
+     * A list of discounts associated to this flight.
+     */
+    @ElementCollection(fetch = FetchType.EAGER)
+    @CollectionTable(name = "BulkDiscount")
     @Column(name = "flight")
-    private List<TravelClass> travelClasses;*/
+    private List<BulkDiscount> discounts;
 
     @OneToMany
     private List<Ticket> tickets;
 
-
-    /*@ElementCollection(fetch = FetchType.LAZY)
-    @CollectionTable(name = "BulkDiscount")
-    @Column(name = "flight")
-    private List<BulkDiscount> discounts;*/
 
     public Flight() {
     }
@@ -108,12 +111,29 @@ public class Flight extends AbstractEntity implements Serializable{
         this.tickets = tickets;
     }
 
-    /*public List<TravelClass> getTravelClasses() {
+    public List<TravelClass> getTravelClasses() {
         return travelClasses;
     }
 
     public void setTravelClasses(List<TravelClass> travelClasses) {
         this.travelClasses = travelClasses;
-    }*/
+    }
+
+    public List<BulkDiscount> getDiscounts() {
+        return discounts;
+    }
+
+    public void setDiscounts(List<BulkDiscount> discounts) {
+        this.discounts = discounts;
+    }
     //</editor-fold>
+
+    public TravelClass findTravelClass(String name){
+        for(TravelClass travelClass : this.travelClasses){
+            if(travelClass.getName().equals(name)){
+                return travelClass;
+            }
+        }
+        return null;
+    }
 }

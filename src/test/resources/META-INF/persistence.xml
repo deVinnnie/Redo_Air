@@ -57,13 +57,11 @@
         <class>com.realdolmen.air.domain.AirlineCompany</class>
         <class>com.realdolmen.air.domain.Flight</class>
         <class>com.realdolmen.air.domain.Ticket</class>
-
         <class>com.realdolmen.air.domain.Airport</class>
-
         <class>com.realdolmen.air.domain.Region</class>
-
         <class>com.realdolmen.air.domain.Booking</class>
         <class>com.realdolmen.air.domain.Customer</class>
+        <class>com.realdolmen.air.domain.TravelClass</class>
 
         <properties>
             <property name="hibernate.dialect" value="org.hibernate.dialect.MySQL5InnoDBDialect" />

@@ -33,6 +33,7 @@ public class Ticket extends AbstractEntity implements Serializable{
     public Ticket() {
     }
 
+    //<editor-fold desc="Getters & Setters">
     public Passenger getPassenger() {
         return passenger;
     }
@@ -64,4 +65,14 @@ public class Ticket extends AbstractEntity implements Serializable{
     public void setBuyPrice(BigDecimal buyPrice) {
         this.buyPrice = buyPrice;
     }
+
+    public String getTravelClass() {
+        return travelClass;
+    }
+
+    public void setTravelClass(String travelClass) {
+        this.travelClass = travelClass;
+    }
+
+    //</editor-fold>
 }
