@@ -14,9 +14,6 @@ public class TravelClassRepository {
     EntityManager em;
 
     public TravelClass update(TravelClass travelClass){
-        System.out.println("PPPPPP ----- -- ----- " + travelClass.getFlight().getId());
-        travelClass.setFlight(em.merge(travelClass.getFlight()));
-
         travelClass = em.merge(travelClass);
         return travelClass;
     }

@@ -6,16 +6,10 @@ import com.realdolmen.air.repository.FlightRepository;
 
 
 import javax.annotation.PostConstruct;
-import javax.enterprise.context.RequestScoped;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.inject.Inject;
-import javax.inject.Named;
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-import javax.transaction.Transactional;
 import java.util.List;
-import java.util.Set;
 
 @ManagedBean
 @ViewScoped
@@ -53,7 +47,7 @@ public class FlightBean {
     public void save(){
         System.out.println("Flight: " + flight.getId());
         for(TravelClass t : flight.getTravelClasses()){
-            System.out.println(t.getName() + " - " + t.getRetailPrice());
+            System.out.println(t.getName() + " - " + t.getOverriddenPrice());
         }
 
         this.repo.update(flight);

@@ -7,7 +7,6 @@ import com.realdolmen.air.repository.TravelClassRepository;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.inject.Inject;
-import javax.inject.Named;
 
 @ManagedBean
 @ViewScoped
@@ -31,12 +30,7 @@ public class TravelClassBean {
     public void onParametersLoaded(){
         this.travelClass = repository.find(travelClassId);
     }
-
-    /*public String overridePrice(Long travelClassId){
-        /*this.travelClass = repository.find(travelClassId);
-        return "/redo-admin/override.xhtml";*/
-    /*}*/
-
+    
     public TravelClass getTravelClass() {
         return travelClass;
     }
@@ -54,8 +48,6 @@ public class TravelClassBean {
     }
 
     public void save(){
-        System.out.println(travelClass.getId());
-        System.out.println(travelClass.getFlight().getId());
         this.travelClass = this.repository.update(this.travelClass);
     }
 }

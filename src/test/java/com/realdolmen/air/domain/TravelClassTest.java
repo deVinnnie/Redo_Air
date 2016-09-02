@@ -33,7 +33,7 @@ public class TravelClassTest {
     @Test
     public void testCalculateEndUserPriceWithOverriddenPriceGivesOverriddenValue(){
         BigDecimal overridenPrice = new BigDecimal("200.0");
-        this.travelClass.setRetailPrice(overridenPrice);
+        this.travelClass.setOverriddenPrice(overridenPrice);
 
         asserter.assertBigDecimalEqual(overridenPrice, travelClass.getEndUserPrice());
     }

@@ -9,6 +9,7 @@ import java.math.BigDecimal;
 public class TravelClass extends AbstractEntity{
 
     @ManyToOne
+    @JoinColumn(name="flight_id")
     private Flight flight;
 
     /**
@@ -45,16 +46,16 @@ public class TravelClass extends AbstractEntity{
      * for his ticket instead of the base price * margin set by the Airline.
      */
     @Min(0)
-    private BigDecimal retailPrice = null;
+    private BigDecimal overriddenPrice = null;
 
     public TravelClass() {
     }
 
-    public TravelClass(String name, Integer remainingSeats, BigDecimal basePrice, BigDecimal retailPrice) {
+    public TravelClass(String name, Integer remainingSeats, BigDecimal basePrice, BigDecimal overriddenPrice) {
         this.name = name;
         this.remainingSeats = remainingSeats;
         this.basePrice = basePrice;
-        this.retailPrice = retailPrice;
+        this.overriddenPrice = overriddenPrice;
     }
 
     //<editor-fold desc="Getters & Setters">
@@ -82,12 +83,12 @@ public class TravelClass extends AbstractEntity{
         this.basePrice = basePrice;
     }
 
-    public BigDecimal getRetailPrice() {
-        return retailPrice;
+    public BigDecimal getOverriddenPrice() {
+        return overriddenPrice;
     }
 
-    public void setRetailPrice(BigDecimal retailPrice) {
-        this.retailPrice = retailPrice;
+    public void setOverriddenPrice(BigDecimal overriddenPrice) {
+        this.overriddenPrice = overriddenPrice;
     }
 
 
@@ -101,7 +102,7 @@ public class TravelClass extends AbstractEntity{
     //</editor-fold>
 
     // Make package protected. These should only be changed by Test cases.
-    BigDecimal getMargin() {
+    public BigDecimal getMargin() {
         return margin;
     }
 
@@ -110,8 +111,8 @@ public class TravelClass extends AbstractEntity{
     }
 
     public BigDecimal getEndUserPrice(){
-        if(retailPrice != null){
-            return retailPrice;
+        if(overriddenPrice != null){
+            return overriddenPrice;
         }
         else {
             BigDecimal price = basePrice.multiply(margin);

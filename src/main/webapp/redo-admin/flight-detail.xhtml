@@ -35,10 +35,27 @@
 
             <h:column>
                 <f:facet name="header">
+                    Margin
+                </f:facet>
+                <h:outputText value="#{travelClass.margin}"/>
+            </h:column>
+
+            <h:column>
+                <f:facet name="header">
+                    Override
+                </f:facet>
+                <h:outputText value="#{travelClass.overriddenPrice}"/>
+            </h:column>
+
+
+            <h:column>
+                <f:facet name="header">
                     Retail Price
                 </f:facet>
                 <h:outputText value="#{travelClass.endUserPrice}"/>
             </h:column>
+
+
 
             <h:column>
                 <f:facet name="header">
@@ -49,7 +66,6 @@
 
             <h:column>
                 <h:form>
-
                     <h:link outcome="/redo-admin/override.xhtml">
                         Edit
                         <f:param name="id" value="#{travelClass.id}"/>
