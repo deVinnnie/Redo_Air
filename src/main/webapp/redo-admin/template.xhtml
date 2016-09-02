@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:c="http://java.sun.com/jsp/jstl/core"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:rd="http://xmlns.jcp.org/jsf/composite/realdolmen"
+      xmlns:p="http://primefaces.org/ui"
+      lang="#{languageBean.language}">
+<f:view locale="#{languageBean.locale}">
+    <h:head>
+        <title><ui:insert name="pageTitle"/></title>
+
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+        <meta name="charset" content="utf-8"/>
+
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+
+        <!--<h:outputStylesheet library="material-prime" name="libs/materialize.css"/>-->
+        <!--<h:outputStylesheet library="default" name="css/main.css"/>-->
+        <h:outputStylesheet library="materialize" name="css/materialize.min.css"/>
+        <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+        <h:outputScript library="materialize" name="js/materialize.min.js"/>
+
+        <script>
+            $( document ).ready(function(){
+                $(".button-collapse").sideNav();
+                $(".dropdown-button").dropdown();
+            });
+        </script>
+    </h:head>
+
+    <h:body>
+        <header>
+            <!-- Side bar navigation-->
+            <ul class="side-nav" id="side-nav">
+                <li>
+                    <a href="#!">
+                        <i class="material-icons">airline_seat_recline_normal</i>
+                        Airlines
+                    </a>
+                </li>
+
+                <li>
+                    <h:link outcome="./airports.xhtml">
+                        <i class="material-icons">place</i>
+                        Airports
+                    </h:link>
+                </li>
+
+                <li>
+                    <a href="#!">
+                        <i class="material-icons">flight_takeoff</i>
+                        Flights
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#!">
+                        <i class="material-icons">subject</i>
+                        Reports
+                    </a>
+                </li>
+            </ul>
+
+            <!-- User dropdown -->
+            <ul id="dropdown1" class="dropdown-content">
+                <li><a href="#!">Log out</a></li>
+            </ul>
+
+            <nav class="top-nav blue darken-4" role="navigation">
+                <div class="nav-wrapper container">
+
+                    <a id="logo-container" href="#" class="brand-logo">ReDo Air</a>
+                    <a href="#" data-activates="side-nav" class="button-collapse">
+                        <i class="material-icons">menu</i>
+                    </a>
+
+                    <ul class="right hide-on-med-and-down">
+                        <li class="active">
+                            <a href="#!">
+                                <i class="material-icons left">home</i>
+                                Home
+                            </a>
+
+                        </li>
+
+                        <li>
+                            <a href="#!">
+                                <i class="material-icons left">airline_seat_recline_normal</i>
+                                Airlines
+                            </a>
+                        </li>
+
+                        <li>
+                            <h:link outcome="./airports.xhtml">
+                                <i class="material-icons left">place</i>
+                                Airports
+                            </h:link>
+                        </li>
+
+                        <li>
+                            <a href="#!">
+                                <i class="material-icons left">flight_takeoff</i>
+                                Flights
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="#!">
+                                <i class="material-icons left">subject</i>
+                                Reports
+                            </a>
+                        </li>
+
+                        <li>
+                            <a class="dropdown-button" href="#!" data-activates="dropdown1">
+                                <i class="material-icons left">person</i>
+                                John Smith
+                                <i class="material-icons right">arrow_drop_down</i>
+                            </a>
+                            <!--<a href="#!">
+
+
+                            </a>-->
+                        </li>
+                    </ul>
+
+
+                </div>
+            </nav>
+        </header>
+
+        <div class="section no-pad-bot" id="index-banner">
+            <div class="container">
+
+
+
+
+                <!--<h:link outcome="main.xhtml">
+                    <h:graphicImage library="images" name="Tux.png" width="50"/>
+                </h:link>-->
+
+            <!--    <h1>
+                    <ui:insert name="pageTitle">
+                        Register
+                    </ui:insert>
+                </h1>
+
+                <h:outputFormat value="#{msg['lang.current']}">
+                    <f:param value="#{msg[languageBean.language]}"/>
+                </h:outputFormat>
+
+                <h3>
+                    <h:outputFormat value="#{msg['lang.title']}"/>
+                </h3>
+
+
+
+                <h:form id="langauge_form">
+                    <ul>
+                        <c:forEach items="#{languageBean.locales}" var="lan" varStatus="loop">
+                            <c:choose>
+                                <c:when test="#{lan.language eq languageBean.language}">
+                                    <li class="current-language">
+                                        <h:outputFormat value="#{msg[lan.language]}"/>
+                                    </li>
+                                </c:when>
+                                <c:otherwise>
+                                    <li>
+                                        <h:commandLink action="#{languageBean.changeLanguage(lan.language)}"
+                                                       value="#{msg[lan.language]}" />
+                                    </li>
+                                </c:otherwise>
+                            </c:choose>
+                        </c:forEach>
+                    </ul>
+                </h:form>-->
+            </div>
+
+            <!--<div class="container">
+                <h1 class="header center orange-text">Starter Template</h1>
+                <div class="row center">
+                    <h5 class="header col s12 light">A modern responsive front-end framework based on Material Design</h5>
+                </div>
+                <div class="row center">
+                    <a href="http://materializecss.com/getting-started.html" id="download-button" class="btn-large waves-effect waves-light orange">Get Started</a>
+                </div>
+            </div>-->
+        </div>
+
+        <div class="container">
+            <c:if test="#{not empty flash.error}">
+                <div class="errorMessage">
+                    #{flash.error}
+                </div>
+            </c:if>
+
+            <main>
+                <ui:insert name="content">
+                    Lorem Ipsum
+                </ui:insert>
+            </main>
+        </div>
+
+
+
+        <footer class="page-footer blue-grey darken-1">
+            <div class="container">
+                <div class="row">
+                    <div class="col l6 s12">
+                        <h5 class="white-text">ReDo Air</h5>
+                        <p class="grey-text text-lighten-4">Copyright RealDolmen. All rights reserved.</p>
+                    </div>
+                    <div class="col l3 s12">
+                        <h5 class="white-text">Settings</h5>
+                        <ul>
+                            <li><a class="white-text" href="#!">Link 1</a></li>
+                            <li><a class="white-text" href="#!">Link 2</a></li>
+                            <li><a class="white-text" href="#!">Link 3</a></li>
+                            <li><a class="white-text" href="#!">Link 4</a></li>
+                        </ul>
+                    </div>
+                    <!--<div class="col l3 s12">
+                        <h5 class="white-text">Connect</h5>
+                        <ul>
+                            <li><a class="white-text" href="#!">Link 1</a></li>
+                            <li><a class="white-text" href="#!">Link 2</a></li>
+                            <li><a class="white-text" href="#!">Link 3</a></li>
+                            <li><a class="white-text" href="#!">Link 4</a></li>
+                        </ul>
+                    </div>-->
+                </div>
+            </div>
+
+            <div class="footer-copyright">
+                <div class="container">
+
+                </div>
+            </div>
+        </footer>
+    </h:body>
+</f:view>
+</html>
