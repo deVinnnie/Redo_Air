@@ -14,11 +14,18 @@
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
 
         <h:outputStylesheet library="materialize" name="css/materialize.min.css"/>
+
+        <!--
+             Explicitly load JQuery from Primefaces. This won't conflict with Primefaces includes.
+             It just makes sure that the lib is loaded on every page.
+        -->
+        <h:outputScript library="primefaces" name="jquery/jquery.js" target="head" />
         <!--<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>-->
         <h:outputScript library="materialize" name="js/materialize.min.js"/>
+        <h:outputStylesheet library="default" name="css/main.css"/>
 
         <script>
-            jQuery()( document ).ready(function(){
+            jQuery( document ).ready(function(){
                 $(".button-collapse").sideNav();
                 $(".dropdown-button").dropdown();
             });
