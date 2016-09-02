@@ -19,4 +19,14 @@ public class AirportServiceBean implements AirportService{
     public List<Airport> getAllAirports(){
         return airportRepository.findAll();
     }
+
+    public List<Airport> findAirports(String searchTerm){
+        // Dummy implementation
+        return airportRepository.findAll();
+    }
+
+    public void toggleAvailability(Long airportId){
+        Airport airport = airportRepository.findById(airportId);
+        airport.setAvailable(!airport.getAvailable());
+    }
 }

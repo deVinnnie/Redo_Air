@@ -11,6 +11,7 @@ import javax.persistence.NamedQuery;
 })
 public class Airport extends AbstractEntity {
     public static final String FIND_ALL = "Airport.findAll";
+
     /**
      * International Airport Code
      */
@@ -19,6 +20,8 @@ public class Airport extends AbstractEntity {
     private String name;
 
     private String country;
+
+    private Boolean available;
 
     @ManyToOne
     private Region region;
@@ -60,5 +63,13 @@ public class Airport extends AbstractEntity {
 
     public void setCountry(String country) {
         this.country = country;
+    }
+
+    public Boolean getAvailable() {
+        return available;
+    }
+
+    public void setAvailable(Boolean available) {
+        this.available = available;
     }
 }

@@ -16,4 +16,8 @@ public class AirportRepository {
     public List<Airport> findAll(){
         return entityManager.createNamedQuery(Airport.FIND_ALL,Airport.class).getResultList();
     }
+
+    public Airport findById(Long id){
+        return entityManager.find(Airport.class, id);
+    }
 }

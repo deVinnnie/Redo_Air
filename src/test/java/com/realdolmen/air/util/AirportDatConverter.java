@@ -78,6 +78,7 @@ public class AirportDatConverter {
                             writer.writeAttribute("code", exploded[4].replace('"', ' ').trim());
                             writer.writeAttribute("version", "1");
                             writer.writeAttribute("region_id", "" + regionId);
+                            writer.writeAttribute("available", "1");
                             writer.writeEndElement();
 
                             System.out.println();

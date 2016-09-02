@@ -2,7 +2,7 @@
                 xmlns="http://www.w3.org/1999/xhtml"
                 xmlns:h="http://xmlns.jcp.org/jsf/html"
                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-                xmlns:air="http://xmlns.jcp.org/jsf/composite/air">
+                xmlns:air="http://xmlns.jcp.org/jsf/composite/air" xmlns:c="http://java.sun.com/jsp/jstl/core">
     <ui:define name="pageTitle">
         Airports
     </ui:define>
@@ -10,21 +10,40 @@
     <ui:define name="content">
         <air:searchBox />
 
+        <h:panelGroup rendered="#{empty airportBean.allAirports}">
+
+                <div class="row">
+                    <div class="col s3 center">
+                        <i class="material-icons medium">explore</i>
+                        <p>
+                            <h:outputText value="No airports found."/>
+                        </p>
+                    </div>
+                </div>
+
+        </h:panelGroup>
         <ul class="collection">
-            <li class="collection-item avatar">
-                <i class="material-icons circle blue">place</i>
-                <span class="title">Sheldon Point Airport</span>
-                <p>United States</p>
+            <c:forEach items="#{airportBean.allAirports}" var="airport">
+                <li class="collection-item avatar #{ airport.available ? '' : 'grey lighten-2'}">
+                    <i class="material-icons circle blue">place</i>
+                    <span class="title">#{airport.name}</span>
+                    <p>
+                        #{airport.code}<br/>
+                        #{airport.region.name}
+                    </p>
 
-                <h:form styleClass="secondary-content">
-                    <h:commandLink value="Disable" />
-                </h:form>
-            </li>
+                    <h:form styleClass="secondary-content">
+                        <h:commandLink action="#{airportBean.toggleAirportAvailability(airport.id)}"
+                                       value="Activate / Deactivate"/>
+                    </h:form>
+                </li>
+            </c:forEach>
 
-            <li class="collection-item avatar">
+            <!--<li class="collection-item avatar">
                 <i class="material-icons circle red">place</i>
                 <span class="title">Delta County Airport</span>
-                <p>United States</p>
+                <p> MIG <br/>
+                    United States</p>
 
 
                 <h:form styleClass="secondary-content">
@@ -38,9 +57,10 @@
                 <p>India</p>
 
                 <h:form styleClass="secondary-content">
+                    <h:commandLink value="Change/Set Region"/>
                     <h:commandLink value="Disable" />
                 </h:form>
-            </li>
+            </li>-->
         </ul>
 
         <ul class="pagination">
