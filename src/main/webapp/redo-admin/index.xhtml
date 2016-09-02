@@ -2,85 +2,35 @@
                 xmlns="http://www.w3.org/1999/xhtml"
                 xmlns:h="http://xmlns.jcp.org/jsf/html"
                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-                xmlns:air="http://xmlns.jcp.org/jsf/composite/air">
+                xmlns:c="http://java.sun.com/jsp/jstl/core">
     <ui:param name="page" value="index" />
 
     <ui:define name="pageTitle">
-        ReDo Air Admin
+        <h:outputFormat value="#{msg['admin.index.title']}"/>
     </ui:define>
 
     <ui:define name="content">
         <div class="row">
-            <div class="col s6">
-                <div class="icon-block">
-                    <a href="#!" class="center">
-                        <i class="material-icons left large">airline_seat_recline_normal</i>
-                    </a>
+            <ui:repeat value="#{adminNavBean.links}" var="link">
+                <c:set var="title" value="admin.nav.${link.left}.title" />
+                <c:set var="description" value="admin.nav.${link.left}.description" />
 
-                    <a href="#!" class="center">
-                        Airlines
-                    </a>
+                <div class="col s6">
+                    <div class="icon-block">
+                        <h:link outcome="#{link.middle}" styleClass="center">
+                            <i class="material-icons left large">#{link.right}</i>
+                        </h:link>
 
-                    <p class="light">
-                        Manage your available airline companies.
-                    </p>
+                        <h:link outcome="#{link.middle}" styleClass="center">
+                            <h:outputFormat value="#{msg[title]}"/>
+                        </h:link>
+
+                        <p class="light">
+                            <h:outputFormat value="#{msg[description]}"/>
+                        </p>
+                    </div>
                 </div>
-            </div>
-
-
-            <div class="col s6">
-                <h:link outcome="./airports.xhtml">
-                    <i class="material-icons left large">place</i>
-                </h:link>
-
-                <h:link outcome="./airports.xhtml">
-                    Airports
-                </h:link>
-
-                <p class="light">
-                    Manage possible departure and destination locations.
-                </p>
-            </div>
-
-        </div>
-
-
-        <div class="row">
-            <div class="col s6">
-                <div class="icon-block">
-                    <a href="#!">
-                        <i class="material-icons left large">flight_takeoff</i>
-                    </a>
-
-                    <a href="#!">
-                        Flights
-                    </a>
-
-                    <p class="light">
-                        Search and set prices for flights.
-                    </p>
-                </div>
-            </div>
-
-
-            <div class="col s6">
-                <div class="icon-block">
-                    <a href="#!" class="center">
-                        <i class="material-icons left large">subject</i>
-                    </a>
-
-                    <a href="#!" class="center">
-                        Reports
-                    </a>
-
-                    <p class="light">
-                        Generate reports
-                    </p>
-                </div>
-            </div>
-
-
-
+            </ui:repeat>
         </div>
     </ui:define>
 </ui:composition>

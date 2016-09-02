@@ -2,11 +2,11 @@
                 xmlns="http://www.w3.org/1999/xhtml"
                 xmlns:h="http://xmlns.jcp.org/jsf/html"
                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-                xmlns:air="http://xmlns.jcp.org/jsf/composite/air" xmlns:c="http://java.sun.com/jsp/jstl/core">
+                xmlns:air="http://xmlns.jcp.org/jsf/composite/air">
     <ui:param name="page" value="airports" />
 
     <ui:define name="pageTitle">
-        Airports
+        <h:outputFormat value="#{msg['admin.nav.airports.title']}"/>
     </ui:define>
 
     <ui:define name="content">
@@ -18,7 +18,7 @@
                     <div class="col s3 center">
                         <i class="material-icons medium">explore</i>
                         <p>
-                            <h:outputText value="No airports found."/>
+                            <h:outputFormat value="#{msg['admin.airports.none-found']}"/>
                         </p>
                     </div>
                 </div>
@@ -37,38 +37,14 @@
                         <h:form styleClass="secondary-content">
                             <h:commandLink rendered="#{airport.available}"
                                     action="#{airportBean.toggleAirportAvailability(airport.id)}"
-                                           value="Deactivate"/>
+                                           value="#{msg['admin.airports.deactivate']}"/>
 
                             <h:commandLink rendered="#{!airport.available}"
                                            action="#{airportBean.toggleAirportAvailability(airport.id)}"
-                                           value="Activate"/>
+                                           value="#{msg['admin.airports.activate']}"/>
                         </h:form>
                     </li>
                 </ui:repeat>
-
-
-                <!--<li class="collection-item avatar">
-                    <i class="material-icons circle red">place</i>
-                    <span class="title">Delta County Airport</span>
-                    <p> MIG <br/>
-                        United States</p>
-
-
-                    <h:form styleClass="secondary-content">
-                        <h:commandLink value="Disable" />
-                    </h:form>
-                </li>
-
-                <li class="collection-item avatar">
-                    <i class="material-icons circle green">place</i>
-                    <span class="title">Belgaum</span>
-                    <p>India</p>
-
-                    <h:form styleClass="secondary-content">
-                        <h:commandLink value="Change/Set Region"/>
-                        <h:commandLink value="Disable" />
-                    </h:form>
-                </li>-->
             </ul>
         </h:panelGroup>
 
