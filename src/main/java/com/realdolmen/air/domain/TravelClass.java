@@ -34,13 +34,14 @@ public class TravelClass extends AbstractEntity{
     private Integer remainingSeats;
 
     /**
-     * Base price set by the Airline Company.
+     * Base price in euro's set by the Airline Company.
      */
     @Min(0)
+    @NotNull
     private BigDecimal basePrice;
 
     /**
-     * An overridden price set by ReDo Air.
+     * An overridden price (specified in euro's) set by ReDo Air.
      *
      * If this field is set then the consumer will pay this amount
      * for his ticket instead of the base price * margin set by the Airline.
@@ -110,13 +111,27 @@ public class TravelClass extends AbstractEntity{
         this.margin = margin;
     }
 
+    /**
+     * Calculates the price the customer has to pay for a ticket of this travel class.
+     * The calculation is based on the base price, margin, and overridden price (if set).
+     *
+     * If the base price is null, then the method will return null.
+     * This should however be avoided..
+     *
+     * This price does not include any additional discounts given the ReDo Air!
+     *
+     * @return Price in euro's.
+     */
     public BigDecimal getEndUserPrice(){
         if(overriddenPrice != null){
             return overriddenPrice;
         }
-        else {
+        else if(basePrice != null){
             BigDecimal price = basePrice.multiply(margin);
             return price;
+        }
+        else{
+            return null;
         }
     }
 }
