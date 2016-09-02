@@ -11,7 +11,7 @@ import java.util.List;
 @Stateless
 public class AirportRepository {
     @PersistenceContext
-    EntityManager entityManager;
+    private EntityManager entityManager;
 
     public List<Airport> findAll(){
         return entityManager.createNamedQuery(Airport.FIND_ALL,Airport.class).getResultList();
@@ -28,9 +28,18 @@ public class AirportRepository {
      * @return List of airports which match the search term.
      */
     public List<Airport> search(String searchTerm){
-        List<Airport> airports = entityManager.createQuery("SELECT a FROM Airport a WHERE a.name LIKE :search OR a.code LIKE :search", Airport.class)
+        List<Airport> airports = entityManager
+                .createQuery("SELECT a FROM Airport a WHERE a.name LIKE :search OR a.code LIKE :search", Airport.class)
                 .setParameter("search", "%" + searchTerm + "%")
                 .getResultList();
         return airports;
+    }
+
+    public EntityManager getEntityManager() {
+        return entityManager;
+    }
+
+    public void setEntityManager(EntityManager entityManager) {
+        this.entityManager = entityManager;
     }
 }
