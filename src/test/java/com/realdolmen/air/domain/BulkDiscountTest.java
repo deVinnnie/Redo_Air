@@ -3,11 +3,10 @@ package com.realdolmen.air.domain;
 import org.junit.Before;
 import org.junit.Test;
 
-import javax.validation.ConstraintViolation;
-import javax.validation.Validation;
-import javax.validation.Validator;
-import javax.validation.ValidatorFactory;
+import javax.validation.*;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 
 import static org.junit.Assert.assertEquals;
@@ -22,11 +21,34 @@ public class BulkDiscountTest {
         this.validator = factory.getValidator();
     }
 
+    // Test cases:
+    // [v] Seats = 0
+    // [v] Seats < 0
+
+    // [v] Discount < 0
+    // [] Discount > 100
+    // [v] Discount = 100
+    // [] Discount = 0
+    // [v] Discount = Normal
+
     @Test
     public void testCorrectDiscountValidates(){
-        BulkDiscount bulkDiscount = new BulkDiscount(5, 10);
+        BulkDiscount bulkDiscount;
+        Set<ConstraintViolation<BulkDiscount>> violations;
 
-        Set<ConstraintViolation<BulkDiscount>> violations = validator.validate(bulkDiscount);
+        bulkDiscount = new BulkDiscount(5, 10);
+
+        violations = validator.validate(bulkDiscount);
+        assertEquals(0, violations.size());
+
+        bulkDiscount = new BulkDiscount(5, 55);
+
+        violations = validator.validate(bulkDiscount);
+        assertEquals(0, violations.size());
+
+        bulkDiscount = new BulkDiscount(5, 95);
+
+        violations = validator.validate(bulkDiscount);
         assertEquals(0, violations.size());
     }
 
@@ -38,12 +60,33 @@ public class BulkDiscountTest {
         assertEquals(1, violations.size());
     }
 
-    // Seats = 0
-    // Seats < 0
+    @Test
+    public void testDiscountEqualTo100IsValid(){
+        BulkDiscount bulkDiscount = new BulkDiscount(1, 100);
 
-    // Discount < 0
-    // Discount > 100
-    // Discount = 100
-    // Discount = 0
-    // Discount = Normal
+        Set<ConstraintViolation<BulkDiscount>> violations = validator.validate(bulkDiscount);
+        assertEquals(0, violations.size());
+    }
+
+    @Test
+    public void testMinimumSeatsEqualToZeroReturnsConstraintViolation(){
+        BulkDiscount bulkDiscount = new BulkDiscount(0, 1);
+
+        Set<ConstraintViolation<BulkDiscount>> violations = validator.validate(bulkDiscount);
+        assertEquals(1, violations.size());
+    }
+
+    @Test
+    public void testMinimumSeatsLessToZeroReturnsConstraintViolation(){
+        BulkDiscount bulkDiscount = new BulkDiscount(-1, 1);
+
+        Set<ConstraintViolation<BulkDiscount>> violations = validator.validate(bulkDiscount);
+        assertEquals(1, violations.size());
+    }
+
+
+
+
+
+
 }
