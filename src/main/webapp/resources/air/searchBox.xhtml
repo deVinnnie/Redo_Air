@@ -2,16 +2,25 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:c="http://java.sun.com/jsp/jstl/core"
-      xmlns:cc="http://java.sun.com/jsf/composite">
-    <cc:interface></cc:interface>
+      xmlns:cc="http://java.sun.com/jsf/composite" xmlns:f="http://xmlns.jcp.org/jsf/core">
+<cc:interface></cc:interface>
 
-    <cc:implementation>
-        <h:form>
-            <div class="input-field col s6 l6">
-                <i class="material-icons prefix">search</i>
-                <h:inputText id="search" type="text"/>
-                <label for="search">Search</label>
+<cc:implementation>
+    <h:form>
+        <div class="row">
+            <div class="input-field">
+                <div class="col s6 l6">
+                    <i class="material-icons prefix">search</i>
+                    <h:inputText id="search" value="#{airportBean.searchTerm}">
+                        <f:ajax event="keyup" listener="#{airportBean.searchAirports()}" render="search-results"/>
+                    </h:inputText>
+                    <label for="search">Search</label>
+                </div>
+                <div class="col s6 l6">
+                    <h:commandButton value="Search" action="#{airportBean.searchAirports()}" styleClass="btn"/>
+                </div>
             </div>
-        </h:form>
-    </cc:implementation>
+        </div>
+    </h:form>
+</cc:implementation>
 </html>

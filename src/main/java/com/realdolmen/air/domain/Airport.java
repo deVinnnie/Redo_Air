@@ -4,6 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.validation.constraints.Size;
 
 @Entity
 @NamedQueries({
@@ -14,7 +15,10 @@ public class Airport extends AbstractEntity {
 
     /**
      * International Airport Code
+     *
+     * ICAO or IATA airport code consist of maximum 4 characters.
      */
+    @Size(max=4)
     private String code;
 
     private String name;
