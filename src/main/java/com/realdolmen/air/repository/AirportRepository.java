@@ -20,4 +20,17 @@ public class AirportRepository {
     public Airport findById(Long id){
         return entityManager.find(Airport.class, id);
     }
+
+    /**
+     * Return all airports which match the searchterm in any of
+     * the following fields: code or name.
+     *
+     * @return List of airports which match the search term.
+     */
+    public List<Airport> search(String searchTerm){
+        List<Airport> airports = entityManager.createQuery("SELECT a FROM Airport a WHERE a.name LIKE :search OR a.code LIKE :search", Airport.class)
+                .setParameter("search", "%" + searchTerm + "%")
+                .getResultList();
+        return airports;
+    }
 }
