@@ -8,12 +8,10 @@ import java.util.List;
 
 @Entity
 @NamedQueries({
-        @NamedQuery(name = AirlineCompany.FIND_ALL, query = "SELECT a FROM AirlineCompany a"),
-        @NamedQuery(name = AirlineCompany.FIND_BY_NAME, query = "SELECT a FROM AirlineCompany a where a.name = :name")
+        @NamedQuery(name = AirlineCompany.FIND_ALL, query = "SELECT a FROM AirlineCompany a")
 })
 public class AirlineCompany extends AbstractEntity{
     public static final String FIND_ALL = "AirlineCompany.findAll";
-    public static final String FIND_BY_NAME = "AirlineCompany.findByName";
     private String name;
 
     @OneToMany(mappedBy = "airlineCompany")

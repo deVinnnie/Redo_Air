@@ -8,10 +8,16 @@ import java.util.Set;
 
 @Entity
 @NamedQueries({
-        @NamedQuery(name = Flight.FIND_ALL, query = "SELECT f FROM Flight f")
+        @NamedQuery(name = Flight.FIND_ALL, query = "SELECT f FROM Flight f"),
+//        @NamedQuery(name = Flight.FIND_SEARCH, query = "SELECT f FROM Flight f WHERE f.airlineCompany.id = :airlineCompanyId AND f.departure.id = :departureAirportId AND f.arrival.id = :arrivalAirportId "),
+        @NamedQuery(name = Flight.FIND_SEARCH, query = "SELECT f from Flight f inner join f.travelClasses t where t.name = :flightClass AND t.remainingSeats >= :numberOfSeats AND f.airlineCompany.id = :airlineCompanyId AND f.departure.id = :departureAirportId AND f.arrival.id = :arrivalAirportId "),
+//        @NamedQuery(name = Flight.FIND_SEARCH, query = "SELECT f FROM Flight f WHERE f.departure.id = :departureAirportId"),
+//        @NamedQuery(name = Flight.FIND_SEARCH, query = "SELECT f FROM Flight f WHERE f.arrival.id = :arrivalAirportId")
+
 })
 public class Flight extends AbstractEntity{
     public static final String FIND_ALL = "Flight.findAll";
+    public static final String FIND_SEARCH = "Flight.findSearch";
     /**
      * Identification number of the flight.
      *

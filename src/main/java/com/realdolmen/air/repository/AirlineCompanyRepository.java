@@ -16,7 +16,7 @@ public class AirlineCompanyRepository {
         return entityManager.createNamedQuery(AirlineCompany.FIND_ALL,AirlineCompany.class).getResultList();
     }
 
-    public AirlineCompany findByName(String name){
-        return entityManager.createNamedQuery(AirlineCompany.FIND_BY_NAME, AirlineCompany.class).setParameter("name",name).getSingleResult();
+    public AirlineCompany findById(Long id){
+        return entityManager.find(AirlineCompany.class, id);
     }
 }

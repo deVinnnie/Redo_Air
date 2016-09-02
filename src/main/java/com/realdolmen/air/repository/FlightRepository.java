@@ -2,14 +2,20 @@ package com.realdolmen.air.repository;
 
 import com.realdolmen.air.domain.Flight;
 import com.realdolmen.air.domain.TravelClass;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
+import java.util.Collections;
+import java.util.Date;
 import java.util.List;
 
 @Stateless
 public class FlightRepository {
+    private static final Logger LOGGER = LoggerFactory.getLogger(FlightRepository.class);
 
     @PersistenceContext
     private EntityManager entityManager;
@@ -35,5 +41,20 @@ public class FlightRepository {
 
     public List<Flight> findAll(){
         return entityManager.createNamedQuery(Flight.FIND_ALL, Flight.class).getResultList();
+    }
+
+    public List<Flight> findFlightsWithParams(Long airlineCompanyId, String flightClass, int numberOfSeats, Long departureAirportId, Long arrivalAirportId){
+        try{
+            return entityManager.createNamedQuery(Flight.FIND_SEARCH, Flight.class)
+                    .setParameter("airlineCompanyId", airlineCompanyId)
+                    .setParameter("flightClass", flightClass)
+                    .setParameter("numberOfSeats", numberOfSeats)
+                    .setParameter("departureAirportId", departureAirportId)
+                    .setParameter("arrivalAirportId", arrivalAirportId)
+                    .getResultList();
+        }catch (NoResultException e){
+            LOGGER.error("No information found: ",e);
+        }
+        return Collections.emptyList();
     }
 }

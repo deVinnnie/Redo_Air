@@ -1,7 +1,6 @@
 package com.realdolmen.air.service;
 
 import com.realdolmen.air.domain.Airport;
-import com.realdolmen.air.repository.AirlineCompanyRepository;
 import com.realdolmen.air.repository.AirportRepository;
 
 import javax.ejb.EJB;
@@ -25,8 +24,13 @@ public class AirportServiceBean implements AirportService{
         return airportRepository.findAll();
     }
 
-    public void toggleAvailability(Long airportId){
+    public void toggleAvailability(Long airportId) {
         Airport airport = airportRepository.findById(airportId);
         airport.setAvailable(!airport.getAvailable());
+    }
+
+    public Airport findById(Long id){
+        return airportRepository.findById(id);
+
     }
 }

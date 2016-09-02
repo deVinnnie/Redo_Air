@@ -7,7 +7,7 @@ import javax.persistence.NamedQuery;
 
 @Entity
 @NamedQueries({
-        @NamedQuery(name = Airport.FIND_ALL, query = "SELECT a FROM Airport a")
+        @NamedQuery(name = Airport.FIND_ALL, query = "SELECT a FROM Airport a where a.available = TRUE")
 })
 public class Airport extends AbstractEntity {
     public static final String FIND_ALL = "Airport.findAll";

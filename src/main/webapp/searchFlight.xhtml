@@ -6,7 +6,7 @@
                 xmlns:p="http://primefaces.org/ui">
 
     <ui:define name="pageTitle">
-        JSF Registration App
+
     </ui:define>
 
     <ui:define name="content">
@@ -24,11 +24,11 @@
                     <h:outputFormat value="#{msg['searchFlight.search.searchCompany']}"/>
                 </h:outputLabel>
                 <h:panelGroup>
-                    <p:selectOneMenu id="searchCompany" value="#{searchFlightBean.flight.airlineCompany}" panelStyle="width:300px"
+                    <p:selectOneMenu id="searchCompany" value="#{searchFlightBean.airlineCompanyId}" panelStyle="width:300px"
                                      effect="fade" var="t" style="width:300px" filter="true" filterMatchMode="contains">
-                        <f:selectItems value="#{searchFlightBean.airlineCompanies}" var="airlineComp" itemLabel="#{airlineComp.name}" itemValue="#{airlineComp}" converter="#{airlineCompanyConverter}" />
+                        <f:selectItems value="#{searchFlightBean.airlineCompanies}" var="airlineComp" itemLabel="#{airlineComp.name}" itemValue="#{airlineComp.id}"/>
                         <p:column>
-                            <h:outputText value="#{t.name}" />
+                            <h:outputText value="#{searchFlightBean.findCompanyById(t)}" />
                         </p:column>
                     </p:selectOneMenu>
                 </h:panelGroup>
@@ -38,8 +38,8 @@
                 </h:outputLabel>
                 <h:panelGroup>
                     <p:selectOneMenu id="flightClass" value="#{searchFlightBean.flightClass}" style="width:300px">
-                        <f:selectItem itemLabel="First" itemValue="first" />
-                        <f:selectItem itemLabel="Bussiness" itemValue="bussiness" />
+                        <f:selectItem itemLabel="First Class" itemValue="first class" />
+                        <f:selectItem itemLabel="Business" itemValue="business" />
                         <f:selectItem itemLabel="Economy" itemValue="economy" />
                     </p:selectOneMenu>
                 </h:panelGroup>
@@ -58,15 +58,14 @@
                     <h:outputFormat value="#{msg['searchFlight.search.searchDepartureAirport']}"/>
                 </h:outputLabel>
                 <h:panelGroup>
-                    <p:selectOneMenu id="searchDeparture" value="#{searchFlightBean.flight.departure}" panelStyle="width:300px"
+                    <p:selectOneMenu id="searchDeparture" value="#{searchFlightBean.departureAirportId}" panelStyle="width:300px"
                                      effect="fade" var="t" style="width:300px" filter="true" filterMatchMode="contains">
-                        <f:selectItem itemValue="#{null}" itemLabel="--select--" />
-                        <f:selectItems value="#{searchFlightBean.airports}" var="airport" itemLabel="#{airport.name}" itemValue="#{airport}" />
+                        <f:selectItems value="#{searchFlightBean.airports}" var="airport" itemLabel="#{airport.name}" itemValue="#{airport.id}" />
                         <p:column>
-                            <h:outputText value="#{t.name}" />
+                            <h:outputText value="#{searchFlightBean.findAirportById(t).name}" />
                         </p:column>
                         <p:column>
-                            <h:outputText value="#{t.country}" />
+                            <h:outputText value="#{searchFlightBean.findAirportById(t).country}" />
                         </p:column>
                     </p:selectOneMenu>
                 </h:panelGroup>
@@ -75,15 +74,14 @@
                     <h:outputFormat value="#{msg['searchFlight.search.searchArivalAirport']}"/>
                 </h:outputLabel>
                 <h:panelGroup>
-                    <p:selectOneMenu id="searchArival" value="#{searchFlightBean.flight.arrival}" panelStyle="width:300px"
+                    <p:selectOneMenu id="searchArival" value="#{searchFlightBean.arrivalAirportId}" panelStyle="width:300px"
                                      effect="fade" var="t" style="width:300px" filter="true" filterMatchMode="contains">
-                        <f:selectItem itemValue="#{null}" itemLabel="--select--" />
-                        <f:selectItems value="#{searchFlightBean.airports}" var="airport" itemLabel="#{airport.name}" itemValue="#{airport}" />
+                        <f:selectItems value="#{searchFlightBean.airports}" var="airport" itemLabel="#{airport.name}" itemValue="#{airport.id}" />
                         <p:column>
-                            <h:outputText value="#{t.name}" />
+                            <h:outputText value="#{searchFlightBean.findAirportById(t).name}" />
                         </p:column>
                         <p:column>
-                            <h:outputText value="#{t.country}" />
+                            <h:outputText value="#{searchFlightBean.findAirportById(t).country}" />
                         </p:column>
                     </p:selectOneMenu>
                 </h:panelGroup>
@@ -92,19 +90,19 @@
                     <h:outputFormat value="#{msg['searchFlight.search.searchDepartureDate']}"/>
                 </h:outputLabel>
                 <h:panelGroup>
-                    <p:calendar id="calender" pattern="dd/MM/yyyy" value="#{searchFlightBean.flight.departureTime}" mindate="#{searchFlightBean.currentDate}" />
+                    <p:calendar id="calender" pattern="dd/MM/yyyy" value="#{searchFlightBean.departureTime}" mindate="#{searchFlightBean.currentDate}" />
                 </h:panelGroup>
 
             </h:panelGrid>
-            <h:commandButton value="#{msg['registration.customer.searchButton']}" action="#{searchFlightBean.searchFlights}"/>
+            <h:commandButton value="#{msg['searchFlight.search.searchButton']}" action="#{searchFlightBean.searchFlights}"/>
         </h:form>
 
         <h:dataTable id="FlightTable" value="#{searchFlightBean.flights}" var="flight" styleClass="table table-striped">
             <h:column>
                 <f:facet name="header">
-                    <h:outputText value="AirlineCompany"/>
+                    <h:outputText value="#{msg['searchFlight.search.searchCompany']}"/>
                 </f:facet>
-                <h:outputText value="#{flight.airlineCompany}"/>
+                <h:outputText value="#{flight.airlineCompany.name}"/>
             </h:column>
 
             <h:column>
@@ -116,10 +114,40 @@
 
             <h:column>
                 <f:facet name="header">
-                    <h:outputText value="Departure"/>
+                    <h:outputText value="#{msg['searchFlight.search.searchDepartureAirport']}"/>
+                </f:facet>
+                <h:outputText value="#{flight.departure.name}"/>
+            </h:column>
+
+            <h:column>
+                <f:facet name="header">
+                    <h:outputText value="#{msg['searchFlight.search.searchDepartureDate']}"/>
                 </f:facet>
                 <h:outputText value="#{flight.departureTime}"/>
             </h:column>
+
+            <h:column>
+                <f:facet name="header">
+                    <h:outputText value="#{msg['searchFlight.search.searchArivalAirport']}"/>
+                </f:facet>
+                <h:outputText value="#{flight.arrival.name}"/>
+            </h:column>
+
+            <h:column>
+                <f:facet name="header">
+                    <h:outputText value="#{msg['searchFlight.details.arrivalTime']}"/>
+                </f:facet>
+                <h:outputText value="#{flight.arrivalTime}"/>
+            </h:column>
+
+            <h:column>
+                <f:facet name="header">
+                    <h:outputText value="Details"/>
+                </f:facet>
+                <h:commandButton value="#{msg['searchFlight.details.details']}" action="#{searchFlightBean.getDetailsById(flight.id)}"/>
+            </h:column>
+
+
 
         </h:dataTable>
     </ui:define>

@@ -20,4 +20,5 @@ public class AirportRepository {
     public Airport findById(Long id){
         return entityManager.find(Airport.class, id);
     }
+
 }

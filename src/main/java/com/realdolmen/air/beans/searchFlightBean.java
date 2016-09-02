@@ -14,6 +14,7 @@ import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -26,10 +27,15 @@ public class searchFlightBean implements Serializable {
     private List<AirlineCompany> airlineCompanies;
     private List<Airport> airports;
     private Date currentDate;
-    private int number3;
+    private int number3 = 1;
     private List<Flight> flights;
     private AirlineCompany airlineCompany;
     private Long airlineCompanyId;
+
+    private Long departureAirportId;
+    private Long arrivalAirportId;
+
+    private Date departureTime;
 
     @Inject
     private AirlineCompanyServiceBean airlineCompanyServiceBean;
@@ -115,9 +121,7 @@ public class searchFlightBean implements Serializable {
         this.flights = flights;
     }
 
-    public void searchFlights(){
-        System.out.println("lel");
-    }
+
 
     public AirlineCompany getAirlineCompany() {
         return airlineCompany;
@@ -133,5 +137,53 @@ public class searchFlightBean implements Serializable {
 
     public void setAirlineCompanyId(Long airlineCompanyId) {
         this.airlineCompanyId = airlineCompanyId;
+    }
+
+    public String getById(Long id){
+        AirlineCompany airlineCompany = airlineCompanyServiceBean.findById(id);
+        return airlineCompany.getName();
+    }
+
+    public String findCompanyById(Long id){
+        return airlineCompanyServiceBean.findById(id).getName();
+    }
+
+    public Airport findAirportById(Long id){
+        return airportServiceBean.findById(id);
+    }
+
+    public Long getDepartureAirportId() {
+        return departureAirportId;
+    }
+
+    public void setDepartureAirportId(Long departureAirportId) {
+        this.departureAirportId = departureAirportId;
+    }
+
+    public Long getArrivalAirportId() {
+        return arrivalAirportId;
+    }
+
+    public void setArrivalAirportId(Long arrivalAirportId) {
+        this.arrivalAirportId = arrivalAirportId;
+    }
+
+    public Date getDepartureTime() {
+        return departureTime;
+    }
+
+    public void setDepartureTime(Date departureTime) {
+        this.departureTime = departureTime;
+    }
+
+    public void searchFlights(){
+        flights = flightServiceBean.findFlightsWithParams(airlineCompanyId,flightClass,number3,departureAirportId,arrivalAirportId,departureTime);
+//        for (AirlineCompany ac: getAirlineCompanies()) {
+//            if (ac.getId() == flight.getAirlineCompany().getId()) {
+//
+//            }
+//        }
+        System.out.println(flights.size());
+        System.out.println("lel");
     }
 }
