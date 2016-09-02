@@ -7,32 +7,41 @@
         <header>
             <!-- Side bar navigation-->
             <ul class="side-nav" id="side-nav">
-                <li>
-                    <a href="#!">
-                        <i class="material-icons">airline_seat_recline_normal</i>
-                        Airlines
-                    </a>
+
+
+                <li class="#{page eq 'index' ? 'active' : ''}">
+                    <h:link outcome="./index.xhtml">
+                        <i class="material-icons left">home</i>
+                        Home
+                    </h:link>
                 </li>
 
-                <li>
+                <li class="#{page eq 'airlines' ? 'active' : ''}">
+                    <h:link outcome="./airlines.xhtml">
+                        <i class="material-icons">airline_seat_recline_normal</i>
+                        Airlines
+                    </h:link>
+                </li>
+
+                <li class="#{page eq 'airports' ? 'active' : ''}">
                     <h:link outcome="./airports.xhtml">
                         <i class="material-icons">place</i>
                         Airports
                     </h:link>
                 </li>
 
-                <li>
-                    <a href="#!">
+                <li class="#{page eq 'flights' ? 'active' : ''}">
+                    <h:link outcome="./flights.xhtml">
                         <i class="material-icons">flight_takeoff</i>
                         Flights
-                    </a>
+                    </h:link>
                 </li>
 
-                <li>
-                    <a href="#!">
+                <li class="#{page eq 'reports' ? 'active' : ''}">
+                    <h:link outcome="./reports.xhtml">
                         <i class="material-icons">subject</i>
                         Reports
-                    </a>
+                    </h:link>
                 </li>
             </ul>
 
@@ -50,40 +59,39 @@
                     </a>
 
                     <ul class="right hide-on-med-and-down">
-                        <li class="active">
-                            <a href="#!">
+                        <li class="#{page eq 'index' ? 'active' : ''}">
+                            <h:link outcome="./index.xhtml">
                                 <i class="material-icons left">home</i>
                                 Home
-                            </a>
-
+                            </h:link>
                         </li>
 
-                        <li>
-                            <a href="#!">
+                        <li class="#{page eq 'airlines' ? 'active' : ''}">
+                            <h:link outcome="./airlines.xhtml">
                                 <i class="material-icons left">airline_seat_recline_normal</i>
                                 Airlines
-                            </a>
+                            </h:link>
                         </li>
 
-                        <li>
+                        <li class="#{page eq 'airports' ? 'active' : ''}">
                             <h:link outcome="./airports.xhtml">
                                 <i class="material-icons left">place</i>
                                 Airports
                             </h:link>
                         </li>
 
-                        <li>
-                            <a href="#!">
+                        <li class="#{page eq 'flights' ? 'active' : ''}">
+                            <h:link outcome="./flights.xhtml">
                                 <i class="material-icons left">flight_takeoff</i>
                                 Flights
-                            </a>
+                            </h:link>
                         </li>
 
-                        <li>
-                            <a href="#!">
+                        <li class="#{page eq 'reports' ? 'active' : ''}">
+                            <h:link outcome="./reports.xhtml">
                                 <i class="material-icons left">subject</i>
                                 Reports
-                            </a>
+                            </h:link>
                         </li>
 
                         <li>
@@ -92,23 +100,14 @@
                                 John Smith
                                 <i class="material-icons right">arrow_drop_down</i>
                             </a>
-                            <!--<a href="#!">
-
-
-                            </a>-->
                         </li>
                     </ul>
-
-
                 </div>
             </nav>
         </header>
 
         <div class="section no-pad-bot" id="index-banner">
             <div class="container">
-
-
-
 
                 <!--<h:link outcome="main.xhtml">
                     <h:graphicImage library="images" name="Tux.png" width="50"/>
