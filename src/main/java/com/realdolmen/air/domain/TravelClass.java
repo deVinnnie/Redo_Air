@@ -109,28 +109,13 @@ public class TravelClass extends AbstractEntity{
         this.margin = margin;
     }
 
-    /*@Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        TravelClass that = (TravelClass) o;
-
-        return name.equals(that.name);
-    }*/
-
-    /*@Override
-    public int hashCode() {
-        return name.hashCode();
-    }*/
-
     public BigDecimal getEndUserPrice(){
-        /*BigDecimal baseEndUserPrice = new BigDecimal("0.000");
         if(retailPrice != null){
             return retailPrice;
-        }*/
-        BigDecimal price = basePrice.multiply(margin);
-        return price;
+        }
+        else {
+            BigDecimal price = basePrice.multiply(margin);
+            return price;
+        }
     }
-
 }
