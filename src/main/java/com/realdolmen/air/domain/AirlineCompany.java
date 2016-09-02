@@ -1,12 +1,19 @@
 package com.realdolmen.air.domain;
 
 import javax.persistence.Entity;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import java.util.List;
 
 @Entity
+@NamedQueries({
+        @NamedQuery(name = AirlineCompany.FIND_ALL, query = "SELECT a FROM AirlineCompany a"),
+        @NamedQuery(name = AirlineCompany.FIND_BY_NAME, query = "SELECT a FROM AirlineCompany a where a.name = :name")
+})
 public class AirlineCompany extends AbstractEntity{
-
+    public static final String FIND_ALL = "AirlineCompany.findAll";
+    public static final String FIND_BY_NAME = "AirlineCompany.findByName";
     private String name;
 
     @OneToMany(mappedBy = "airlineCompany")

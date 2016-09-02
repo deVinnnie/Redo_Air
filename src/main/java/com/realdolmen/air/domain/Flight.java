@@ -7,8 +7,11 @@ import java.util.List;
 import java.util.Set;
 
 @Entity
+@NamedQueries({
+        @NamedQuery(name = Flight.FIND_ALL, query = "SELECT f FROM Flight f")
+})
 public class Flight extends AbstractEntity{
-
+    public static final String FIND_ALL = "Flight.findAll";
     /**
      * Identification number of the flight.
      *

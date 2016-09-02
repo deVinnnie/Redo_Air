@@ -32,4 +32,8 @@ public class FlightRepository {
         System.out.println("Flight: " + flight.getId());
         return flight;
     }
+
+    public List<Flight> findAll(){
+        return entityManager.createNamedQuery(Flight.FIND_ALL, Flight.class).getResultList();
+    }
 }
