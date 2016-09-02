@@ -1,94 +1,67 @@
-<!DOCTYPE html>
-<html xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:c="http://java.sun.com/jsp/jstl/core"
-      xmlns:f="http://xmlns.jcp.org/jsf/core"
-      xmlns:rd="http://xmlns.jcp.org/jsf/composite/realdolmen"
-      xmlns:p="http://primefaces.org/ui"
-      xmlns:mp="http://primefaces.org/ui/material"
-      lang="#{languageBean.language}">
-<f:view locale="#{languageBean.locale}">
-    <h:head>
-        <title><ui:insert name="pageTitle"/></title>
+<ui:composition template="/WEB-INF/master.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:c="http://java.sun.com/jsp/jstl/core"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <ui:define name="body">
+       <!-- <h:outputFormat value="#{msg['lang.current']}">
+            <f:param value="#{msg[languageBean.language]}"/>
+        </h:outputFormat>-->
 
-        <meta name="viewport" content="width=device-width, initial-scale=1"/>
-        <meta name="charset" content="utf-8"/>
+        <h:form id="langauge_form">
+            <ul id="dropdown1" class="dropdown-content">
+                <c:forEach items="#{languageBean.locales}" var="lan" varStatus="loop">
+                    <c:choose>
+                        <c:when test="#{lan.language eq languageBean.language}">
+                            <li class="active">
+                                <i class="material-icons left">chevron_right</i>
+                                <span>
+                                    <h:outputFormat value="#{msg[lan.language]}"/>
+                                </span>
+                            </li>
+                        </c:when>
+                        <c:otherwise>
+                            <li>
+                                <h:commandLink action="#{languageBean.changeLanguage(lan.language)}"
+                                               value="#{msg[lan.language]}" />
+                            </li>
+                        </c:otherwise>
+                    </c:choose>
+                </c:forEach>
+            </ul>
+        </h:form>
 
-        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
-
-        <!--<h:outputStylesheet library="material-prime" name="libs/materialize.css"/>
-        <h:outputStylesheet library="default" name="css/main.css"/>-->
-
-        <h:outputScript library="material-prime" name="libs/materialize.js"/>
-    </h:head>
-
-    <h:body>
-        <nav class="teal darken-4" role="navigation">
+        <nav class="light-green darken-4" role="navigation">
             <div class="nav-wrapper container">
-                <a id="logo-container" href="#" class="brand-logo">Logo</a>
+                <a id="logo-container" href="#" class="brand-logo">ReDo Air</a>
                 <ul class="right hide-on-med-and-down">
-                    <li><a href="#">Navbar Link</a></li>
+                    <li>
+                        <a class="dropdown-button" href="#!" data-activates="dropdown1">
+                            <h:outputFormat value="#{msg['lang.title']}"/>
+                            <i class="material-icons right">arrow_drop_down</i>
+                        </a>
+                    </li>
+
+                    <li><a href="#">Log in</a></li>
                 </ul>
 
                 <ul id="nav-mobile" class="side-nav">
-                    <li><a href="#">Navbar Link</a></li>
+                    <li><a href="#">Log in</a></li>
                 </ul>
                 <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
             </div>
         </nav>
 
         <div class="section no-pad-bot" id="index-banner">
-
             <div class="container">
-                <!--<h:link outcome="main.xhtml">
-                    <h:graphicImage library="images" name="Tux.png" width="50"/>
-                </h:link>-->
-
                 <h1>
                     <ui:insert name="pageTitle">
-                        Register
+                        ReDo Air
                     </ui:insert>
                 </h1>
 
-                <h:outputFormat value="#{msg['lang.current']}">
-                    <f:param value="#{msg[languageBean.language]}"/>
-                </h:outputFormat>
 
-                <h3>
-                    <h:outputFormat value="#{msg['lang.title']}"/>
-                </h3>
-
-                <mp:button value="Click Me!"/>
-
-                <h:form id="langauge_form">
-                    <ul>
-                        <c:forEach items="#{languageBean.locales}" var="lan" varStatus="loop">
-                            <c:choose>
-                                <c:when test="#{lan.language eq languageBean.language}">
-                                    <li class="current-language">
-                                        <h:outputFormat value="#{msg[lan.language]}"/>
-                                    </li>
-                                </c:when>
-                                <c:otherwise>
-                                    <li>
-                                        <h:commandLink action="#{languageBean.changeLanguage(lan.language)}"
-                                                       value="#{msg[lan.language]}" />
-                                    </li>
-                                </c:otherwise>
-                            </c:choose>
-                        </c:forEach>
-                    </ul>
-                </h:form>
-            </div>
-
-            <div class="container">
-                <h1 class="header center orange-text">Starter Template</h1>
-                <div class="row center">
-                    <h5 class="header col s12 light">A modern responsive front-end framework based on Material Design</h5>
-                </div>
-                <div class="row center">
-                    <a href="http://materializecss.com/getting-started.html" id="download-button" class="btn-large waves-effect waves-light orange">Get Started</a>
-                </div>
             </div>
         </div>
 
@@ -104,83 +77,31 @@
                     Lorem Ipsum
                 </ui:insert>
             </main>
-
-
-            <div class="section">
-                <div class="row">
-                    <div class="col s12 m4">
-                        <div class="icon-block">
-                            <h2 class="center light-blue-text"><i class="material-icons">flash_on</i></h2>
-                            <h5 class="center">Speeds up development</h5>
-
-                            <p class="light">We did most of the heavy lifting for you to provide a default stylings that incorporate our custom components. Additionally, we refined animations and transitions to provide a smoother experience for developers.</p>
-                        </div>
-                    </div>
-
-                    <div class="col s12 m4">
-                        <div class="icon-block">
-                            <h2 class="center light-blue-text"><i class="material-icons">group</i></h2>
-                            <h5 class="center">User Experience Focused</h5>
-
-                            <p class="light">By utilizing elements and principles of Material Design, we were able to create a framework that incorporates components and animations that provide more feedback to users. Additionally, a single underlying responsive system across all platforms allow for a more unified user experience.</p>
-                        </div>
-                    </div>
-
-                    <div class="col s12 m4">
-                        <div class="icon-block">
-                            <h2 class="center light-blue-text"><i class="material-icons">settings</i></h2>
-                            <h5 class="center">Easy to work with</h5>
-
-                            <p class="light">We have provided detailed documentation as well as specific code examples to help new users get started. We are also always open to feedback and can answer any questions a user may have about Materialize.</p>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-            <div class="section">
-
-            </div>
         </div>
 
+        <footer class="page-footer  light-green darken-1">
+            <div class="container">
+                <div class="row">
+                    <div class="col l6 s12">
+                        <h5 class="white-text">Company Bio</h5>
+                        <p class="grey-text text-lighten-4">Copyright RealDolmen. All rights reserved.</p>
 
 
-            <footer class="page-footer orange">
-                <div class="container">
-                    <div class="row">
-                        <div class="col l6 s12">
-                            <h5 class="white-text">Company Bio</h5>
-                            <p class="grey-text text-lighten-4">Copyright RealDolmen. All rights reserved.</p>
-
-
-                        </div>
-                        <div class="col l3 s12">
-                            <h5 class="white-text">Settings</h5>
-                            <ul>
-                                <li><a class="white-text" href="#!">Link 1</a></li>
-                                <li><a class="white-text" href="#!">Link 2</a></li>
-                                <li><a class="white-text" href="#!">Link 3</a></li>
-                                <li><a class="white-text" href="#!">Link 4</a></li>
-                            </ul>
-                        </div>
-                        <div class="col l3 s12">
-                            <h5 class="white-text">Connect</h5>
-                            <ul>
-                                <li><a class="white-text" href="#!">Link 1</a></li>
-                                <li><a class="white-text" href="#!">Link 2</a></li>
-                                <li><a class="white-text" href="#!">Link 3</a></li>
-                                <li><a class="white-text" href="#!">Link 4</a></li>
-                            </ul>
-                        </div>
                     </div>
-                </div>
-
-                <div class="footer-copyright">
-                    <div class="container">
-                        Made by <a class="orange-text text-lighten-3" href="http://materializecss.com">Materialize</a>
+                    <div class="col l3 s12">
+                        <h5 class="white-text">Settings</h5>
+                        <ul>
+                            <li><a class="white-text" href="#!">Link 1</a></li>
+                            <li><a class="white-text" href="#!">Link 2</a></li>
+                            <li><a class="white-text" href="#!">Link 3</a></li>
+                            <li><a class="white-text" href="#!">Link 4</a></li>
+                        </ul>
                     </div>
+                    <div class="col l3 s12"></div>
                 </div>
-            </footer>
+            </div>
 
-    </h:body>
-</f:view>
-</html>
+            <div class="footer-copyright"></div>
+        </footer>
+    </ui:define>
+</ui:composition>

@@ -1,35 +1,9 @@
-<!DOCTYPE html>
-<html xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:c="http://java.sun.com/jsp/jstl/core"
-      xmlns:f="http://xmlns.jcp.org/jsf/core"
-      xmlns:rd="http://xmlns.jcp.org/jsf/composite/realdolmen"
-      xmlns:p="http://primefaces.org/ui"
-      lang="#{languageBean.language}">
-<f:view locale="#{languageBean.locale}">
-    <h:head>
-        <title><ui:insert name="pageTitle"/></title>
-
-        <meta name="viewport" content="width=device-width, initial-scale=1"/>
-        <meta name="charset" content="utf-8"/>
-
-        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
-
-        <!--<h:outputStylesheet library="material-prime" name="libs/materialize.css"/>-->
-        <!--<h:outputStylesheet library="default" name="css/main.css"/>-->
-        <h:outputStylesheet library="materialize" name="css/materialize.min.css"/>
-        <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-        <h:outputScript library="materialize" name="js/materialize.min.js"/>
-
-        <script>
-            $( document ).ready(function(){
-                $(".button-collapse").sideNav();
-                $(".dropdown-button").dropdown();
-            });
-        </script>
-    </h:head>
-
-    <h:body>
+<ui:composition template="/WEB-INF/master.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:c="http://java.sun.com/jsp/jstl/core">
+    <ui:define name="body">
         <header>
             <!-- Side bar navigation-->
             <ul class="side-nav" id="side-nav">
@@ -220,15 +194,6 @@
                             <li><a class="white-text" href="#!">Link 4</a></li>
                         </ul>
                     </div>
-                    <!--<div class="col l3 s12">
-                        <h5 class="white-text">Connect</h5>
-                        <ul>
-                            <li><a class="white-text" href="#!">Link 1</a></li>
-                            <li><a class="white-text" href="#!">Link 2</a></li>
-                            <li><a class="white-text" href="#!">Link 3</a></li>
-                            <li><a class="white-text" href="#!">Link 4</a></li>
-                        </ul>
-                    </div>-->
                 </div>
             </div>
 
@@ -238,6 +203,5 @@
                 </div>
             </div>
         </footer>
-    </h:body>
-</f:view>
-</html>
+    </ui:define>
+</ui:composition>
