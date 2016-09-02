@@ -30,7 +30,7 @@ public class TravelClassBean {
     public void onParametersLoaded(){
         this.travelClass = repository.find(travelClassId);
     }
-    
+
     public TravelClass getTravelClass() {
         return travelClass;
     }
