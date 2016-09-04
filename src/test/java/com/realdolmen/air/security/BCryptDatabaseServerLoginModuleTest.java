@@ -23,10 +23,10 @@ public class BCryptDatabaseServerLoginModuleTest {
     }
 
     @Test
-    public void test_validatePassword_WithNonMathcingPasswordAndHash_ReturnsFalse(){
+    public void test_validatePassword_WithNonMatchingPasswordAndHash_ReturnsFalse(){
         String password = "password";
         String hashedPassword = "$2a$10$z5vr/uy/47FSkbtRjE4J2.Y/0MkeldTPKXoHvrK8FGYc..qcRlOAi"; //Hash for 'abba'
-        assertTrue(loginModule.validatePassword(password, hashedPassword));
+        assertFalse(loginModule.validatePassword(password, hashedPassword));
     }
 
     @Test
