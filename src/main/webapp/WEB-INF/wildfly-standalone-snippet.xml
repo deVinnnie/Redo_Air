@@ -1,0 +1,10 @@
+<!-- Snippet you should add in the Wildfly standalone.xml to setup the security realm. -->
+<security-domain name="secureDomain" cache-type="default">
+<authentication>
+    <login-module code="com.realdolmen.air.security.BCryptDatabaseServerLoginModule" flag="required">
+        <module-option name="dsJndiName" value="java:/rd/datasources/RealDolmenDataSource"/>
+        <module-option name="principalsQuery" value="select password from Customer where email=?"/>
+        <module-option name="rolesQuery" value="select role, 'Roles' from Customer where email=?"/>
+    </login-module>
+</authentication>
+</security-domain>

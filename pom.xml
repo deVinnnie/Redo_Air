@@ -142,11 +142,6 @@
 			<version>1.0.3</version> <!-- Version used by Wildfly 10.0.0.Final -->
 			<scope>test</scope>
 		</dependency>
-        <!--<dependency>
-            <groupId>org.hibernate</groupId>
-            <artifactId>hibernate-validator</artifactId>
-            <version>5.2.4.Final</version>
-        </dependency>-->
 
 		<dependency>
 			<groupId>org.primefaces</groupId>
@@ -172,10 +167,19 @@
 			<version>5.2.4.Final</version>
 		</dependency>
 
+		<!-- Contains some handy utils. Like Pairs, Tuples and Triples.-->
 		<dependency>
 			<groupId>org.apache.commons</groupId>
 			<artifactId>commons-lang3</artifactId>
 			<version>3.4</version>
+		</dependency>
+
+		<!-- Wildfly security implementation. Used to provide custom DatabaseLoginModule-->
+		<dependency>
+			<groupId>org.picketbox</groupId>
+			<artifactId>picketbox</artifactId>
+			<version>4.9.7.Final</version>
+			<scope>provided</scope>
 		</dependency>
 	</dependencies>
 

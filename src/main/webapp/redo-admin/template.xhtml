@@ -7,8 +7,6 @@
         <header>
             <!-- Side bar navigation-->
             <ul class="side-nav" id="side-nav">
-
-
                 <li class="#{page eq 'index' ? 'active' : ''}">
                     <h:link outcome="./index.xhtml">
                         <i class="material-icons left">home</i>
@@ -46,10 +44,17 @@
             </ul>
 
             <!-- User dropdown -->
-            <ul id="dropdown1" class="dropdown-content">
-                <li><a href="#!">Log out</a></li>
-            </ul>
+            <h:form>
+                <ul id="dropdown1" class="dropdown-content">
+                    <li>
+                        <h:commandLink action="#{loginBean.logout}">
+                            Log out
+                        </h:commandLink>
+                    </li>
+                </ul>
+            </h:form>
 
+            <!-- Navbar Top -->
             <nav class="top-nav blue darken-4" role="navigation">
                 <div class="nav-wrapper container">
 
@@ -97,7 +102,7 @@
                         <li>
                             <a class="dropdown-button" href="#!" data-activates="dropdown1">
                                 <i class="material-icons left">person</i>
-                                John Smith
+                                <h:outputText value="#{request.userPrincipal.name}"/>
                                 <i class="material-icons right">arrow_drop_down</i>
                             </a>
                         </li>

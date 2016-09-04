@@ -5,12 +5,14 @@ import com.realdolmen.air.service.CustomerServiceBean;
 import org.mindrot.jbcrypt.BCrypt;
 
 import javax.annotation.PostConstruct;
-import javax.ejb.LocalBean;
 import javax.faces.bean.ManagedBean;
+import javax.faces.context.FacesContext;
 import javax.inject.Inject;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
 import java.io.Serializable;
+import java.security.Principal;
 
-@LocalBean
 @ManagedBean
 public class LoginBean implements Serializable {
     private Customer customer;
@@ -19,12 +21,26 @@ public class LoginBean implements Serializable {
     @Inject
     CustomerServiceBean customerServiceBean;
 
+
+    private boolean loginFailure = false;
+
     public LoginBean(){
     }
 
     @PostConstruct
     public void postConstruct(){
         customer = new Customer();
+
+        Principal userPrincipal = FacesContext.getCurrentInstance().getExternalContext().getUserPrincipal();
+
+        if(userPrincipal != null) {
+
+            String userName = userPrincipal.getName();
+            System.out.println("Username is " + userName);
+        }
+        else{
+            System.out.println("Username not available");
+        }
     }
 
     public Customer getCustomer() {
@@ -51,6 +67,14 @@ public class LoginBean implements Serializable {
         }
     }
 
+    public boolean isLoginFailure() {
+        return loginFailure;
+    }
+
+    public void setLoginFailure(boolean loginFailure) {
+        this.loginFailure = loginFailure;
+    }
+
     public void login(){
         Customer customerByEmail = customerServiceBean.findCustomerByEmail(customer.getEmail());
         if(customerByEmail != null){
@@ -58,5 +82,16 @@ public class LoginBean implements Serializable {
         }else {
 
         }
+    }
+
+    public String logout(){
+        HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
+        try {
+            request.logout();
+        } catch (ServletException e) {
+            e.printStackTrace();
+        }
+
+        return "/index.xhtml?faces-redirect=true";
     }
 }

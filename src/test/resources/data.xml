@@ -23,6 +23,18 @@
     <airport id="400" code="LHR" name="London Heathrow Airport" version="1"/>
     <airport id="500" code="LGW" name="Gatwick Airport" version="1"/>-->
 
+
+    <!-- Customers -->
+    <!-- Cannibalized version: A customer can login to the admin page.
+        This is just for testing the login system as is.
+    -->
+    <!-- Password= 'abba' -->
+    <customer id="10" email="harry.potter@hogwarts.org" firstName="Harry" lastName="Potter"
+              password="$2a$10$z5vr/uy/47FSkbtRjE4J2.Y/0MkeldTPKXoHvrK8FGYc..qcRlOAi"
+                role="CUSTOMER"/>
+    <!--<userroles username="harry.potter@hogwarts.org" role="ADMIN"/>-->
+
+
     <!-- Regions -->
     <region id="0" name="Pacific"></region>
     <region id="1" name="America"></region>

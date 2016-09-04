@@ -1,6 +1,7 @@
 package com.realdolmen.air.domain;
 
 import org.hibernate.validator.constraints.Email;
+import org.hibernate.validator.constraints.NotBlank;
 
 import javax.persistence.*;
 import javax.validation.constraints.Size;
@@ -12,6 +13,7 @@ import java.util.List;
 })
 public class Customer extends AbstractEntity {
     public static final String FIND_BY_EMAIL = "Customer.findByEmail";
+
     @Email
     private String email;
 
@@ -20,10 +22,15 @@ public class Customer extends AbstractEntity {
 
     @Size(min = 1, max = 255)
     private String lastName;
+
+    @NotBlank
     private String password;
 
     @Transient
     private String passwordRepeated;
+
+    @Enumerated(EnumType.STRING)
+    private Role role = Role.CUSTOMER;
 
     @OneToMany
     private List<Booking> bookings;
@@ -74,5 +81,13 @@ public class Customer extends AbstractEntity {
 
     public void setPasswordRepeated(String passwordRepeated) {
         this.passwordRepeated = passwordRepeated;
+    }
+
+    public Role getRole() {
+        return role;
+    }
+
+    public void setRole(Role role) {
+        this.role = role;
     }
 }
