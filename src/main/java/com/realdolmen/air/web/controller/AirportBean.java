@@ -2,12 +2,15 @@ package com.realdolmen.air.web.controller;
 
 import com.realdolmen.air.domain.Airport;
 import com.realdolmen.air.service.AirportServiceBean;
+import com.realdolmen.air.service.InvalidIdExeption;
 
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.RequestScoped;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
+import javax.faces.context.FacesContext;
+import javax.faces.context.Flash;
 import javax.faces.event.AjaxBehaviorEvent;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -46,7 +49,14 @@ public class AirportBean {
     }
 
     public String toggleAirportAvailability(Long airportId){
-        service.toggleAvailability(airportId);
+        try {
+            service.toggleAvailability(airportId);
+        }
+        catch(InvalidIdExeption e){
+            Flash flash = FacesContext.getCurrentInstance().
+                    getExternalContext().getFlash();
+            flash.put("error", e.getMessage());
+        }
         return "airports.xhtml?faces-redirect=true";
     }
 

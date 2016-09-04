@@ -1,9 +1,9 @@
 package com.realdolmen.air.domain;
 
-import javax.persistence.Entity;
-import javax.persistence.ManyToOne;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
+import org.hibernate.validator.constraints.NotBlank;
+
+import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 @Entity
@@ -19,13 +19,18 @@ public class Airport extends AbstractEntity {
      * ICAO or IATA airport code consist of maximum 4 characters.
      */
     @Size(max=4)
+    @NotBlank
     private String code;
 
+    @NotBlank
     private String name;
 
+    @Size(max=200)
+    @Column(length=200)
     private String country;
 
-    private Boolean available;
+    @NotNull
+    private Boolean available = false;
 
     @ManyToOne
     private Region region;

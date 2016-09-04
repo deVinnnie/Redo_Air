@@ -6,6 +6,7 @@ import com.realdolmen.air.repository.AirportRepository;
 import javax.ejb.EJB;
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
+import javax.persistence.EntityNotFoundException;
 import java.util.List;
 
 @Stateless
@@ -23,13 +24,16 @@ public class AirportServiceBean implements AirportService{
         return airportRepository.search(searchTerm);
     }
 
-    public void toggleAvailability(Long airportId) {
-        Airport airport = airportRepository.findById(airportId);
+    public void toggleAvailability(Long airportId) throws InvalidIdExeption {
+        Airport airport = this.findById(airportId);
+
+        if(airport == null){
+            throw new InvalidIdExeption("error.airport.doesnotexist");
+        }
         airport.setAvailable(!airport.getAvailable());
     }
 
     public Airport findById(Long id){
         return airportRepository.findById(id);
-
     }
 }
