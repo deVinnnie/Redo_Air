@@ -48,10 +48,7 @@
                     <h:outputFormat value="#{msg['searchFlight.search.searchSeats']}"/>
                 </h:outputLabel>
                 <h:panelGroup>
-                    <p:spinner id="ajaxSpinner" value="#{searchFlightBean.number3}" min="1">
-                        <p:ajax update="ajaxSpinnerValue" process="@this" />
-                    </p:spinner>
-                    <h:outputText id="ajaxSpinnerValue" value="#{searchFlightBean.number3}" style="padding-left: 10px" />
+                    <p:spinner id="ajaxSpinner" value="#{searchFlightBean.number3}" min="1"/>
                 </h:panelGroup>
 
                 <h:outputLabel>
