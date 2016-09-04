@@ -221,10 +221,10 @@
 				<version>1.0.0</version>
 				<configuration>
 					<targetClasses>
-						<param>com.realdolmen.course*</param>
+						<param>com.realdolmen.air*</param>
 					</targetClasses>
 					<targetTests>
-						<param>com.realdolmen.course*</param>
+						<param>com.realdolmen.air*</param>
 					</targetTests>
 				</configuration>
 			</plugin>

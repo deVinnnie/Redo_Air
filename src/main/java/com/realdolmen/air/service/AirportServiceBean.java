@@ -3,10 +3,7 @@ package com.realdolmen.air.service;
 import com.realdolmen.air.domain.Airport;
 import com.realdolmen.air.repository.AirportRepository;
 
-import javax.ejb.EJB;
-import javax.ejb.LocalBean;
-import javax.ejb.Stateless;
-import javax.persistence.EntityNotFoundException;
+import javax.ejb.*;
 import java.util.List;
 
 @Stateless
@@ -20,10 +17,12 @@ public class AirportServiceBean implements AirportService{
         return airportRepository.findAll();
     }
 
+    @Override
     public List<Airport> findAirports(String searchTerm){
         return airportRepository.search(searchTerm);
     }
 
+    @Override
     public void toggleAvailability(Long airportId) throws InvalidIdExeption {
         Airport airport = this.findById(airportId);
 
@@ -33,6 +32,7 @@ public class AirportServiceBean implements AirportService{
         airport.setAvailable(!airport.getAvailable());
     }
 
+    @Override
     public Airport findById(Long id){
         return airportRepository.findById(id);
     }
