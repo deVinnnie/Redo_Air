@@ -1,0 +1,88 @@
+<ui:composition template="/WEB-INF/template.xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:c="http://java.sun.com/jsp/jstl/core"
+                xmlns:p="http://primefaces.org/ui">
+
+    <ui:define name="pageTitle">
+
+    </ui:define>
+
+    <ui:define name="content">
+        <f:metadata>
+            <f:viewParam name="flightId" value="#{flightDetailsBean.flightId}"/>
+            <f:viewParam name="numberOfSeats" value="#{flightDetailsBean.numberOfSeats}"/>
+            <f:viewParam name="flightClass" value="#{flightDetailsBean.flightClass}"/>
+            <!--<f:viewParam name="ssn" value="#{passengerBean.currentId.ssn}"/>-->
+            <!--<f:viewParam name="lastName" value="#{passengerBean.currentId.lastName}"/>-->
+            <!--<f:viewAction action="#{passengerBean.setUpAfterParam()}" />-->
+        </f:metadata>
+
+        <h2><h:outputFormat value="#{msg['detailsFlight.title']}"/></h2>
+
+        <h:dataTable id="detailTable" value="#{flightDetailsBean.flight}" var="flight" styleClass="table table-striped">
+            <h:column>
+                <f:facet name="header">
+                    <h:outputText value="#{msg['searchFlight.search.searchCompany']}"/>
+                </f:facet>
+                <h:outputText value="#{flight.airlineCompany.name}"/>
+            </h:column>
+
+            <h:column>
+                <f:facet name="header">
+                    <h:outputText value="Flight"/>
+                </f:facet>
+                <h:outputText value="#{flight.number}"/>
+            </h:column>
+
+            <h:column>
+                <f:facet name="header">
+                    <h:outputText value="#{msg['searchFlight.search.searchDepartureAirport']}"/>
+                </f:facet>
+                <h:outputText value="#{flight.departure.name}"/>
+            </h:column>
+
+            <h:column>
+                <f:facet name="header">
+                    <h:outputText value="#{msg['searchFlight.search.searchDepartureDate']}"/>
+                </f:facet>
+                <h:outputText value="#{flight.departureTime}"/>
+            </h:column>
+
+            <h:column>
+                <f:facet name="header">
+                    <h:outputText value="#{msg['searchFlight.search.searchArivalAirport']}"/>
+                </f:facet>
+                <h:outputText value="#{flight.arrival.name}"/>
+            </h:column>
+
+            <h:column>
+                <f:facet name="header">
+                    <h:outputText value="#{msg['searchFlight.details.arrivalTime']}"/>
+                </f:facet>
+                <h:outputText value="#{flight.arrivalTime}"/>
+            </h:column>
+
+
+        </h:dataTable>
+        <ul class="collapsible" data-collapsible="expandable">
+            <c:forEach items="#{flightDetailsBean.travelClasses}" var="tClass">
+                <li>
+                    <div class="collapsible-header #{flightDetailsBean.isActive(tClass.name)}">#{tClass.name}</div>
+                    <div class="collapsible-body">
+                        <p>
+                            Price/Ticket: #{tClass.endUserPrice}<br/>
+                            # of tickets: #{flightDetailsBean.numberOfSeats}<br/>
+                            Total Price: #{flightDetailsBean.totalPrice(tClass.endUserPrice)}
+                            <br/><br/>
+                            <h:outputLink id="detailsLink" value="flightDetails.jsf">
+                                book this shit
+                            </h:outputLink>
+                        </p>
+                    </div>
+                </li>
+            </c:forEach>
+        </ul>
+    </ui:define>
+</ui:composition>

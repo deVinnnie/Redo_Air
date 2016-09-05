@@ -40,7 +40,12 @@ public class FlightRepository {
     }
 
     public List<Flight> findAll(){
-        return entityManager.createNamedQuery(Flight.FIND_ALL, Flight.class).getResultList();
+        try{
+            return entityManager.createNamedQuery(Flight.FIND_ALL, Flight.class).getResultList();
+        }catch (NoResultException e){
+            LOGGER.error("No information found: ",e);
+        }
+        return Collections.emptyList();
     }
 
     public List<Flight> findFlightsWithParams(Long airlineCompanyId, String flightClass, int numberOfSeats, Long departureAirportId, Long arrivalAirportId){

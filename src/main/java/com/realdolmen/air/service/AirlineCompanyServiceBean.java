@@ -13,7 +13,7 @@ import javax.faces.bean.ManagedBean;
 import java.util.List;
 
 @ApplicationScoped
-@ManagedBean(name = "themeService")
+@ManagedBean
 public class AirlineCompanyServiceBean implements AirlineCompanyService{
     @EJB
     AirlineCompanyRepository airlineCompanyRepository;

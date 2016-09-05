@@ -37,6 +37,10 @@ public class FlightServiceBean implements FlightService{
         return possibleFlights;
     }
 
+    public Flight findFlightById(Long id){
+        return flightRepository.findById(id);
+    }
+
     private boolean checkSameDate(Date d1, Date d2){
         Calendar calendar1 = Calendar.getInstance();
         Calendar calendar2 = Calendar.getInstance();

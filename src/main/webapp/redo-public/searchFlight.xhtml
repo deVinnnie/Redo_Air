@@ -48,7 +48,7 @@
                     <h:outputFormat value="#{msg['searchFlight.search.searchSeats']}"/>
                 </h:outputLabel>
                 <h:panelGroup>
-                    <p:spinner id="ajaxSpinner" value="#{searchFlightBean.number3}" min="1"/>
+                    <p:spinner id="ajaxSpinner" value="#{searchFlightBean.number3}" min="1" />
                 </h:panelGroup>
 
                 <h:outputLabel>
@@ -94,58 +94,68 @@
             <h:commandButton value="#{msg['searchFlight.search.searchButton']}" action="#{searchFlightBean.searchFlights}"/>
         </h:form>
 
-        <h:dataTable id="FlightTable" value="#{searchFlightBean.flights}" var="flight" styleClass="table table-striped">
-            <h:column>
-                <f:facet name="header">
-                    <h:outputText value="#{msg['searchFlight.search.searchCompany']}"/>
-                </f:facet>
-                <h:outputText value="#{flight.airlineCompany.name}"/>
-            </h:column>
+        <h:form id="flightTableForm">
+            <h:dataTable id="FlightTable" value="#{searchFlightBean.flights}" var="flight" styleClass="table table-striped">
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="#{msg['searchFlight.search.searchCompany']}"/>
+                    </f:facet>
+                    <h:outputText value="#{flight.airlineCompany.name}"/>
+                </h:column>
 
-            <h:column>
-                <f:facet name="header">
-                    <h:outputText value="Flight"/>
-                </f:facet>
-                <h:outputText value="#{flight.number}"/>
-            </h:column>
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Flight"/>
+                    </f:facet>
+                    <h:outputText value="#{flight.number}"/>
+                </h:column>
 
-            <h:column>
-                <f:facet name="header">
-                    <h:outputText value="#{msg['searchFlight.search.searchDepartureAirport']}"/>
-                </f:facet>
-                <h:outputText value="#{flight.departure.name}"/>
-            </h:column>
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="#{msg['searchFlight.search.searchDepartureAirport']}"/>
+                    </f:facet>
+                    <h:outputText value="#{flight.departure.name}"/>
+                </h:column>
 
-            <h:column>
-                <f:facet name="header">
-                    <h:outputText value="#{msg['searchFlight.search.searchDepartureDate']}"/>
-                </f:facet>
-                <h:outputText value="#{flight.departureTime}"/>
-            </h:column>
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="#{msg['searchFlight.search.searchDepartureDate']}"/>
+                    </f:facet>
+                    <h:outputText value="#{flight.departureTime}"/>
+                </h:column>
 
-            <h:column>
-                <f:facet name="header">
-                    <h:outputText value="#{msg['searchFlight.search.searchArivalAirport']}"/>
-                </f:facet>
-                <h:outputText value="#{flight.arrival.name}"/>
-            </h:column>
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="#{msg['searchFlight.search.searchArivalAirport']}"/>
+                    </f:facet>
+                    <h:outputText value="#{flight.arrival.name}"/>
+                </h:column>
 
-            <h:column>
-                <f:facet name="header">
-                    <h:outputText value="#{msg['searchFlight.details.arrivalTime']}"/>
-                </f:facet>
-                <h:outputText value="#{flight.arrivalTime}"/>
-            </h:column>
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="#{msg['searchFlight.details.arrivalTime']}"/>
+                    </f:facet>
+                    <h:outputText value="#{flight.arrivalTime}"/>
+                </h:column>
 
-            <h:column>
-                <f:facet name="header">
-                    <h:outputText value="Details"/>
-                </f:facet>
-                <h:commandButton value="#{msg['searchFlight.details.details']}" action="#{searchFlightBean.getDetailsById(flight.id)}"/>
-            </h:column>
-
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Details"/>
+                    </f:facet>
 
 
-        </h:dataTable>
+                    <h:outputLink id="detailsLink" value="flightDetails.jsf">
+                        Details
+                        <f:param name="flightId" value="#{flight.id}"/>
+                        <f:param name="numberOfSeats" value="#{searchFlightBean.number3}"/>
+                        <f:param name="flightClass" value="#{searchFlightBean.flightClass}"/>
+                    </h:outputLink>
+                </h:column>
+
+
+
+            </h:dataTable>
+        </h:form>
+
     </ui:define>
 </ui:composition>

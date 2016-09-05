@@ -23,7 +23,7 @@ import java.util.List;
 @ManagedBean
 public class searchFlightBean implements Serializable {
     private Flight flight;
-    private String flightClass;
+    private String flightClass = "first class";
     private List<AirlineCompany> airlineCompanies;
     private List<Airport> airports;
     private Date currentDate;
@@ -72,6 +72,7 @@ public class searchFlightBean implements Serializable {
 
     public void setFlightClass(String flightClass) {
         this.flightClass = flightClass;
+        searchFlights();
     }
 
     public List<AirlineCompany> getAirlineCompanies() {
@@ -103,6 +104,7 @@ public class searchFlightBean implements Serializable {
 
     public void setCurrentDate(Date currentDate) {
         this.currentDate = currentDate;
+        searchFlights();
     }
 
     public int getNumber3() {
@@ -111,6 +113,7 @@ public class searchFlightBean implements Serializable {
 
     public void setNumber3(int number3) {
         this.number3 = number3;
+        searchFlights();
     }
 
     public List<Flight> getFlights() {
@@ -129,6 +132,7 @@ public class searchFlightBean implements Serializable {
 
     public void setAirlineCompany(AirlineCompany airlineCompany) {
         this.airlineCompany = airlineCompany;
+        searchFlights();
     }
 
     public Long getAirlineCompanyId() {
@@ -137,6 +141,7 @@ public class searchFlightBean implements Serializable {
 
     public void setAirlineCompanyId(Long airlineCompanyId) {
         this.airlineCompanyId = airlineCompanyId;
+        searchFlights();
     }
 
     public String getById(Long id){
@@ -158,6 +163,7 @@ public class searchFlightBean implements Serializable {
 
     public void setDepartureAirportId(Long departureAirportId) {
         this.departureAirportId = departureAirportId;
+        searchFlights();
     }
 
     public Long getArrivalAirportId() {
@@ -166,6 +172,7 @@ public class searchFlightBean implements Serializable {
 
     public void setArrivalAirportId(Long arrivalAirportId) {
         this.arrivalAirportId = arrivalAirportId;
+        searchFlights();
     }
 
     public Date getDepartureTime() {
@@ -174,6 +181,7 @@ public class searchFlightBean implements Serializable {
 
     public void setDepartureTime(Date departureTime) {
         this.departureTime = departureTime;
+        searchFlights();
     }
 
     public void searchFlights(){
@@ -183,7 +191,5 @@ public class searchFlightBean implements Serializable {
 //
 //            }
 //        }
-        System.out.println(flights.size());
-        System.out.println("lel");
     }
 }

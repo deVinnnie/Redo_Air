@@ -6,7 +6,13 @@ import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 
 @Entity
+@NamedQueries({
+    @NamedQuery(name = TravelClass.FIND_CLASSES_FROM_FLIGHT, query = "SELECT t from TravelClass t where " +
+            "t.remainingSeats >= :numberOfSeats " +
+            "and t.flight.id = :flightId order by t.name desc")
+})
 public class TravelClass extends AbstractEntity{
+    public static final String FIND_CLASSES_FROM_FLIGHT = "TravelClass.findClassesFromFlight";
 
     @ManyToOne
     @JoinColumn(name="flight_id")
