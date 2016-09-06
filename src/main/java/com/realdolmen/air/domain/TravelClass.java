@@ -5,6 +5,10 @@ import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 
+/**
+ * TODO: Abstract price calculation away into a strategy.
+ *
+ */
 @Entity
 @NamedQueries({
     @NamedQuery(name = TravelClass.FIND_CLASSES_FROM_FLIGHT, query = "SELECT t from TravelClass t where " +
