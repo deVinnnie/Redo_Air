@@ -3,6 +3,7 @@ package com.realdolmen.air.domain;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.validation.constraints.Min;
 import java.io.Serializable;
 import java.math.BigDecimal;
@@ -22,15 +23,24 @@ public class Ticket extends AbstractEntity implements Serializable{
     @Min(0)
     private BigDecimal buyPrice;
 
+    /**
+     * A ticket is bound to a specific passenger. This could be different from the customer.
+     * A customer can buy tickets for himself, for others, or both.
+     */
     @Embedded
     private Passenger passenger;
 
     @ManyToOne
     private Flight flight;
 
-    private String travelClass;
+    @ManyToOne
+    private TravelClass travelClass;
 
-    public Ticket() {
+    public Ticket() {}
+
+    public Ticket(Passenger passenger, TravelClass travelClass) {
+        this.passenger = passenger;
+        this.travelClass = travelClass;
     }
 
     //<editor-fold desc="Getters & Setters">
@@ -59,20 +69,19 @@ public class Ticket extends AbstractEntity implements Serializable{
     }
 
     public BigDecimal getBuyPrice() {
-        return buyPrice;
+        return this.travelClass.getEndUserPrice();
     }
 
     public void setBuyPrice(BigDecimal buyPrice) {
         this.buyPrice = buyPrice;
     }
 
-    public String getTravelClass() {
+    public TravelClass getTravelClass() {
         return travelClass;
     }
 
-    public void setTravelClass(String travelClass) {
+    public void setTravelClass(TravelClass travelClass) {
         this.travelClass = travelClass;
     }
-
     //</editor-fold>
 }

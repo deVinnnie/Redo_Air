@@ -4,9 +4,17 @@ import javax.persistence.Embeddable;
 
 @Embeddable
 public class Passenger{
-    String firstName;
+    private String firstName;
 
-    String lastName;
+    private String lastName;
+
+    public Passenger() {
+    }
+
+    public Passenger(String firstName, String lastName) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+    }
 
     public String getFirstName() {
         return firstName;

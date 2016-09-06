@@ -1,0 +1,53 @@
+<ui:composition template="/WEB-INF/template.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui" xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:c="http://java.sun.com/jsp/jstl/core">
+    <ui:define name="pageTitle">
+        Booking
+    </ui:define>
+
+    <ui:define name="content">
+        <f:metadata>
+            <f:viewParam name="travelClassID" value="#{bookingBean.travelClassID}" required="true"/>
+            <f:viewParam name="seats" value="#{bookingBean.seatsWanted}"/>
+            <f:viewAction action="#{bookingBean.setUpAfterParam()}" />
+        </f:metadata>
+
+        <p:steps activeIndex="#{bookingBean.phase.ordinal}">
+            <p:menuitem value="Passenger Details" />
+            <p:menuitem value="Payment Method" />
+            <p:menuitem value="Payment Information" />
+            <p:menuitem value="Confirmation" />
+        </p:steps>
+
+        <h:messages/>
+
+        <div>
+            <p>Booking #{bookingBean.seatsWanted} seats in Business Class</p>
+
+            <!-- Flight Info -->
+
+            #{bookingBean.flight.departure.name} To #{bookingBean.flight.arrival.name}
+        </div>
+
+        <h:outputText value="Phase: #{bookingBean.phase}"/>
+
+        <h:panelGroup rendered="#{bookingBean.phase eq 'PASSENGER_INFORMATION'}">
+            <ui:include src="booking-passengers.xhtml"/>
+        </h:panelGroup>
+
+        <h:panelGroup rendered="#{bookingBean.phase == 'PAYMENT_METHOD'}">
+            <ui:include src="booking-choosepaymentmethod.xhtml"/>
+        </h:panelGroup>
+
+        <h:panelGroup rendered="#{bookingBean.phase == 'PAYMENT_INFORMATION'}">
+            <ui:include src="booking-paymentinfo.xhtml"/>
+        </h:panelGroup>
+
+        <h:panelGroup rendered="#{bookingBean.phase == 'CONFIRMATION'}">
+            <ui:include src="booking-confirmation.xhtml"/>
+        </h:panelGroup>
+    </ui:define>
+</ui:composition>

@@ -1,0 +1,42 @@
+<h:panelGroup xmlns="http://www.w3.org/1999/xhtml"
+              xmlns:h="http://xmlns.jcp.org/jsf/html"
+              xmlns:c="http://java.sun.com/jsp/jstl/core"
+              xmlns:f="http://xmlns.jcp.org/jsf/core"
+              xmlns:ui="http://java.sun.com/jsf/facelets"
+              xmlns:p="http://primefaces.org/ui">
+    <p>Please choose a payment method:</p>
+
+    <div class="row">
+        <div class="col s6">
+            <div class="card-panel grey lighten-3">
+                <h2>
+                    <i class="material-icons large left">credit_card</i>
+                    Credit card
+                </h2>
+
+                <span>You get a 10% discount if you choose to pay via credit card.</span>
+
+                <h:form>
+                    <h:commandLink action="#{bookingBean.selectCreditCardPayment}" value="Choose"/>
+                </h:form>
+            </div>
+        </div>
+
+        <div class="col s6">
+
+            <div class="card-panel grey lighten-3">
+
+                <h2>
+                    <i class="material-icons large left">attach_money</i>
+                    Endorsement
+                </h2>
+
+                <span></span>
+
+                <h:form>
+                    <h:commandLink action="#{bookingBean.selectEndorsementPayment}" value="Choose"/>
+                </h:form>
+            </div>
+        </div>
+    </div>
+</h:panelGroup>

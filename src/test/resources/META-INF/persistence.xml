@@ -62,6 +62,9 @@
         <class>com.realdolmen.air.domain.Booking</class>
         <class>com.realdolmen.air.domain.Customer</class>
         <class>com.realdolmen.air.domain.TravelClass</class>
+        <class>com.realdolmen.air.domain.payement.Payment</class>
+        <class>com.realdolmen.air.domain.payement.PaymentMethod</class>
+        <class>com.realdolmen.air.domain.payement.CreditCard</class>
 
         <properties>
             <property name="hibernate.dialect" value="org.hibernate.dialect.MySQL5InnoDBDialect" />

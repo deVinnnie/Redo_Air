@@ -31,7 +31,7 @@ public class TicketService {
         //BigDecimal price = basePrice.multiply(marginMultiplier);
 
         Ticket ticket = new Ticket();
-        ticket.setTravelClass(travelClass.getName());
+        ticket.setTravelClass(travelClass);
         //ticket.setBuyPrice(price);
     }
 }
