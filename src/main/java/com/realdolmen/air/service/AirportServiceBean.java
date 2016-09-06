@@ -14,7 +14,7 @@ public class AirportServiceBean implements AirportService{
 
     @Override
     public List<Airport> getAllAirports(){
-        return airportRepository.findAll();
+        return airportRepository.findAllActiveAndNonActive();
     }
 
     @Override

@@ -8,10 +8,12 @@ import javax.validation.constraints.Size;
 
 @Entity
 @NamedQueries({
-        @NamedQuery(name = Airport.FIND_ALL, query = "SELECT a FROM Airport a where a.available = TRUE")
+        @NamedQuery(name = Airport.FIND_ALL_ACTIVE, query = "SELECT a FROM Airport a where a.available = TRUE"),
+        @NamedQuery(name = Airport.FIND_ALL, query = "SELECT a FROM Airport a")
 })
 public class Airport extends AbstractEntity {
     public static final String FIND_ALL = "Airport.findAll";
+    public static final String FIND_ALL_ACTIVE = "Airport.findAllActive";
 
     /**
      * International Airport Code

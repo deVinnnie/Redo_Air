@@ -52,6 +52,7 @@ public class AirportBean {
     public String toggleAirportAvailability(Long airportId){
         try {
             service.toggleAvailability(airportId);
+            this.allAirports = service.getAllAirports();
         }
         catch(InvalidIdExeption e){
             Flash flash = FacesContext.getCurrentInstance().
