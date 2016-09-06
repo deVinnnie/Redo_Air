@@ -149,11 +149,6 @@
 			<version>6.0</version>
 		</dependency>
 
-		<dependency>
-			<groupId>com.github.MaterialPrime</groupId>
-			<artifactId>material-prime</artifactId>
-			<version>v0.0.2</version>
-		</dependency>
 
 		<dependency>
 			<groupId>org.mindrot</groupId>
