@@ -1,33 +1,45 @@
 package com.realdolmen.air.repository;
 
-import com.realdolmen.air.domain.Flight;
 import com.realdolmen.air.domain.TravelClass;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.ejb.Stateless;
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
+import javax.persistence.NoResultException;
+import java.util.Collections;
 import java.util.List;
 
 @Stateless
-public class TravelClassRepository {
+public class TravelClassRepository extends AbstractBaseRepository<TravelClass, Long> implements TravelClassRepositoryInterface {
+    private static final Logger LOGGER = LoggerFactory.getLogger(FlightRepository.class);
 
-    @PersistenceContext
-    EntityManager em;
+    @Override
+    public TravelClass find(Long travelClassId) {
+        try {
+            return getEntityManager().find(TravelClass.class, travelClassId);
+        } catch (NoResultException e) {
+            LOGGER.error("No information found: ", e);
+        }
+        return null;
+    }
 
-    public TravelClass update(TravelClass travelClass){
-        travelClass = em.merge(travelClass);
+    @Override
+    public TravelClass update(TravelClass travelClass) {
+        travelClass = getEntityManager().merge(travelClass);
         return travelClass;
     }
 
-    public TravelClass find(Long travelClassId) {
-        return em.find(TravelClass.class, travelClassId);
-    }
+    @Override
+    public List<TravelClass> findAllTravelClassesOfAFlight(Long flightId, int numberOfSeats) {
+        try{
+            return getEntityManager().createNamedQuery(TravelClass.FIND_CLASSES_FROM_FLIGHT, TravelClass.class)
+                    .setParameter("numberOfSeats", numberOfSeats)
+                    .setParameter("flightId", flightId)
+                    .getResultList();
+        } catch (NoResultException e) {
+            LOGGER.error("No information found: ", e);
+        }
+        return Collections.emptyList();
 
-    public List<TravelClass> findAllTravelClassesOfAFlight(Long flightId, int numberOfSeats){
-        return em.createNamedQuery(TravelClass.FIND_CLASSES_FROM_FLIGHT, TravelClass.class)
-                .setParameter("numberOfSeats",numberOfSeats)
-                .setParameter("flightId",flightId)
-                .getResultList();
     }
 }

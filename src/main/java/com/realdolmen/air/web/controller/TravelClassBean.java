@@ -2,6 +2,7 @@ package com.realdolmen.air.web.controller;
 
 import com.realdolmen.air.domain.TravelClass;
 import com.realdolmen.air.repository.TravelClassRepository;
+import com.realdolmen.air.service.TravelClassServiceBean;
 
 
 import javax.faces.bean.ManagedBean;
@@ -17,7 +18,11 @@ public class TravelClassBean {
     private TravelClass travelClass;
 
     @Inject
-    private TravelClassRepository repository;
+    TravelClassServiceBean travelClassServiceBean;
+
+    //has to go
+//    @Inject
+//    private TravelClassRepository repository;
 
     /**
      * Method called after request parameters are loaded in JSF page.
@@ -28,7 +33,9 @@ public class TravelClassBean {
      * This would result in faulty initialisation.
      */
     public void onParametersLoaded(){
-        this.travelClass = repository.find(travelClassId);
+        //has to go
+//        this.travelClass = repository.find(travelClassId);
+        this.travelClass = travelClassServiceBean.find(travelClassId);
     }
 
     public TravelClass getTravelClass() {
@@ -48,6 +55,8 @@ public class TravelClassBean {
     }
 
     public void save(){
-        this.travelClass = this.repository.update(this.travelClass);
+        //has to go
+//        this.travelClass = this.repository.update(this.travelClass);
+        this.travelClass = this.travelClassServiceBean.update(this.travelClass);
     }
 }

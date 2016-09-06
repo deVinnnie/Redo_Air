@@ -1,58 +1,79 @@
 package com.realdolmen.air.repository;
 
+import com.realdolmen.air.domain.AirlineCompany;
 import com.realdolmen.air.domain.Airport;
-import com.realdolmen.util.persistence.JpaPersistenceTest;
+import com.realdolmen.testutil.TestData;
+import com.realdolmen.testutil.TestDataLocation;
 import org.junit.Before;
 import org.junit.Test;
 
 import java.util.List;
 
-public class AirportRepositoryTest extends JpaPersistenceTest{
+import static org.junit.Assert.assertEquals;
 
-    private AirportRepository repository;
+/**
+ * Created by knockaert on 5/04/2016.
+ */
+public class AirportRepositoryTest extends AbstractRepositoryTest<AirportRepository>{
 
-    private static int AIRPORTS_IN_TESTDATA = 57;
+    List<Airport> airports;
 
     @Before
     public void setUp(){
-        repository = new AirportRepository();
-        repository.setEntityManager(entityManager());
-    }
-
-    //<editor-fold desc="Tests for method findById()">
-    @Test
-    public void test_FindById_WithExistingId_GivesCorrectAirport(){
-        Airport airport = repository.findById(200L);
-        assertNotNull(airport);
-        assertEquals(200L, (long) airport.getId());
-        assertEquals("Port Hardy", airport.getName());
+        airports = getRepository().findAll();
     }
 
     @Test
-    public void test_FindById_WithNonExistingId_GivesNull(){
-        Airport airport = repository.findById(1L);
-        assertNull(airport);
+    @TestData(dataSet = TestDataLocation.AIRPORT)
+    public void numberOfAirportsShouldBe5(){
+        assertEquals(5,airports.size());
     }
 
     @Test
-    public void test_FindById_WithNegativeId_GivesNull(){
-        Airport airport = repository.findById(-1L);
-        assertNull(airport);
+    public void numberOfAirportsShouldBe0(){
+        assertEquals(0,airports.size());
     }
 
     @Test
-    public void test_Search_WithNullParam_GivesEmptyList(){
-        List<Airport> list = repository.search(null);
-        assertNotNull(list);
+    @TestData(dataSet = TestDataLocation.AIRPORT)
+    public void findByIdShouldReturnCorrectAirport(){
+        Long expected = Long.parseLong("1");
+        Airport airport = getRepository().findById(Long.parseLong("1"));
+        assertEquals(expected,airport.getId());
     }
-    //</editor-fold>
 
-    //<editor-fold desc"Tests for findAll()">
     @Test
-    public void test_FindAll_ReturnsCorrectNumberOfAirports(){
-        List<Airport> airports = repository.findAll();
-        assertEquals(AIRPORTS_IN_TESTDATA, airports.size());
+    @TestData(dataSet = TestDataLocation.AIRPORT)
+    public void findByWrongId(){
+        Airport airport = getRepository().findById(Long.parseLong("10"));
+        assertEquals(null,airport);
     }
-    //</editor-fold>
 
+    @Test
+    @TestData(dataSet = TestDataLocation.AIRPORT)
+    public void searchReturnsCorrectNumberEmptyString(){
+        List<Airport> foundAirports = getRepository().search("");
+        assertEquals(5, foundAirports.size());
+    }
+
+    @Test
+    @TestData(dataSet = TestDataLocation.AIRPORT)
+    public void searchReturnsCorrectNumberWithString(){
+        List<Airport> foundAirports = getRepository().search("air");
+        assertEquals(3, foundAirports.size());
+    }
+
+    @Test
+    @TestData(dataSet = TestDataLocation.AIRPORT)
+    public void searchReturnsCorrectNumberWithStringMixedCase(){
+        List<Airport> foundAirports = getRepository().search("ZavENTem");
+        assertEquals(1, foundAirports.size());
+    }
+
+    @Test
+    @TestData(dataSet = TestDataLocation.AIRPORT)
+    public void searchReturnsCorrectNumberWithNonExistingString(){
+        List<Airport> foundAirports = getRepository().search("Arne is de beste");
+        assertEquals(0, foundAirports.size());
+    }
 }

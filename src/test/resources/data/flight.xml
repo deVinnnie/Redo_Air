@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataset>
+
+    <airlinecompany
+            ID="1"
+            NAME="airlineCompany1"
+    />
+
+    <airlinecompany
+            ID="2"
+            NAME="airlineCompany2"
+    />
+
+    <airlinecompany
+            ID="3"
+            NAME="airlineCompany3"
+
+    />
+
+    <airport
+            ID="1"
+            NAME="airport"
+            AVAILABLE="1"
+            CODE="ABC"
+    />
+
+    <airport
+            ID="2"
+            NAME="airport2"
+            AVAILABLE="1"
+            CODE="ABC"
+    />
+
+    <airport
+            ID="3"
+            NAME="zaventem"
+            AVAILABLE="1"
+            CODE="ABC"
+    />
+    <flight
+            ID="1"
+            NUMBER="ABC"
+            AIRLINECOMPANY_ID="1"
+            DEPARTURE_ID="1"
+            ARRIVAL_ID="2"
+            DEPARTURETIME="2017-05-05 18:00:00.0"
+    />
+
+    <flight
+            ID="2"
+            NUMBER="ABC2"
+            AIRLINECOMPANY_ID="1"
+            DEPARTURE_ID="2"
+            ARRIVAL_ID="3"
+            DEPARTURETIME="2017-05-06 18:00:00.0"
+    />
+
+    <flight
+            ID="3"
+            NUMBER="ABC3"
+            AIRLINECOMPANY_ID="2"
+            DEPARTURE_ID="1"
+            ARRIVAL_ID="3"
+            DEPARTURETIME="2017-05-05 18:00:00.0"
+    />
+
+    <flight
+            ID="4"
+            NUMBER="ABC4"
+            AIRLINECOMPANY_ID="2"
+            DEPARTURE_ID="3"
+            ARRIVAL_ID="1"
+            DEPARTURETIME="2017-05-06 18:00:00.0"
+    />
+
+    <flight
+            ID="5"
+            NUMBER="ABC5"
+            AIRLINECOMPANY_ID="3"
+            DEPARTURE_ID="2"
+            ARRIVAL_ID="3"
+            DEPARTURETIME="2017-05-08 18:00:00.0"
+    />
+
+    <travelclass
+        ID="1"
+        FLIGHT_ID="1"
+        BASEPRICE="10"
+        NAME="first"
+        REMAININGSEATS="20"
+    />
+    <travelclass
+            ID="2"
+            FLIGHT_ID="1"
+            BASEPRICE="10"
+            NAME="second"
+            REMAININGSEATS="20"
+    />
+    <travelclass
+            ID="3"
+            FLIGHT_ID="1"
+            BASEPRICE="10"
+            NAME="third"
+            REMAININGSEATS="20"
+    />
+
+
+</dataset>
+

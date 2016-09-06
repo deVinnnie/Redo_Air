@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataset>
+    <airport
+            ID="1"
+            NAME="airport"
+            AVAILABLE="1"
+            CODE="ABC"
+    />
+
+    <airport
+            ID="2"
+            NAME="airport2"
+            AVAILABLE="1"
+            CODE="ABC"
+    />
+
+    <airport
+            ID="3"
+            NAME="zaventem"
+            AVAILABLE="1"
+            CODE="ABC"
+    />
+
+    <airport
+            ID="4"
+            NAME="air"
+            AVAILABLE="1"
+            CODE="ABC"
+    />
+
+    <airport
+            ID="5"
+            NAME="brussel"
+            AVAILABLE="1"
+            CODE="ABC"
+    />
+</dataset>

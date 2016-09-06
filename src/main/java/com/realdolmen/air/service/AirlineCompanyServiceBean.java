@@ -3,6 +3,7 @@ package com.realdolmen.air.service;
 import com.realdolmen.air.domain.AirlineCompany;
 import com.realdolmen.air.domain.Customer;
 import com.realdolmen.air.repository.AirlineCompanyRepository;
+import com.realdolmen.air.repository.AirlineCompanyRepositoryInterface;
 import com.realdolmen.air.repository.CustomerRepository;
 
 import javax.ejb.EJB;
@@ -16,7 +17,7 @@ import java.util.List;
 @ManagedBean
 public class AirlineCompanyServiceBean implements AirlineCompanyService{
     @EJB
-    AirlineCompanyRepository airlineCompanyRepository;
+    AirlineCompanyRepositoryInterface airlineCompanyRepository;
 
     @Override
     public List<AirlineCompany> getAllAirlineCompanies(){

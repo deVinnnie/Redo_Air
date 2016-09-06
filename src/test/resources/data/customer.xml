@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataset>
+    <customer
+            ID="1"
+            EMAIL="email1"
+            PASSWORD="password"
+    />
+
+    <customer
+            ID="2"
+            EMAIL="email2"
+            PASSWORD="password"
+    />
+
+    <customer
+            ID="3"
+            EMAIL="email3"
+            PASSWORD="password"
+    />
+
+    <customer
+            ID="4"
+            EMAIL="email4"
+            PASSWORD="password"
+    />
+
+    <customer
+            ID="5"
+            EMAIL="email5"
+            PASSWORD="password"
+    />
+</dataset>

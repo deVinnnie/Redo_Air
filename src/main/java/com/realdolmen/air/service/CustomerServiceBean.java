@@ -1,7 +1,7 @@
 package com.realdolmen.air.service;
 
 import com.realdolmen.air.domain.Customer;
-import com.realdolmen.air.repository.CustomerRepository;
+import com.realdolmen.air.repository.CustomerRepositoryInterface;
 
 import javax.ejb.EJB;
 import javax.ejb.LocalBean;
@@ -11,7 +11,7 @@ import javax.ejb.Stateless;
 @LocalBean
 public class CustomerServiceBean {
     @EJB
-    CustomerRepository customerRepository;
+    CustomerRepositoryInterface customerRepository;
 
     public Customer createCustomer(Customer customer){
         return customerRepository.createCustomer(customer);

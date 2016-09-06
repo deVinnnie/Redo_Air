@@ -14,51 +14,59 @@ import java.util.Date;
 import java.util.List;
 
 @Stateless
-public class FlightRepository {
+public class FlightRepository extends AbstractBaseRepository<Flight, Long> implements FlightRepositoryInterface {
     private static final Logger LOGGER = LoggerFactory.getLogger(FlightRepository.class);
 
-    @PersistenceContext
-    private EntityManager entityManager;
-
-    public Flight findById(Long id){
-        return entityManager.find(Flight.class, id);
+    @Override
+    public Flight findById(Long id) {
+        try {
+            return getEntityManager().find(Flight.class, id);
+        } catch (NoResultException e) {
+            LOGGER.error("No information found: ", e);
+        }
+        return null;
     }
 
-    public List<TravelClass> findTravelClasses(Long flightId){
-        return entityManager.createQuery("SELECT t FROM TravelClass t WHERE t.flight.id = :flight", TravelClass.class)
-                .setParameter("flight", flightId)
-                .getResultList();
-    }
-
-    public Flight update(Flight flight){
-        System.out.println("Flight: " + flight.getId());
-        flight = entityManager.merge(flight);
-
-
-        System.out.println("Flight: " + flight.getId());
-        return flight;
-    }
-
-    public List<Flight> findAll(){
-        try{
-            return entityManager.createNamedQuery(Flight.FIND_ALL, Flight.class).getResultList();
-        }catch (NoResultException e){
-            LOGGER.error("No information found: ",e);
+    @Override
+    public List<TravelClass> findTravelClasses(Long flightId) {
+        try {
+            return getEntityManager().createQuery("SELECT t FROM TravelClass t WHERE t.flight.id = :flight", TravelClass.class)
+                    .setParameter("flight", flightId)
+                    .getResultList();
+        } catch (NoResultException e) {
+            LOGGER.error("No information found: ", e);
         }
         return Collections.emptyList();
     }
 
-    public List<Flight> findFlightsWithParams(Long airlineCompanyId, String flightClass, int numberOfSeats, Long departureAirportId, Long arrivalAirportId){
-        try{
-            return entityManager.createNamedQuery(Flight.FIND_SEARCH, Flight.class)
+    @Override
+    public Flight update(Flight flight) {
+        flight = getEntityManager().merge(flight);
+        return flight;
+    }
+
+    @Override
+    public List<Flight> findAll() {
+        try {
+            return getEntityManager().createNamedQuery(Flight.FIND_ALL, Flight.class).getResultList();
+        } catch (NoResultException e) {
+            LOGGER.error("No information found: ", e);
+        }
+        return Collections.emptyList();
+    }
+
+    @Override
+    public List<Flight> findFlightsWithParams(Long airlineCompanyId, String flightClass, int numberOfSeats, Long departureAirportId, Long arrivalAirportId) {
+        try {
+            return getEntityManager().createNamedQuery(Flight.FIND_SEARCH, Flight.class)
                     .setParameter("airlineCompanyId", airlineCompanyId)
                     .setParameter("flightClass", flightClass)
                     .setParameter("numberOfSeats", numberOfSeats)
                     .setParameter("departureAirportId", departureAirportId)
                     .setParameter("arrivalAirportId", arrivalAirportId)
                     .getResultList();
-        }catch (NoResultException e){
-            LOGGER.error("No information found: ",e);
+        } catch (NoResultException e) {
+            LOGGER.error("No information found: ", e);
         }
         return Collections.emptyList();
     }

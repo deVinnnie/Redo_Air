@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataset>
+    <airlinecompany
+            ID="1"
+            NAME="airlineCompany1"
+    />
+    <airport
+            ID="1"
+            NAME="airport"
+            AVAILABLE="1"
+            CODE="ABC"
+    />
+
+    <airport
+            ID="2"
+            NAME="airport2"
+            AVAILABLE="1"
+            CODE="ABC"
+    />
+    <flight
+            ID="1"
+            NUMBER="ABC"
+            AIRLINECOMPANY_ID="1"
+            DEPARTURE_ID="1"
+            ARRIVAL_ID="2"
+            DEPARTURETIME="2017-05-05 18:00:00.0"
+    />
+    <travelclass
+            ID="1"
+            BASEPRICE="10"
+            NAME="first"
+            FLIGHT_ID="1"
+            REMAININGSEATS="10"
+    />
+
+    <travelclass
+            ID="2"
+            BASEPRICE="10"
+            NAME="first"
+    />
+
+    <travelclass
+            ID="3"
+            BASEPRICE="10"
+            NAME="first"
+    />
+
+    <travelclass
+            ID="4"
+            BASEPRICE="10"
+            NAME="first"
+    />
+
+    <travelclass
+            ID="5"
+            BASEPRICE="10"
+            NAME="first"
+    />
+</dataset>

@@ -1,7 +1,8 @@
 package com.realdolmen.air.service;
 
 import com.realdolmen.air.domain.Flight;
-import com.realdolmen.air.repository.FlightRepository;
+import com.realdolmen.air.domain.TravelClass;
+import com.realdolmen.air.repository.FlightRepositoryInterface;
 
 import javax.ejb.EJB;
 import javax.ejb.LocalBean;
@@ -15,7 +16,7 @@ import java.util.List;
 @LocalBean
 public class FlightServiceBean implements FlightService{
     @EJB
-    FlightRepository flightRepository;
+    FlightRepositoryInterface flightRepository;
 
     @Override
     public List<Flight> findAllFlights(){
@@ -48,5 +49,13 @@ public class FlightServiceBean implements FlightService{
         calendar1.setTime(d1);
         calendar2.setTime(d2);
         return calendar1.get(Calendar.YEAR) == calendar2.get(Calendar.YEAR) && calendar1.get(Calendar.DAY_OF_YEAR) == calendar2.get(Calendar.DAY_OF_YEAR);
+    }
+
+    public List<TravelClass> findTravelClasses(Long flightId){
+        return flightRepository.findTravelClasses(flightId);
+    }
+
+    public Flight update(Flight flight){
+        return flightRepository.update(flight);
     }
 }
