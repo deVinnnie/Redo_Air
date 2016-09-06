@@ -63,9 +63,8 @@
                 </f:facet>
                 <h:outputText value="#{flight.arrivalTime}"/>
             </h:column>
-
-
         </h:dataTable>
+
         <ul class="collapsible" data-collapsible="expandable">
             <c:forEach items="#{flightDetailsBean.travelClasses}" var="tClass">
                 <li>
@@ -75,9 +74,13 @@
                             Price/Ticket: #{tClass.endUserPrice}<br/>
                             # of tickets: #{flightDetailsBean.numberOfSeats}<br/>
                             Total Price: #{flightDetailsBean.totalPrice(tClass.endUserPrice)}
+
                             <br/><br/>
-                            <h:outputLink id="detailsLink" value="flightDetails.jsf">
-                                book this shit
+
+                            <h:outputLink id="detailsLink" value="../redo-customer/booking.jsf">
+                                <f:param name="travelClassID" value="#{tClass.id}"/>
+                                <f:param name="seats" value="#{flightDetailsBean.numberOfSeats}"/>
+                                <h:outputText value="#{msg['detailsFlight.book']}"/>
                             </h:outputLink>
                         </p>
                     </div>
