@@ -7,22 +7,6 @@
     text-align: left;
 }
 
-#passengers-list table {
-    counter-reset: rowNumber;
-}
-
-#passengers-list tr {
-    counter-increment: rowNumber;
-    width: 80%;
-}
-
-#passengers-list tr td:first-child::before {
-    content: "Seat " counter(rowNumber);
-    min-width: 1em;
-    margin-right: 0.5em;
-    color: #000000;
-    display: block;
-}
 /*
 @font-face {
     font-family:"Roboto";

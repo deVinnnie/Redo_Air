@@ -61,6 +61,7 @@ public class BookingBean implements Serializable{
 
     @PostConstruct()
     public void setUp(){
+        this.service.setCustomer(userBean.getUserAsCustomer());
 
 
         //this.seatsWanted = 3
@@ -86,8 +87,6 @@ public class BookingBean implements Serializable{
     }
 
     public void setUpAfterParam(){
-        this.service.setCustomer(userBean.getUserAsCustomer());
-
         this.travelClass = service.findTravelClass(travelClassID);
         this.service.setTravelClass(travelClass);
 
@@ -97,7 +96,7 @@ public class BookingBean implements Serializable{
         this.passengerList = new ArrayList<>(seatsWanted);
 
         for(int i = 0; i < seatsWanted; i++){
-            passengerList.add(new Passenger("Harry", "Potter"));
+            passengerList.add(new Passenger());
         }
     }
 
