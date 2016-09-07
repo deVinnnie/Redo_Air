@@ -1,6 +1,7 @@
 package com.realdolmen.air.domain;
 
 import javax.persistence.*;
+import javax.validation.constraints.Digits;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
@@ -47,6 +48,7 @@ public class TravelClass extends AbstractEntity{
      * Base price in euro's set by the Airline Company.
      */
     @Min(0)
+    @Digits(integer = 12, fraction = 2)
     @NotNull
     private BigDecimal basePrice;
 
