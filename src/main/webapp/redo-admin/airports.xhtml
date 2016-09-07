@@ -2,7 +2,8 @@
                 xmlns="http://www.w3.org/1999/xhtml"
                 xmlns:h="http://xmlns.jcp.org/jsf/html"
                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-                xmlns:air="http://xmlns.jcp.org/jsf/composite/air">
+                xmlns:air="http://xmlns.jcp.org/jsf/composite/air"
+                xmlns:p="http://primefaces.org/ui">
     <ui:param name="page" value="airports" />
 
     <ui:define name="pageTitle">
@@ -12,10 +13,10 @@
     <ui:define name="content">
         <air:searchBox />
 
-        <h:panelGroup id="search-results">
+        <h:panelGroup id="search-results" layout="block">
             <h:panelGroup rendered="#{empty airportBean.allAirports}">
                 <div class="row">
-                    <div class="col s3 center">
+                    <div class="col s12 center">
                         <i class="material-icons medium">explore</i>
                         <p>
                             <h:outputFormat value="#{msg['admin.airports.none-found']}"/>
@@ -24,39 +25,34 @@
                 </div>
             </h:panelGroup>
 
-            <ul class="collection">
-                <ui:repeat var="airport" value="#{airportBean.allAirports}">
-                    <li class="collection-item avatar #{ airport.available ? '' : 'grey lighten-2'}">
-                        <i class="material-icons circle blue">place</i>
-                        <span class="title">#{airport.name}</span>
-                        <p>
-                            #{airport.code}<br/>
-                            #{airport.region.name}
-                        </p>
+            <h:panelGroup rendered="#{not empty airportBean.allAirports}">
+                <ul class="collection">
+                    <p:dataList id="collection" value="#{airportBean.allAirports}" var="airport"
+                                type="none" itemType="none" paginator="true" rows="10"
+                                paginatorPosition="bottom"
+                                emptyMessage="">
+                        <li class="collection-item avatar #{ airport.available ? '' : 'grey lighten-2'}">
+                            <i class="material-icons circle blue">place</i>
+                            <span class="title">#{airport.name}</span>
+                            <p>
+                                #{airport.code}<br/>
+                                #{airport.region.name}
+                            </p>
 
-                        <h:form styleClass="secondary-content">
-                            <h:commandLink rendered="#{airport.available}"
-                                    action="#{airportBean.toggleAirportAvailability(airport.id)}"
-                                           value="#{msg['admin.airports.deactivate']}"/>
+                            <h:form styleClass="secondary-content">
+                                <h:commandLink rendered="#{airport.available}"
+                                               action="#{airportBean.toggleAirportAvailability(airport.id)}"
+                                               value="#{msg['admin.airports.deactivate']}"/>
 
-                            <h:commandLink rendered="#{!airport.available}"
-                                           action="#{airportBean.toggleAirportAvailability(airport.id)}"
-                                           value="#{msg['admin.airports.activate']}"/>
-                        </h:form>
-                    </li>
-                </ui:repeat>
-            </ul>
+                                <h:commandLink rendered="#{!airport.available}"
+                                               action="#{airportBean.toggleAirportAvailability(airport.id)}"
+                                               value="#{msg['admin.airports.activate']}"/>
+                            </h:form>
+                        </li>
+                    </p:dataList>
+                </ul>
+            </h:panelGroup>
         </h:panelGroup>
-
-        <ul class="pagination">
-            <li class="disabled"><a href="#!"><i class="material-icons">chevron_left</i></a></li>
-            <li class="active"><a href="#!">1</a></li>
-            <li class="waves-effect"><a href="#!">2</a></li>
-            <li class="waves-effect"><a href="#!">3</a></li>
-            <li class="waves-effect"><a href="#!">4</a></li>
-            <li class="waves-effect"><a href="#!">5</a></li>
-            <li class="waves-effect"><a href="#!"><i class="material-icons">chevron_right</i></a></li>
-        </ul>
     </ui:define>
 </ui:composition>
 

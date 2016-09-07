@@ -6,16 +6,17 @@
 <cc:interface></cc:interface>
 
 <cc:implementation>
-    <h:form>
+    <h:form id="search-form">
         <div class="row">
             <div class="input-field">
                 <div class="col s6 l6">
                     <i class="material-icons prefix">search</i>
+                    <h:outputLabel for="search">Search</h:outputLabel>
                     <h:inputText id="search" value="#{airportBean.searchTerm}">
                         <f:ajax event="keyup" listener="#{airportBean.searchAirports()}" render="search-results"/>
                     </h:inputText>
-                    <label for="search">Search</label>
                 </div>
+
                 <div class="col s6 l6">
                     <h:commandButton value="Search" action="#{airportBean.searchAirports()}" styleClass="btn"/>
                 </div>
