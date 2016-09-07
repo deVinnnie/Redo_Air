@@ -71,9 +71,9 @@
                     <div class="collapsible-header #{flightDetailsBean.isActive(tClass.name)}">#{tClass.name}</div>
                     <div class="collapsible-body">
                         <p>
-                            #{msg['detailsFlight.details.priceByTicket']} #{tClass.endUserPrice}<br/>
+                            #{msg['detailsFlight.details.priceByTicket']} &#8364; #{tClass.endUserPrice}<br/>
                             #{msg['detailsFlight.details.numberOfTickets']} #{flightDetailsBean.numberOfSeats}<br/>
-                            #{msg['detailsFlight.details.totalPrice']} #{flightDetailsBean.totalPrice(tClass.endUserPrice)}
+                            #{msg['detailsFlight.details.totalPrice']} &#8364; #{flightDetailsBean.totalPrice(tClass.endUserPrice)}
                             <br/><br/>
 
                             <h:outputLink id="detailsLink" value="../redo-customer/booking.jsf">
