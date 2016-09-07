@@ -32,7 +32,7 @@ public class Customer extends AbstractEntity {
     @Enumerated(EnumType.STRING)
     private Role role = Role.CUSTOMER;
 
-    @OneToMany
+    @OneToMany(mappedBy = "customer")
     private List<Booking> bookings;
 
     public String getEmail() {

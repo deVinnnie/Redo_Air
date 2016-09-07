@@ -6,15 +6,12 @@ import com.realdolmen.air.domain.payement.Payment;
 import com.realdolmen.air.domain.payement.PaymentMethod;
 import com.realdolmen.air.domain.payement.PaymentStatus;
 import com.realdolmen.air.repository.BookingRepository;
-import com.realdolmen.air.repository.TravelClassRepository;
 import com.realdolmen.air.repository.TravelClassRepositoryInterface;
 
-import javax.ejb.EJB;
 import javax.annotation.PostConstruct;
+import javax.ejb.EJB;
 import javax.ejb.Stateful;
 import javax.inject.Inject;
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
@@ -62,6 +59,10 @@ public class BookingService {
 
     public void setNumberOfSeats(int seats){
         this.numberOfSeats = seats;
+    }
+
+    public void setCustomer(Customer customer){
+        this.booking.setCustomer(customer);
     }
 
     public void setPaymentMethod(PaymentMethod paymentMethod){
@@ -124,8 +125,6 @@ public class BookingService {
             travelClass.setRemainingSeats(
                     travelClass.getRemainingSeats()-booking.getTickets().size()
             );
-
-
 
             bookingRepository.updateTravelClass(travelClass);
             bookingRepository.create(booking);

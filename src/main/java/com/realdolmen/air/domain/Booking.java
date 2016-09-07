@@ -19,6 +19,10 @@ public class Booking extends AbstractEntity {
     @Embedded
     private Discount discount;
 
+    @ManyToOne
+    @JoinColumn(name = "customer_id")
+    private Customer customer;
+
     public List<Ticket> getTickets() {
         return tickets;
     }
@@ -92,5 +96,13 @@ public class Booking extends AbstractEntity {
             return null;
         }
         return this.tickets.get(0).getBuyPrice();
+    }
+
+    public Customer getCustomer() {
+        return customer;
+    }
+
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
     }
 }

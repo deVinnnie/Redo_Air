@@ -28,6 +28,7 @@ public class BookingRepository {
     }
 
     public void create(Booking booking) {
+        booking.setCustomer(em.merge(booking.getCustomer()));
         em.persist(booking.getPayment().getMethod());
         em.persist(booking.getPayment());
 

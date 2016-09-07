@@ -4,16 +4,20 @@ import com.realdolmen.air.domain.*;
 import com.realdolmen.air.domain.payement.CreditCard;
 import com.realdolmen.air.domain.payement.Endorsement;
 import com.realdolmen.air.service.BookingService;
+import com.realdolmen.air.service.CustomerService;
+import com.realdolmen.air.service.CustomerServiceBean;
 import com.realdolmen.air.web.controller.Phase;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
+import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.security.Principal;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -31,6 +35,9 @@ public class BookingBean implements Serializable{
 
     @Inject
     private BookingService service;
+
+    @Inject
+    private CustomerServiceBean customerService;
 
     private List<Passenger> passengerList;
 
@@ -59,6 +66,11 @@ public class BookingBean implements Serializable{
 
     @PostConstruct()
     public void setUp(){
+
+        Principal userPrincipal = FacesContext.getCurrentInstance().getExternalContext().getUserPrincipal();
+        Customer customer = customerService.findCustomerByEmail(userPrincipal.getName()).get(0);
+        service.setCustomer(customer);
+
         //this.seatsWanted = 3
         //phase = Phase.CONFIRMATION;
 
