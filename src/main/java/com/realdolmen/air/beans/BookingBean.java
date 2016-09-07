@@ -37,7 +37,7 @@ public class BookingBean implements Serializable{
     private BookingService service;
 
     @Inject
-    private CustomerServiceBean customerService;
+    private UserBean userBean;
 
     private List<Passenger> passengerList;
 
@@ -66,10 +66,7 @@ public class BookingBean implements Serializable{
 
     @PostConstruct()
     public void setUp(){
-
-        Principal userPrincipal = FacesContext.getCurrentInstance().getExternalContext().getUserPrincipal();
-        Customer customer = customerService.findCustomerByEmail(userPrincipal.getName()).get(0);
-        service.setCustomer(customer);
+        this.service.setCustomer(userBean.getCustomer());
 
         //this.seatsWanted = 3
         //phase = Phase.CONFIRMATION;
