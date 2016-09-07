@@ -4,13 +4,14 @@ import com.realdolmen.air.domain.payement.Payment;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
 public class Booking extends AbstractEntity {
 
     @OneToMany
-    private List<Ticket> tickets;
+    private List<Ticket> tickets = new ArrayList<>();
 
     @OneToOne
     private Payment payment;
@@ -52,7 +53,7 @@ public class Booking extends AbstractEntity {
         BigDecimal total = new BigDecimal("0.00");
 
         for(Ticket ticket : tickets){
-            total.add(ticket.getBuyPrice());
+            total = total.add(ticket.getBuyPrice());
         }
 
         return total;
@@ -65,14 +66,31 @@ public class Booking extends AbstractEntity {
      */
     public BigDecimal getTotalPrice(){
         BigDecimal totalWithoutDiscount = this.getTotalPriceWithoutDiscount();
-        return this.getTotalPrice(totalWithoutDiscount);
+        return this.getTotalPrice(totalWithoutDiscount, this.discount);
     }
 
-    protected BigDecimal getTotalPrice(BigDecimal totalWithoutDiscount){
-        BigDecimal total = totalWithoutDiscount.subtract(
-                totalWithoutDiscount.multiply(discount.getDiscountPercentage())
-        );
-
+    protected BigDecimal getTotalPrice(BigDecimal totalWithoutDiscount, Discount discount){
+        BigDecimal total;
+        if(discount == null){
+            total = totalWithoutDiscount;
+        }
+        else {
+            total = totalWithoutDiscount.subtract(
+                    totalWithoutDiscount.multiply(discount.getDiscountPercentage())
+            );
+        }
         return total;
+    }
+
+    /**
+     * Since all tickets are the same price it is ok to pick the first one and return its price.
+     *
+     * @return The price per ticket.
+     */
+    public BigDecimal getPricePerTicket(){
+        if(this.tickets.isEmpty()){
+            return null;
+        }
+        return this.tickets.get(0).getBuyPrice();
     }
 }

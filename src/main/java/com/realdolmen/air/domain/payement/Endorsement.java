@@ -1,5 +1,7 @@
 package com.realdolmen.air.domain.payement;
 
+import javax.persistence.Entity;
 
-public class Endorsement extends Payment {
+@Entity
+public class Endorsement extends PaymentMethod {
 }

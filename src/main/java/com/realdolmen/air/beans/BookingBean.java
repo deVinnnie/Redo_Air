@@ -1,27 +1,22 @@
 package com.realdolmen.air.beans;
 
-import com.realdolmen.air.domain.Customer;
-import com.realdolmen.air.domain.Flight;
-import com.realdolmen.air.domain.Passenger;
-import com.realdolmen.air.domain.TravelClass;
+import com.realdolmen.air.domain.*;
 import com.realdolmen.air.domain.payement.CreditCard;
-import com.realdolmen.air.domain.payement.PaymentMethod;
-import com.realdolmen.air.repository.TravelClassRepository;
+import com.realdolmen.air.domain.payement.Endorsement;
 import com.realdolmen.air.service.BookingService;
 import com.realdolmen.air.web.controller.Phase;
 
 import javax.annotation.PostConstruct;
-import javax.enterprise.context.Conversation;
-import javax.enterprise.context.ConversationScoped;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.inject.Inject;
-import javax.inject.Named;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -33,9 +28,6 @@ import java.util.List;
 @ManagedBean
 @ViewScoped
 public class BookingBean implements Serializable{
-
-    @Inject
-    private Conversation conversation;
 
     @Inject
     private BookingService service;
@@ -56,8 +48,6 @@ public class BookingBean implements Serializable{
      */
     private Flight flight;
 
-    private Customer customer;
-
     private CreditCard creditCard = new CreditCard();
 
     private String paymentMethod;
@@ -69,22 +59,40 @@ public class BookingBean implements Serializable{
 
     @PostConstruct()
     public void setUp(){
-        this.seatsWanted = 3;
+        //this.seatsWanted = 3
+        //phase = Phase.CONFIRMATION;
 
-        passengerList = new ArrayList<>(seatsWanted);
+        /*service.setNumberOfSeats(1);
+        service.setTravelClass(
+                new TravelClass(
+                        "Business",
+                        100,
+                        new BigDecimal("10.0"),
+                        null
+                )
+        );
+        service.setPassengers(
+            Arrays.asList(
+                    new Passenger("Harry", "Potter")
+            )
+        );
+
+        service.setPaymentMethod(new Endorsement());*/
+
+    }
+
+    public void setUpAfterParam(){
+        this.travelClass = service.findTravelClass(travelClassID);
+        this.service.setTravelClass(travelClass);
+
+        this.flight = travelClass.getFlight();
+
+        this.service.setNumberOfSeats(this.seatsWanted);
+        this.passengerList = new ArrayList<>(seatsWanted);
 
         for(int i = 0; i < seatsWanted; i++){
             passengerList.add(new Passenger("Harry", "Potter"));
         }
-    }
-
-    public void setUpAfterParam(){
-        System.out.println(travelClassID);
-        //travelClassID = 200100L;
-        this.travelClass = service.findTravelClass(travelClassID);
-        this.flight = travelClass.getFlight();
-
-        this.service.setNumberOfSeats(this.seatsWanted);
     }
 
     //<editor-fold desc="Getters & Setters">
@@ -149,6 +157,10 @@ public class BookingBean implements Serializable{
     }
     //</editor-fold>
 
+    public Booking getBooking(){
+        return this.service.getBooking();
+    }
+
     // Phase 1 - Entering the passenger details
     //
     // Every ticket is coupled to a passenger.
@@ -160,7 +172,6 @@ public class BookingBean implements Serializable{
         service.setPassengers(passengerList);
         this.phase = Phase.PAYMENT_METHOD;
     }
-
 
     // Phase 2 - Choosing the payment method
     //
@@ -191,10 +202,12 @@ public class BookingBean implements Serializable{
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
         System.out.println(formatter.format(creditCard.getExpiryDate()));
 
+        this.service.setPaymentMethod(this.creditCard);
         this.phase = Phase.CONFIRMATION;
     }
 
     public void saveEndorsement(){
+        service.setPaymentMethod(new Endorsement());
         this.phase = Phase.CONFIRMATION;
     }
 

@@ -13,7 +13,7 @@ import java.io.Serializable;
 import java.util.Date;
 
 @Entity
-public class CreditCard extends PaymentMethod implements Serializable{
+public class CreditCard extends PaymentMethod{
 
     @NotBlank
     @CreditCardNumber
@@ -26,16 +26,12 @@ public class CreditCard extends PaymentMethod implements Serializable{
     @NotNull
     private Integer controlNumber;
 
-    @Enumerated(EnumType.STRING)
-    private CreditCardType type;
-
     public CreditCard() {}
 
-    public CreditCard(String number, Date expiryDate, Integer controlNumber, CreditCardType type) {
+    public CreditCard(String number, Date expiryDate, Integer controlNumber) {
         this.number = number;
         this.expiryDate = expiryDate;
         this.controlNumber = controlNumber;
-        this.type = type;
     }
 
     public String getNumber() {
@@ -60,13 +56,5 @@ public class CreditCard extends PaymentMethod implements Serializable{
 
     public void setControlNumber(Integer controlNumber) {
         this.controlNumber = controlNumber;
-    }
-
-    public CreditCardType getType() {
-        return type;
-    }
-
-    public void setType(CreditCardType type) {
-        this.type = type;
     }
 }
