@@ -1,6 +1,7 @@
 package com.realdolmen.air.repository;
 
 import com.realdolmen.air.domain.Booking;
+import com.realdolmen.air.domain.Customer;
 import com.realdolmen.air.domain.Ticket;
 import com.realdolmen.air.domain.TravelClass;
 
@@ -28,7 +29,7 @@ public class BookingRepository {
     }
 
     public void create(Booking booking) {
-        booking.setCustomer(em.merge(booking.getCustomer()));
+        booking.setCustomer(em.find(Customer.class, booking.getCustomer().getId()));
         em.persist(booking.getPayment().getMethod());
         em.persist(booking.getPayment());
 

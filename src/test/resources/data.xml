@@ -31,7 +31,8 @@
     <!-- Password= 'abba' -->
     <customer id="10" email="harry.potter@hogwarts.org" firstName="Harry" lastName="Potter"
               password="$2a$10$z5vr/uy/47FSkbtRjE4J2.Y/0MkeldTPKXoHvrK8FGYc..qcRlOAi"
-                role="CUSTOMER"/>
+                role="CUSTOMER"
+    version="0"/>
     <!--<userroles username="harry.potter@hogwarts.org" role="ADMIN"/>-->
 
 
