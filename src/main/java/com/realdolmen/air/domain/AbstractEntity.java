@@ -49,9 +49,4 @@ public abstract class AbstractEntity implements Serializable{
     public void updateLastUpdateDate(){
         this.lastUpdateDate = new Date();
     }
-
-    public boolean isManaged(){
-        this.managed = !id.equals(null);
-        return managed;
-    }
 }
