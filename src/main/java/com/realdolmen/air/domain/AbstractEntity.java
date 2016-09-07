@@ -1,12 +1,11 @@
 package com.realdolmen.air.domain;
 
 import javax.persistence.*;
-import javax.xml.bind.annotation.XmlTransient;
 import java.io.Serializable;
 import java.util.Date;
 
 /**
- * Defines common fields used by most AirportEntities.
+ * Defines common fields used by the ReDo Air Entities.
  */
 @MappedSuperclass
 public abstract class AbstractEntity implements Serializable{
@@ -17,10 +16,6 @@ public abstract class AbstractEntity implements Serializable{
 
     @Version
     private Integer version;
-
-    @Transient
-    @XmlTransient
-    private Boolean managed;
 
     @Temporal(TemporalType.TIMESTAMP)
     private Date lastUpdateDate;
@@ -42,6 +37,14 @@ public abstract class AbstractEntity implements Serializable{
 
     public void setVersion(Integer version) {
         this.version = version;
+    }
+
+    public Date getLastUpdateDate() {
+        return lastUpdateDate;
+    }
+
+    public void setLastUpdateDate(Date lastUpdateDate) {
+        this.lastUpdateDate = lastUpdateDate;
     }
 
     @PreUpdate
