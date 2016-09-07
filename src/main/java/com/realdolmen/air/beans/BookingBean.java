@@ -4,23 +4,18 @@ import com.realdolmen.air.domain.*;
 import com.realdolmen.air.domain.payement.CreditCard;
 import com.realdolmen.air.domain.payement.Endorsement;
 import com.realdolmen.air.service.BookingService;
-import com.realdolmen.air.service.CustomerService;
-import com.realdolmen.air.service.CustomerServiceBean;
 import com.realdolmen.air.web.controller.Phase;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
-import javax.faces.context.FacesContext;
 import javax.inject.Inject;
+import javax.validation.ConstraintViolationException;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
-import java.math.BigDecimal;
-import java.security.Principal;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -66,7 +61,7 @@ public class BookingBean implements Serializable{
 
     @PostConstruct()
     public void setUp(){
-        this.service.setCustomer(userBean.getCustomer());
+
 
         //this.seatsWanted = 3
         //phase = Phase.CONFIRMATION;
@@ -91,6 +86,8 @@ public class BookingBean implements Serializable{
     }
 
     public void setUpAfterParam(){
+        this.service.setCustomer(userBean.getUserAsCustomer());
+
         this.travelClass = service.findTravelClass(travelClassID);
         this.service.setTravelClass(travelClass);
 
@@ -223,7 +220,7 @@ public class BookingBean implements Serializable{
     // Phase 3: Confirmation
     // -----------------------------------------------------------------------------------------------------------------
     public String cancel(){
-        return "index.xhtml?faces-redirect=true";
+        return "site-index?faces-redirect=true";
     }
 
     public String confirm(){

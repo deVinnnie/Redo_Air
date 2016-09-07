@@ -19,8 +19,8 @@
 
         <li>
             <h:form>
-                <h:commandLink action="#{loginBean.logout}">
-                    #{msg['dropdown.logout']}
+                <h:commandLink action="#{userBean.logout}">
+                    <h:outputText value="#{msg['dropdown.logout']}"/>
                 </h:commandLink>
             </h:form>
         </li>

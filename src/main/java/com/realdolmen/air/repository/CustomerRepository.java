@@ -23,7 +23,7 @@ public class CustomerRepository extends AbstractBaseRepository<Customer, Long> i
 
     public List<Customer> findCustomerByEmail(String email){
         try{
-            TypedQuery<Customer> query = getEntityManager().createNamedQuery(Customer.FIND_BY_EMAIL, Customer.class);
+            TypedQuery<Customer> query = getEntityManager().createNamedQuery(Customer.FIND_BY_EMAIL2, Customer.class);
             query.setParameter("email",email);
             return query.getResultList();
         }catch (Exception e){

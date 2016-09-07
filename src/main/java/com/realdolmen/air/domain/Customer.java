@@ -1,21 +1,15 @@
 package com.realdolmen.air.domain;
 
-import org.hibernate.validator.constraints.Email;
-import org.hibernate.validator.constraints.NotBlank;
-
 import javax.persistence.*;
 import javax.validation.constraints.Size;
 import java.util.List;
 
 @Entity
 @NamedQueries({
-    @NamedQuery(name = Customer.FIND_BY_EMAIL, query = "SELECT c FROM Customer c WHERE c.email = :email")
+    @NamedQuery(name = Customer.FIND_BY_EMAIL2, query = "SELECT c FROM Customer c WHERE c.email = :email")
 })
-public class Customer extends AbstractEntity {
-    public static final String FIND_BY_EMAIL = "Customer.findByEmail";
-
-    @Email
-    private String email;
+public class Customer extends User {
+    public static final String FIND_BY_EMAIL2 = "Customer.findByEmail";
 
     @Size(min = 1, max = 255)
     private String firstName;
@@ -23,24 +17,11 @@ public class Customer extends AbstractEntity {
     @Size(min = 1, max = 255)
     private String lastName;
 
-    @NotBlank
-    private String password;
-
-    @Transient
-    private String passwordRepeated;
-
-    @Enumerated(EnumType.STRING)
-    private Role role = Role.CUSTOMER;
-
     @OneToMany(mappedBy = "customer")
     private List<Booking> bookings;
 
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
+    public Customer(){
+        super(Role.CUSTOMER);
     }
 
     public String getFirstName() {
@@ -59,35 +40,11 @@ public class Customer extends AbstractEntity {
         this.lastName = lastName;
     }
 
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
     public List<Booking> getBookings() {
         return bookings;
     }
 
     public void setBookings(List<Booking> bookings) {
         this.bookings = bookings;
-    }
-
-    public String getPasswordRepeated() {
-        return passwordRepeated;
-    }
-
-    public void setPasswordRepeated(String passwordRepeated) {
-        this.passwordRepeated = passwordRepeated;
-    }
-
-    public Role getRole() {
-        return role;
-    }
-
-    public void setRole(Role role) {
-        this.role = role;
     }
 }

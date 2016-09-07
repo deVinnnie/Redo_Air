@@ -93,6 +93,6 @@ public class LoginBean implements Serializable {
             e.printStackTrace();
         }
 
-        return "/index.xhtml?faces-redirect=true";
+        return "/site-index?faces-redirect=true";
     }
 }

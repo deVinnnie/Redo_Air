@@ -29,10 +29,17 @@
         This is just for testing the login system as is.
     -->
     <!-- Password= 'abba' -->
-    <customer id="10" email="harry.potter@hogwarts.org" firstName="Harry" lastName="Potter"
-              password="$2a$10$z5vr/uy/47FSkbtRjE4J2.Y/0MkeldTPKXoHvrK8FGYc..qcRlOAi"
-                role="CUSTOMER"
-    version="0"/>
+    <user id="10" email="harry.potter@hogwarts.org"
+          password="$2a$10$z5vr/uy/47FSkbtRjE4J2.Y/0MkeldTPKXoHvrK8FGYc..qcRlOAi"
+          role="CUSTOMER"
+          version="0"/>
+    <customer id="10" firstName="Harry" lastName="Potter"/>
+
+    <user id="20" email="malcolm.reynolds@redo-air.com"
+          password="$2a$10$z5vr/uy/47FSkbtRjE4J2.Y/0MkeldTPKXoHvrK8FGYc..qcRlOAi"
+          role="EMPLOYEE"
+          version="0"/>
+    <employee id="20"/>
     <!--<userroles username="harry.potter@hogwarts.org" role="ADMIN"/>-->
 
 

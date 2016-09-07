@@ -3,8 +3,8 @@
 <authentication>
     <login-module code="com.realdolmen.air.security.BCryptDatabaseServerLoginModule" flag="required">
         <module-option name="dsJndiName" value="java:/rd/datasources/RealDolmenDataSource"/>
-        <module-option name="principalsQuery" value="select password from Customer where email=?"/>
-        <module-option name="rolesQuery" value="select role, 'Roles' from Customer where email=?"/>
+        <module-option name="principalsQuery" value="select password from User where email=?"/>
+        <module-option name="rolesQuery" value="select role, 'Roles' from User where email=?"/>
     </login-module>
 </authentication>
 </security-domain>

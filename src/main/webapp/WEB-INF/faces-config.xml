@@ -14,4 +14,12 @@
             <var>msg</var>
         </resource-bundle>
     </application>
+
+    <navigation-rule>
+        <from-view-id>*</from-view-id>
+        <navigation-case>
+            <from-outcome>site-index</from-outcome>
+            <to-view-id>/redo-public/search-flight.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
 </faces-config>

@@ -19,7 +19,7 @@
     </servlet-mapping>
 
     <welcome-file-list>
-        <welcome-file>/redo-public/search-flight.jsf</welcome-file>
+        <welcome-file>index.jsf</welcome-file>
     </welcome-file-list>
 
     <!-- Security -->
