@@ -17,15 +17,15 @@ public class CustomerRepositoryTest extends AbstractRepositoryTest<CustomerRepos
     @Test
     @TestData(dataSet = TestDataLocation.CUSTOMER)
     public void findByExistingEmailShouldReturnCorrectCustomer() {
-        Customer customer = getRepository().findCustomerByEmail("email1");
+        List<Customer> customer = getRepository().findCustomerByEmail("email1");
         Long expectedId = Long.parseLong("1");
-        assertEquals(expectedId, customer.getId());
+        assertEquals(expectedId, customer.get(0).getId());
     }
 
     @Test
     @TestData(dataSet = TestDataLocation.CUSTOMER)
     public void findByNonExistingEmailShouldReturnNoCustomer() {
-        Customer customer = getRepository().findCustomerByEmail("Vincent is de beste");
+        List<Customer> customer = getRepository().findCustomerByEmail("Vincent is de beste");
         assertEquals(null, customer);
     }
 

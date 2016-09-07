@@ -6,6 +6,7 @@ import com.realdolmen.air.repository.CustomerRepositoryInterface;
 import javax.ejb.EJB;
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
+import java.util.List;
 
 @Stateless
 @LocalBean
@@ -16,7 +17,7 @@ public class CustomerServiceBean {
     public Customer createCustomer(Customer customer){
         return customerRepository.createCustomer(customer);
     }
-    public Customer findCustomerByEmail(String email){
+    public List<Customer> findCustomerByEmail(String email){
         return customerRepository.findCustomerByEmail(email);
     }
 }

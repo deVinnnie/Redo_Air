@@ -8,7 +8,9 @@ import com.realdolmen.air.domain.payement.Payment;
 import com.realdolmen.air.domain.payement.PaymentMethod;
 import com.realdolmen.air.domain.payement.PaymentStatus;
 import com.realdolmen.air.repository.TravelClassRepository;
+import com.realdolmen.air.repository.TravelClassRepositoryInterface;
 
+import javax.ejb.EJB;
 import javax.ejb.Stateful;
 import javax.ejb.Stateless;
 import javax.enterprise.context.ConversationScoped;
@@ -24,11 +26,8 @@ public class BookingService {
     @Inject
     private PaymentService paymentService;
 
-    @PersistenceContext
-    private EntityManager entityManager;
-
-    @Inject
-    private TravelClassRepository travelClassRepository;
+    @EJB
+    private TravelClassRepositoryInterface travelClassRepository;
 
     private int numberOfSeats;
 

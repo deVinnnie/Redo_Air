@@ -9,6 +9,8 @@ import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
+import java.util.Collections;
+import java.util.List;
 
 @Stateless
 public class CustomerRepository extends AbstractBaseRepository<Customer, Long> implements CustomerRepositoryInterface{
@@ -19,16 +21,14 @@ public class CustomerRepository extends AbstractBaseRepository<Customer, Long> i
         return customer;
     }
 
-    public Customer findCustomerByEmail(String email){
-        Customer customer = null;
+    public List<Customer> findCustomerByEmail(String email){
         try{
             TypedQuery<Customer> query = getEntityManager().createNamedQuery(Customer.FIND_BY_EMAIL, Customer.class);
             query.setParameter("email",email);
-            customer = query.getSingleResult();
-            return customer;
-        }catch (NoResultException e){
+            return query.getResultList();
+        }catch (Exception e){
             LOGGER.error("No information found: ", e);
         }
-        return null;
+        return Collections.emptyList();
     }
 }

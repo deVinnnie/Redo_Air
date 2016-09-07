@@ -8,12 +8,14 @@ import javax.annotation.PostConstruct;
 import javax.ejb.LocalBean;
 import javax.faces.bean.ManagedBean;
 import javax.inject.Inject;
+import javax.validation.constraints.Size;
 import java.io.Serializable;
+import java.util.List;
 
-@LocalBean
 @ManagedBean
 public class RegisterBean implements Serializable {
     private Customer customer;
+    @Size(min = 5, max = 20)
     private String password;
     private String repeatedPassword;
 
@@ -57,8 +59,19 @@ public class RegisterBean implements Serializable {
         customer.setPassword(hashed);
     }
 
-    public void persistCustomer(){
-        hashPassword();
-        customerServiceBean.createCustomer(customer);
+    public String persistCustomer(){
+        if(!checkIfExists(customer.getEmail())){
+            hashPassword();
+            customerServiceBean.createCustomer(customer);
+            return "/redo-public/searchFlight.jsf";
+        }
+        return "";
+    }
+
+    private boolean checkIfExists(String email){
+        List<Customer> customerByEmail = customerServiceBean.findCustomerByEmail(email);
+        if(0 == customerByEmail.size())
+            return false;
+        return true;
     }
 }

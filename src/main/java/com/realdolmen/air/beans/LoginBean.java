@@ -12,6 +12,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import java.io.Serializable;
 import java.security.Principal;
+import java.util.List;
 
 @ManagedBean
 public class LoginBean implements Serializable {
@@ -59,13 +60,13 @@ public class LoginBean implements Serializable {
         this.password = password;
     }
 
-    private void checkPassword(Customer c){
-        if(BCrypt.checkpw(password,c.getPassword())){
-            System.out.println("sweet");
-        }else{
-            System.out.println("zuur");
-        }
-    }
+//    private void checkPassword(Customer c){
+//        if(BCrypt.checkpw(password,c.getPassword())){
+//            System.out.println("sweet");
+//        }else{
+//            System.out.println("zuur");
+//        }
+//    }
 
     public boolean isLoginFailure() {
         return loginFailure;
@@ -75,14 +76,14 @@ public class LoginBean implements Serializable {
         this.loginFailure = loginFailure;
     }
 
-    public void login(){
-        Customer customerByEmail = customerServiceBean.findCustomerByEmail(customer.getEmail());
-        if(customerByEmail != null){
-            checkPassword(customerByEmail);
-        }else {
-
-        }
-    }
+//    public void login(){
+//        List<Customer> customerByEmail = customerServiceBean.findCustomerByEmail(customer.getEmail());
+//        if(customerByEmail.size() == 0){
+//
+//        }else {
+//            checkPassword(customerByEmail.get(0));
+//        }
+//    }
 
     public String logout(){
         HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();

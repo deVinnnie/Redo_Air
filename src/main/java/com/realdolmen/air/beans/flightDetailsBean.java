@@ -7,12 +7,12 @@ import com.realdolmen.air.service.TravelClassServiceBean;
 
 import javax.ejb.LocalBean;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
 import javax.inject.Inject;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.List;
 
-@LocalBean
 @ManagedBean
 public class flightDetailsBean implements Serializable {
     private Long flightId;

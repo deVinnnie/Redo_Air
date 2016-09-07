@@ -4,6 +4,7 @@ import com.realdolmen.air.domain.Airport;
 import com.realdolmen.air.repository.AirportRepository;
 import com.realdolmen.util.integration.RemoteIntegrationTest;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
@@ -18,6 +19,7 @@ import static org.mockito.Mockito.*;
 
 public class AirportServiceBeanIntegrationTest extends RemoteIntegrationTest {
 
+    @Ignore
     @Test
     public void testGetAllAirports() throws Exception {
         AirportService airportService = lookup("quickstart/AirportServiceBean!com.realdolmen.air.service.AirportService");

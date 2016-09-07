@@ -3,7 +3,9 @@ package com.realdolmen.air.beans;
 import com.realdolmen.air.domain.AirlineCompany;
 import com.realdolmen.air.domain.Airport;
 import com.realdolmen.air.domain.Flight;
-import com.realdolmen.air.service.*;
+import com.realdolmen.air.service.AirlineCompanyServiceBean;
+import com.realdolmen.air.service.AirportServiceBean;
+import com.realdolmen.air.service.FlightServiceBean;
 import org.primefaces.event.SelectEvent;
 
 import javax.annotation.PostConstruct;
@@ -12,14 +14,13 @@ import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
+import javax.validation.constraints.Future;
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
-@LocalBean
 @ManagedBean
 public class searchFlightBean implements Serializable {
     private Flight flight;
@@ -27,7 +28,7 @@ public class searchFlightBean implements Serializable {
     private List<AirlineCompany> airlineCompanies;
     private List<Airport> airports;
     private Date currentDate;
-    private int number3 = 1;
+    private int numberOfSeats = 1;
     private List<Flight> flights;
     private AirlineCompany airlineCompany;
     private Long airlineCompanyId;
@@ -107,12 +108,12 @@ public class searchFlightBean implements Serializable {
         searchFlights();
     }
 
-    public int getNumber3() {
-        return number3;
+    public int getNumberOfSeats() {
+        return numberOfSeats;
     }
 
-    public void setNumber3(int number3) {
-        this.number3 = number3;
+    public void setNumberOfSeats(int numberOfSeats) {
+        this.numberOfSeats = numberOfSeats;
         searchFlights();
     }
 
@@ -185,11 +186,6 @@ public class searchFlightBean implements Serializable {
     }
 
     public void searchFlights(){
-        flights = flightServiceBean.findFlightsWithParams(airlineCompanyId,flightClass,number3,departureAirportId,arrivalAirportId,departureTime);
-//        for (AirlineCompany ac: getAirlineCompanies()) {
-//            if (ac.getId() == flight.getAirlineCompany().getId()) {
-//
-//            }
-//        }
+        flights = flightServiceBean.findFlightsWithParams(airlineCompanyId,flightClass,numberOfSeats,departureAirportId,arrivalAirportId,departureTime);
     }
 }

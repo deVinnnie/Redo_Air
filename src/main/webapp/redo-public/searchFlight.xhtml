@@ -48,7 +48,7 @@
                     <h:outputFormat value="#{msg['searchFlight.search.searchSeats']}"/>
                 </h:outputLabel>
                 <h:panelGroup>
-                    <p:spinner id="ajaxSpinner" value="#{searchFlightBean.number3}" min="1" />
+                    <p:spinner id="ajaxSpinner" value="#{searchFlightBean.numberOfSeats}" min="1" />
                 </h:panelGroup>
 
                 <h:outputLabel>
@@ -147,7 +147,7 @@
                     <h:outputLink id="detailsLink" value="flightDetails.jsf">
                         Details
                         <f:param name="flightId" value="#{flight.id}"/>
-                        <f:param name="numberOfSeats" value="#{searchFlightBean.number3}"/>
+                        <f:param name="numberOfSeats" value="#{searchFlightBean.numberOfSeats}"/>
                         <f:param name="flightClass" value="#{searchFlightBean.flightClass}"/>
                     </h:outputLink>
                 </h:column>

@@ -4,6 +4,7 @@ import com.realdolmen.air.domain.Airport;
 import com.realdolmen.air.domain.Passenger;
 import com.realdolmen.air.repository.AirportRepository;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
@@ -55,6 +56,7 @@ public class AirportServiceBeanTest {
         when(repository.findById(600L)).thenReturn(null);
     }
 
+    @Ignore
     @Test
     public void test_getAllAirportsShouldReturnAll(){
         List<Airport> results = service.getAllAirports();
