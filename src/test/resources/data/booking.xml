@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataset>
+    <customer
+            ID="1"
+            EMAIL="email1"
+            PASSWORD="password"
+    />
+
+    <customer
+            ID="2"
+            EMAIL="email1"
+            PASSWORD="password"
+    />
+    <booking
+            ID="1"
+            CUSTOMER_ID="1"
+    />
+
+    <booking
+            ID="2"
+            CUSTOMER_ID="1"
+    />
+
+    <booking
+            ID="3"
+            CUSTOMER_ID="2"
+    />
+
+
+</dataset>

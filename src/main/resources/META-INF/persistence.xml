@@ -19,7 +19,7 @@
             has been successful. If this was not the case, you would end up in a fail-cascade because the next run
             would fail due to the previous one not cleaning up correctly.
         -->
-        <property name="hibernate.hbm2ddl.auto" value="create" />
+        <!--<property name="hibernate.hbm2ddl.auto" value="create" />-->
 
         <!--
             The default transaction isolation level of java.sql.Connection is to use the used DBMS's default.
@@ -32,7 +32,7 @@
             interested in seeing to happen. Note that we only use this on the test persistence.xml!
         -->
         <property name="hibernate.connection.isolation" value="TRANSACTION_READ_COMMITTED" />
-        <property name="hibernate.hbm2ddl.import_files" value="META-INF/insert.sql"/>
+        <!--<property name="hibernate.hbm2ddl.import_files" value="META-INF/insert.sql"/>-->
     </properties>
     </persistence-unit>
 

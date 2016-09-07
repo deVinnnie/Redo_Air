@@ -13,14 +13,14 @@
     <!--<ul id="#{cc.attrs.list_id}" class="dropdown-content">-->
         <li>
             <a href="#!">
-                My bookings
+                #{msg['dropdown.bookings']}
             </a>
         </li>
 
         <li>
             <h:form>
                 <h:commandLink action="#{loginBean.logout}">
-                    Log out
+                    #{msg['dropdown.logout']}
                 </h:commandLink>
             </h:form>
         </li>
