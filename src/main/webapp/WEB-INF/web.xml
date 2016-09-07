@@ -22,6 +22,7 @@
         <welcome-file>index.jsf</welcome-file>
     </welcome-file-list>
 
+    <!-- Define some custom error pages -->
     <error-page>
         <error-code>404</error-code>
         <location>/WEB-INF/error-pages/404.jsf</location>
@@ -31,6 +32,15 @@
         <error-code>403</error-code>
         <location>/WEB-INF/error-pages/403.jsf</location>
     </error-page>
+
+    <!--
+        Use Cookies for session tracking
+        This eliminates the ugly jsessionid string which is
+        normally appended as a parameter to the url.
+    -->
+    <session-config>
+        <tracking-mode>COOKIE</tracking-mode>
+    </session-config>
 
     <!-- Security -->
     <login-config>
