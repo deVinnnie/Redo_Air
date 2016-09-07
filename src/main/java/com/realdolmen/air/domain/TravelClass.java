@@ -59,6 +59,7 @@ public class TravelClass extends AbstractEntity{
      * for his ticket instead of the base price * margin set by the Airline.
      */
     @Min(0)
+    @Digits(integer = 12, fraction = 2)
     private BigDecimal overriddenPrice = null;
 
     public TravelClass() {

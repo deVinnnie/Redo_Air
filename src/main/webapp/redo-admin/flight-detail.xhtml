@@ -9,6 +9,28 @@
     </ui:define>
 
     <ui:define name="content">
+
+
+        <p:messages id="messages" showDetail="true" autoUpdate="true" closable="true" />
+        <h:panelGroup rendered="#{not empty flash.success}">
+            <div class="row">
+                <div class="col s12 m8">
+                    <div class="card light-green lighten-1">
+                        <div class="card-content">
+                            <span class="card-title">
+                                Flash
+                            </span>
+                            <p>
+                                <h:outputText value="#{flash.success}"/>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </h:panelGroup>
+
+
+
         <h1><h:outputText value="#{flightBean.flight.number}"/></h1>
 
         <p>Departure</p>
@@ -66,7 +88,7 @@
 
             <h:column>
                 <h:form>
-                    <h:link outcome="/redo-admin/override.xhtml">
+                    <h:link outcome="/redo-admin/travelclass.xhtml">
                         Edit
                         <f:param name="id" value="#{travelClass.id}"/>
                     </h:link>

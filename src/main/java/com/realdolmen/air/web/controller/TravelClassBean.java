@@ -7,6 +7,8 @@ import com.realdolmen.air.service.TravelClassServiceBean;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
+import javax.faces.context.FacesContext;
+import javax.faces.context.Flash;
 import javax.inject.Inject;
 
 @ManagedBean
@@ -20,10 +22,6 @@ public class TravelClassBean {
     @Inject
     TravelClassServiceBean travelClassServiceBean;
 
-    //has to go
-//    @Inject
-//    private TravelClassRepository repository;
-
     /**
      * Method called after request parameters are loaded in JSF page.
      * Defined in .xhtml file with the f:viewAction tag.
@@ -33,8 +31,6 @@ public class TravelClassBean {
      * This would result in faulty initialisation.
      */
     public void onParametersLoaded(){
-        //has to go
-//        this.travelClass = repository.find(travelClassId);
         this.travelClass = travelClassServiceBean.find(travelClassId);
     }
 
@@ -54,9 +50,15 @@ public class TravelClassBean {
         this.travelClassId = travelClassId;
     }
 
-    public void save(){
-        //has to go
-//        this.travelClass = this.repository.update(this.travelClass);
+    public String save(){
         this.travelClass = this.travelClassServiceBean.update(this.travelClass);
+        Flash flash = FacesContext.getCurrentInstance().
+                getExternalContext().getFlash();
+        flash.put("success", "Price updated!");
+
+        FacesContext.getCurrentInstance().
+                getExternalContext().getFlash().setKeepMessages(true);
+
+        return "flight-detail.xhtml?faces-redirect=true";
     }
 }
