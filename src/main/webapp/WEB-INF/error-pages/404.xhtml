@@ -1,0 +1,16 @@
+<ui:composition template="/WEB-INF/template.xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:c="http://java.sun.com/jsp/jstl/core">
+
+    <ui:define name="pageTitle">
+        <h:outputText value="#{msg['error-page.404.title']}"/>
+    </ui:define>
+
+    <ui:define name="content">
+        <p>
+            <h:outputText value="#{msg['error-page.404.description']}"/>
+        </p>
+    </ui:define>
+</ui:composition>

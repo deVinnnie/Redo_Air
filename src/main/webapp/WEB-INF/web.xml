@@ -22,6 +22,16 @@
         <welcome-file>index.jsf</welcome-file>
     </welcome-file-list>
 
+    <error-page>
+        <error-code>404</error-code>
+        <location>/WEB-INF/error-pages/404.jsf</location>
+    </error-page>
+
+    <error-page>
+        <error-code>403</error-code>
+        <location>/WEB-INF/error-pages/403.jsf</location>
+    </error-page>
+
     <!-- Security -->
     <login-config>
         <auth-method>FORM</auth-method>
