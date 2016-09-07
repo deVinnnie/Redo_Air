@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:c="http://java.sun.com/jsp/jstl/core"
+      xmlns:cc="http://java.sun.com/jsf/composite"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<cc:interface>
+    <cc:attribute name="list_id" required="true"/>
+</cc:interface>
+
+<cc:implementation>
+    <ul id="#{cc.attrs.list_id}" class="dropdown-content">
+        <c:forEach items="#{languageBean.locales}" var="lan" varStatus="loop">
+            <c:choose>
+                <c:when test="#{lan.language eq languageBean.language}">
+                    <li class="active">
+                        <i class="material-icons left">chevron_right</i>
+                        <span>
+                                    <h:outputFormat value="#{msg[lan.language]}"/>
+                                </span>
+                    </li>
+                </c:when>
+                <c:otherwise>
+                    <li>
+                        <h:commandLink action="#{languageBean.changeLanguage(lan.language)}"
+                                       value="#{msg[lan.language]}" />
+                    </li>
+                </c:otherwise>
+            </c:choose>
+        </c:forEach>
+    </ul>
+</cc:implementation>
+</html>
