@@ -52,16 +52,6 @@ public class FlightBean {
         this.flightId = flightId;
     }
 
-    /*public void save(){
-        System.out.println("Flight: " + flight.getId());
-
-        for(TravelClass t : flight.getTravelClasses()){
-            System.out.println(t.getName() + " - " + t.getOverriddenPrice());
-        }
-
-        this.flightServiceBean.update(flight);
-    }*/
-
     public void onParametersLoaded() throws IOException {
         this.flight = flightServiceBean.findFlightById(flightId);
 
