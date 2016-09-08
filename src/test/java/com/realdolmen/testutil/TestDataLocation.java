@@ -10,6 +10,7 @@ public enum TestDataLocation {
     CUSTOMER("data/customer.xml"),
     FLIGHT("data/flight.xml"),
     TRAVELCLASS("data/travelClass.xml"),
+    USER("data/user.xml"),
     BOOKING("data/booking.xml");
 
     private String value;

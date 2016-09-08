@@ -25,13 +25,13 @@
             ID="4"
             NAME="airlineCompany4"
             VERSION="1"
-            AVAILABLE="1"
+            AVAILABLE="0"
     />
 
     <airlinecompany
             ID="5"
             NAME="airlineCompany5"
             VERSION="1"
-            AVAILABLE="1"
+            AVAILABLE="0"
     />
 </dataset>

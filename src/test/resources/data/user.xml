@@ -20,28 +20,5 @@
           password="$2a$10$z5vr/uy/47FSkbtRjE4J2.Y/0MkeldTPKXoHvrK8FGYc..qcRlOAi"
           role="CUSTOMER"
           version="0"/>
-    <customer
-            ID="1"
-            
-    />
 
-    <customer
-            ID="2"
-            
-    />
-
-    <customer
-            ID="3"
-            
-    />
-
-    <customer
-            ID="4"
-            
-    />
-
-    <customer
-            ID="5"
-            
-    />
 </dataset>

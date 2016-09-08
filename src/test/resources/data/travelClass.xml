@@ -38,23 +38,27 @@
             ID="2"
             BASEPRICE="10"
             NAME="first"
+            REMAININGSEATS="10"
     />
 
     <travelclass
             ID="3"
             BASEPRICE="10"
             NAME="first"
+            REMAININGSEATS="10"
     />
 
     <travelclass
             ID="4"
             BASEPRICE="10"
             NAME="first"
+            REMAININGSEATS="10"
     />
 
     <travelclass
             ID="5"
             BASEPRICE="10"
             NAME="first"
+            REMAININGSEATS="10"
     />
 </dataset>

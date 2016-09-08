@@ -76,4 +76,17 @@ public class AirportRepositoryTest extends AbstractRepositoryTest<AirportReposit
         List<Airport> foundAirports = getRepository().search("Arne is de beste");
         assertEquals(0, foundAirports.size());
     }
+
+    @Test
+    @TestData(dataSet = TestDataLocation.AIRPORT)
+    public void returnAllActiveAndNonActiveShouldReturnAll(){
+        List<Airport> airports = getRepository().findAllActiveAndNonActive();
+        assertEquals(5,airports.size());
+    }
+
+    @Test
+    public void returnAllActiveAndNonActiveShouldReturnNone(){
+        List<Airport> airports = getRepository().findAllActiveAndNonActive();
+        assertEquals(0,airports.size());
+    }
 }

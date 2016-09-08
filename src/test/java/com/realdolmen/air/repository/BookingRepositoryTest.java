@@ -18,6 +18,20 @@ public class BookingRepositoryTest extends AbstractRepositoryTest<BookingReposit
     public void findBookingsByCustomerIdShouldReturnCorrectBookings() {
         List<Booking> bookings = getRepository().findBookingsByCustomerId(Long.parseLong("1"));
         assertEquals(2, bookings.size());
-
     }
+
+    @Test
+    @TestData(dataSet = TestDataLocation.BOOKING)
+    public void findBookingsByCustomerIdShouldReturnCorrectBookingsWrongId() {
+        List<Booking> bookings = getRepository().findBookingsByCustomerId(Long.parseLong("100"));
+        assertEquals(0, bookings.size());
+    }
+
+    @Test
+    public void findBookingsByCustomerIdShouldReturnCorrectBookingsNoData() {
+        List<Booking> bookings = getRepository().findBookingsByCustomerId(Long.parseLong("1"));
+        assertEquals(0, bookings.size());
+    }
+
+
 }

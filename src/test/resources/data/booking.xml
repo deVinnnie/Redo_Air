@@ -1,16 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <dataset>
-    <customer
-            ID="1"
-            EMAIL="email1"
-            PASSWORD="password"
-    />
+    <user id="1" email="harry.potter@hogwarts.org"
+          password="$2a$10$z5vr/uy/47FSkbtRjE4J2.Y/0MkeldTPKXoHvrK8FGYc..qcRlOAi"
+          role="CUSTOMER"
+          version="0"/>
+    <user id="2" email="harry2.potter@hogwarts.org"
+          password="$2a$10$z5vr/uy/47FSkbtRjE4J2.Y/0MkeldTPKXoHvrK8FGYc..qcRlOAi"
+          role="CUSTOMER"
+          version="0"/>
+    <customer id="1" firstName="Harry" lastName="Potter"/>
+    <customer id="2" firstName="Harry" lastName="Potter"/>
 
-    <customer
-            ID="2"
-            EMAIL="email1"
-            PASSWORD="password"
-    />
+
+
     <booking
             ID="1"
             CUSTOMER_ID="1"

@@ -47,4 +47,25 @@ public class AirlineCompanyRepositoryTest extends AbstractRepositoryTest<Airline
         AirlineCompany airlineCompany = getRepository().findById(Long.parseLong("10"));
         assertEquals(null,airlineCompany);
     }
+
+    @Test
+    @TestData(dataSet = TestDataLocation.AIRLINECOMPANY)
+    public void findAfterSearchShouldReturnCorrectAirlineCompanies(){
+        List<AirlineCompany> airlineCompanies = getRepository().findAirlineCompaniesSearch("air");
+        assertEquals(5,airlineCompanies.size());
+    }
+
+    @Test
+    @TestData(dataSet = TestDataLocation.AIRLINECOMPANY)
+    public void findAfterSearchShouldReturnCorrectAirlineCompanies1(){
+        List<AirlineCompany> airlineCompanies = getRepository().findAirlineCompaniesSearch("1");
+        assertEquals(1,airlineCompanies.size());
+    }
+
+    @Test
+    @TestData(dataSet = TestDataLocation.AIRLINECOMPANY)
+    public void findAllActiveAirlineCompaniesShouldReturnCorrectNumber(){
+        List<AirlineCompany> airlineCompanies = getRepository().findAllActive();
+        assertEquals(3,airlineCompanies.size());
+    }
 }
