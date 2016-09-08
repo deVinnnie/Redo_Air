@@ -63,6 +63,21 @@
                 </f:facet>
                 <h:outputText value="#{flight.arrivalTime}"/>
             </h:column>
+
+            <h:column>
+                <f:facet name="header">
+                    <h:outputText value="#{msg['searchFlight.details.duration']}"/>
+                </f:facet>
+
+                <h:outputText value="#{flight.duration.toMinutes() / 60}">
+                    <f:convertNumber maxFractionDigits="0"/>
+                </h:outputText>
+                h
+                <h:outputText value="#{flight.duration.toMinutes() % 60}">
+                    <f:convertNumber maxFractionDigits="0"/>
+                </h:outputText>
+                m
+            </h:column>
         </h:dataTable>
 
         <ul class="collapsible" data-collapsible="expandable">
