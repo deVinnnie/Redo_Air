@@ -3,6 +3,7 @@ package com.realdolmen.air.domain;
 import com.realdolmen.air.domain.payement.Payment;
 
 import javax.persistence.*;
+import javax.validation.Valid;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
@@ -21,6 +22,7 @@ public class Booking extends AbstractEntity {
     private Payment payment;
 
     @Embedded
+    @Valid
     private Discount discount;
 
     @ManyToOne
