@@ -117,6 +117,9 @@
 
     <security-role>
         <role-name>EMPLOYEE</role-name>
+    </security-role>
+    
+    <security-role>
         <role-name>CUSTOMER</role-name>
     </security-role>
 </web-app>
