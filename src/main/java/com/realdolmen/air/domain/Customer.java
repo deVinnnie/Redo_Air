@@ -24,6 +24,12 @@ public class Customer extends User {
         super(Role.CUSTOMER);
     }
 
+    public Customer(String firstName, String lastName) {
+        this();
+        this.firstName = firstName;
+        this.lastName = lastName;
+    }
+
     public String getFirstName() {
         return firstName;
     }
