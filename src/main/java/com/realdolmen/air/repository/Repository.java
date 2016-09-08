@@ -46,7 +46,7 @@ public interface Repository<T, PK extends Serializable> {
     /**
      * Remove an entity from the database.
      *
-     * @param entity The entity to be removed, must be a subclass of {@link be.fgov.mobilit.hrm.repositories.Repository}.
+     * @param entity The entity to be removed, must be a subclass of.
      */
     void delete(T entity);
 

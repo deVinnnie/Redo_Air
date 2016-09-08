@@ -39,6 +39,8 @@ public class TravelClassBean {
      * The PostConstruct annotation doesn't work because the parameters
      * are not yet copied to the instance variables.
      * This would result in faulty initialisation.
+     *
+     * @throws IOException
      */
     public void onParametersLoaded() throws IOException {
         this.travelClass = travelClassServiceBean.find(travelClassId);

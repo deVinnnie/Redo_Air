@@ -21,7 +21,6 @@ public class LanguageBean implements Serializable {
 
     @PostConstruct
     public void setUp(){
-        System.out.println("--------------------////*/*/*/*-/*/-*-*-**---*");
         // Get ALL supported locales (Supported + Default)
         Locale defaultLocale = FacesContext.getCurrentInstance().getApplication().getDefaultLocale();
         locales.add(defaultLocale);
@@ -38,16 +37,13 @@ public class LanguageBean implements Serializable {
      * Sets the current {@code Locale} for each user session
      *
      * @param language - ISO-639 language code
+     * @return A JSF redirect to the original page.
      */
     public String changeLanguage(String language) {
         locale = new Locale(language);
         FacesContext.getCurrentInstance().getViewRoot().setLocale(locale);
         String viewId = FacesContext.getCurrentInstance().getViewRoot().getViewId();
         return viewId + "?faces-redirect=true";
-
-        //return "redirect-faces=true";
-        //return "main.xhtml";
-        //return null;
     }
 
     public Locale getLocale() {
