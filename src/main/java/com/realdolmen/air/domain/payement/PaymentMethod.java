@@ -5,7 +5,5 @@ import com.realdolmen.air.domain.AbstractEntity;
 import javax.persistence.Entity;
 
 @Entity
-public class PaymentMethod extends AbstractEntity{
-
-
+public abstract class PaymentMethod extends AbstractEntity{
 }
