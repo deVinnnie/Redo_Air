@@ -1,7 +1,6 @@
 package com.realdolmen.air.domain;
 
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 
 import javax.validation.ConstraintViolation;
@@ -35,8 +34,6 @@ public class DiscountTest {
     }
 
     @Test
-    @Ignore
-    // Fails because its embeddable
     public void discountPercentageNegativeShouldBeInvalid(){
         discount.setDiscountPercentage(new BigDecimal("-20.00"));
 
@@ -45,8 +42,6 @@ public class DiscountTest {
     }
 
     @Test
-    @Ignore
-    // Fails because its embeddable
     public void discountPercentageLargerThanOneShouldBeInvalid(){
         discount.setDiscountPercentage(new BigDecimal("1.10"));
 
@@ -62,6 +57,27 @@ public class DiscountTest {
         assertEquals(1, violations.size());
     }
 
+    @Test
+    public void discountPercentageNullShouldBeInvalid(){
+        discount.setDiscountPercentage(null);
 
+        Set<ConstraintViolation<Discount>> violations = validator.validate(discount);
+        assertEquals(1, violations.size());
+    }
 
+    @Test
+    public void discountPercentageZeroShouldBeValid(){
+        discount.setDiscountPercentage(new BigDecimal("0.00"));
+
+        Set<ConstraintViolation<Discount>> violations = validator.validate(discount);
+        assertEquals(0, violations.size());
+    }
+
+    @Test
+    public void discountPercentageOneShouldBeValid(){
+        discount.setDiscountPercentage(new BigDecimal("1.00"));
+
+        Set<ConstraintViolation<Discount>> violations = validator.validate(discount);
+        assertEquals(0, violations.size());
+    }
 }

@@ -4,13 +4,14 @@ import com.realdolmen.air.domain.payement.Payment;
 
 import javax.persistence.*;
 import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
 @NamedQueries({
-        @NamedQuery(name = Booking.FIND_ALL_BY_CUSTOMERID, query = "SELECT b FROM Booking b where b.customer.id = :id")
+    @NamedQuery(name = Booking.FIND_ALL_BY_CUSTOMERID, query = "SELECT b FROM Booking b where b.customer.id = :id")
 })
 public class Booking extends AbstractEntity {
     public static final String FIND_ALL_BY_CUSTOMERID = "Booking.findAllByCustomerId";
@@ -27,7 +28,11 @@ public class Booking extends AbstractEntity {
 
     @ManyToOne
     @JoinColumn(name = "customer_id")
+    @NotNull
     private Customer customer;
+
+    public Booking() {
+    }
 
     public List<Ticket> getTickets() {
         return tickets;

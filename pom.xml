@@ -181,6 +181,25 @@
 			<version>4.9.7.Final</version>
 			<scope>provided</scope>
 		</dependency>
+
+
+		<!--
+			Dependencies needed for testing with validator on Embeddable classes.
+			http://stackoverflow.com/questions/19451814/java-lang-noclassdeffounderror-javax-el-propertynotfoundexception-when-i-send-i
+		-->
+		<dependency>
+			<groupId>javax.el</groupId>
+			<artifactId>javax.el-api</artifactId>
+			<version>3.0.0</version>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.glassfish.web</groupId>
+			<artifactId>el-impl</artifactId>
+			<version>2.2</version>
+			<scope>test</scope>
+		</dependency>
 	</dependencies>
 
 	<build>

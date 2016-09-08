@@ -13,6 +13,7 @@ public class Discount{
     @DecimalMin("0.00")
     @DecimalMax("1.00")
     @Digits(integer=6, fraction=2)
+    @NotNull
     private BigDecimal discountPercentage;
 
     public Discount() {
