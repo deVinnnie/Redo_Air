@@ -51,12 +51,12 @@ public class AirportServiceBeanTest {
         airports.add(airport2);
         airports.add(airport3);
 
-        when(repository.findAll()).thenReturn(airports);
+        when(repository.findAllActiveAndNonActive()).thenReturn(airports);
         when(repository.findById(200L)).thenReturn(airport2);
         when(repository.findById(600L)).thenReturn(null);
+        when(repository.search("aa")).thenReturn(airports);
     }
 
-    @Ignore
     @Test
     public void test_getAllAirportsShouldReturnAll(){
         List<Airport> results = service.getAllAirports();
@@ -64,7 +64,7 @@ public class AirportServiceBeanTest {
         assertNotNull(results);
         assertEquals(3, results.size());
 
-        verify(repository).findAll();
+        verify(repository).findAllActiveAndNonActive();
         verifyNoMoreInteractions(repository);
     }
 
@@ -108,6 +108,16 @@ public class AirportServiceBeanTest {
     @Test(expected = InvalidIdExeption.class)
     public void test_toggleAvailability_NonExistingAirport_ThrowsException() throws InvalidIdExeption {
         service.toggleAvailability(600L);
+    }
+
+    @Test
+    public void test_findAllSearchOnlyPerformsSearch(){
+        List<Airport> results = service.findAirports("aa");
+        assertNotNull(results);
+        assertEquals(3, results.size());
+
+        verify(repository).search("aa");
+        verifyNoMoreInteractions(repository);
     }
 
 }

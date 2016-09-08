@@ -43,7 +43,7 @@ public class TravelClassTest {
         travelClass.setBasePrice(
                 new BigDecimal("3.141592")
         );
-        
+
 
         Set<ConstraintViolation<TravelClass>> violations = validator.validate(travelClass);
         assertEquals(1, violations.size());

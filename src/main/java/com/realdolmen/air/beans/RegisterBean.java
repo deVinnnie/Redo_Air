@@ -6,7 +6,9 @@ import org.mindrot.jbcrypt.BCrypt;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.LocalBean;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
+import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
@@ -43,7 +45,12 @@ public class RegisterBean implements Serializable {
     }
 
     public void setPassword(String password) {
-        this.password = password;
+        if(password.trim().length()>=5)
+            this.password = password.trim();
+        else{
+            FacesContext.getCurrentInstance().addMessage("registerForm:confirmPassword", new FacesMessage("Password to short"));
+        }
+
     }
 
     public String getRepeatedPassword() {
@@ -54,18 +61,13 @@ public class RegisterBean implements Serializable {
         this.repeatedPassword = repeatedPassword;
     }
 
-    private void hashPassword(){
-        String hashed = BCrypt.hashpw(password,BCrypt.gensalt());
-        customer.setPassword(hashed);
-    }
-
     public String persistCustomer(){
         if(!checkIfExists(customer.getEmail())){
             hashPassword();
             customerServiceBean.createCustomer(customer);
-            return "/redo-public/searchFlight.jsf";
+            return "/redo-public/search-flight.jsf";
         }
-        return "";
+        return "#";
     }
 
     private boolean checkIfExists(String email){
@@ -73,5 +75,10 @@ public class RegisterBean implements Serializable {
         if(0 == customerByEmail.size())
             return false;
         return true;
+    }
+
+    private void hashPassword(){
+        String hashed = BCrypt.hashpw(password,BCrypt.gensalt());
+        customer.setPassword(hashed);
     }
 }

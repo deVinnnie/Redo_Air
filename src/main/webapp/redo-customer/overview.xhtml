@@ -9,19 +9,32 @@
     </ui:define>
 
     <ui:define name="content">
-        <ul class="collapsible" data-collapsible="expandable">
-            <c:forEach items="#{overviewBean.bookings}" var="booking">
-                <li>
-                    <div class="collapsible-header">#{booking.tickets[0].travelClass.flight.departure.name} #{msg['overview.to']} #{booking.tickets[0].travelClass.flight.arrival.name} #{msg['overview.on']} #{booking.tickets[0].travelClass.flight.departureTime}</div>
-                    <div class="collapsible-body">
-                        <p>
-                            #{msg['detailsFlight.details.priceByTicket']} #{booking.pricePerTicket}<br/>
-                            #{msg['detailsFlight.details.numberOfTickets']} #{booking.tickets.size()}<br/>
-                            #{msg['detailsFlight.details.totalPrice']} #{booking.totalPrice}
-                        </p>
-                    </div>
-                </li>
-            </c:forEach>
-        </ul>
+        <h:panelGroup rendered="#{empty overviewBean.bookings}">
+            <div class="row">
+                <div class="col s12 center">
+                    <i class="material-icons medium">bookmark_border</i>
+                    <p>
+                        <h:outputFormat value="#{msg['detailsFlight.details.noDetails']}"/>
+                    </p>
+                </div>
+            </div>
+        </h:panelGroup>
+        <h:panelGroup rendered="#{empty overviewBean.bookings}">
+            <ul class="collapsible" data-collapsible="expandable" >
+                <c:forEach items="#{overviewBean.bookings}" var="booking">
+                    <li>
+                        <div class="collapsible-header">#{booking.tickets[0].travelClass.flight.departure.name} #{msg['overview.to']} #{booking.tickets[0].travelClass.flight.arrival.name} #{msg['overview.on']} #{booking.tickets[0].travelClass.flight.departureTime}</div>
+                        <div class="collapsible-body">
+                            <p>
+                                #{msg['detailsFlight.details.priceByTicket']} #{booking.pricePerTicket}<br/>
+                                #{msg['detailsFlight.details.numberOfTickets']} #{booking.tickets.size()}<br/>
+                                #{msg['detailsFlight.details.totalPrice']} #{booking.totalPrice}
+                            </p>
+                        </div>
+                    </li>
+                </c:forEach>
+            </ul>
+        </h:panelGroup>
+
     </ui:define>
 </ui:composition>

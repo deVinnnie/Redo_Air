@@ -23,6 +23,18 @@ public class FlightServiceBean implements FlightService{
         return flightRepository.findAll();
     }
 
+    public Flight findFlightById(Long id){
+        return flightRepository.findById(id);
+    }
+
+    public List<TravelClass> findTravelClasses(Long flightId){
+        return flightRepository.findTravelClasses(flightId);
+    }
+
+    public Flight update(Flight flight){
+        return flightRepository.update(flight);
+    }
+
     public List<Flight> findFlightsWithParams(Long airlineCompanyId, String flightClass, int numberOfSeats, Long departureAirportId, Long arrivalAirportId, Date departureTime){
         List<Flight> correctDateFlights = new ArrayList<>();
         List<Flight> possibleFlights = flightRepository.findFlightsWithParams(airlineCompanyId,flightClass,numberOfSeats,departureAirportId,arrivalAirportId);
@@ -38,10 +50,6 @@ public class FlightServiceBean implements FlightService{
         return possibleFlights;
     }
 
-    public Flight findFlightById(Long id){
-        return flightRepository.findById(id);
-    }
-
     private boolean checkSameDate(Date d1, Date d2){
         Calendar calendar1 = Calendar.getInstance();
         Calendar calendar2 = Calendar.getInstance();
@@ -51,11 +59,4 @@ public class FlightServiceBean implements FlightService{
         return calendar1.get(Calendar.YEAR) == calendar2.get(Calendar.YEAR) && calendar1.get(Calendar.DAY_OF_YEAR) == calendar2.get(Calendar.DAY_OF_YEAR);
     }
 
-    public List<TravelClass> findTravelClasses(Long flightId){
-        return flightRepository.findTravelClasses(flightId);
-    }
-
-    public Flight update(Flight flight){
-        return flightRepository.update(flight);
-    }
 }
