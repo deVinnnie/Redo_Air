@@ -3,28 +3,35 @@
     <airlinecompany
             ID="1"
             NAME="airlineCompany1"
+            VERSION="1"
+            AVAILABLE="1"
     />
 
     <airlinecompany
             ID="2"
             NAME="airlineCompany2"
+            VERSION="1"
+            AVAILABLE="1"
     />
 
     <airlinecompany
             ID="3"
             NAME="airlineCompany3"
-            
+            VERSION="1"
+            AVAILABLE="1"
     />
 
     <airlinecompany
             ID="4"
             NAME="airlineCompany4"
-            
+            VERSION="1"
+            AVAILABLE="1"
     />
 
     <airlinecompany
             ID="5"
             NAME="airlineCompany5"
-            
+            VERSION="1"
+            AVAILABLE="1"
     />
 </dataset>

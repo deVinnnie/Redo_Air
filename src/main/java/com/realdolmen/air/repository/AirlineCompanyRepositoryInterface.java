@@ -10,4 +10,6 @@ import java.util.List;
 public interface AirlineCompanyRepositoryInterface extends Repository<AirlineCompany, Long>{
     List<AirlineCompany> findAll();
     AirlineCompany findById(Long id);
+    List<AirlineCompany> findAirlineCompaniesSearch(String searchTerm);
+    List<AirlineCompany> findAllActive();
 }

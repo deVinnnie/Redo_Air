@@ -4,17 +4,19 @@
     <airlinecompany
             ID="1"
             NAME="airlineCompany1"
+            AVAILABLE="1"
     />
 
     <airlinecompany
             ID="2"
             NAME="airlineCompany2"
+            AVAILABLE="1"
     />
 
     <airlinecompany
             ID="3"
             NAME="airlineCompany3"
-
+            AVAILABLE="1"
     />
 
     <airport

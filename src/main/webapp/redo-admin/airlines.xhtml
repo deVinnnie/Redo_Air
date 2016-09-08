@@ -1,11 +1,66 @@
 <ui:composition template="template.xhtml"
                 xmlns="http://www.w3.org/1999/xhtml"
                 xmlns:h="http://xmlns.jcp.org/jsf/html"
-                xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
 
     <ui:param name="page" value="airlines" />
 
     <ui:define name="content">
-        This section is still under construction!
+        <h:form id="search-form">
+            <div class="row">
+                <div class="input-field">
+                    <div class="col s6 l6">
+                        <i class="material-icons prefix">search</i>
+                        <h:outputLabel for="search">Search</h:outputLabel>
+                        <h:inputText id="search" value="#{airportBean.searchTerm}">
+                            <f:ajax event="keyup" listener="#{airlineBean.searchAirlines}" render="search-results"/>
+                        </h:inputText>
+                    </div>
+
+                    <div class="col s6 l6">
+                        <h:commandButton value="Search" action="#{airlineBean.searchAirlines}" styleClass="btn"/>
+                    </div>
+                </div>
+            </div>
+        </h:form>
+
+        <h:panelGroup id="search-results" layout="block">
+            <h:panelGroup rendered="#{empty airlineBean.allAirlines}">
+                <div class="row">
+                    <div class="col s12 center">
+                        <i class="material-icons medium">explore</i>
+                        <p>
+                            <h:outputFormat value="#{msg['admin.airports.none-found']}"/>
+                        </p>
+                    </div>
+                </div>
+            </h:panelGroup>
+
+            <h:panelGroup rendered="#{not empty airlineBean.allAirlines}">
+                <ul class="collection">
+                    <p:dataList id="collection" value="#{airlineBean.allAirlines}" var="airlineCompany"
+                                type="none" itemType="none" paginator="true" rows="10"
+                                paginatorPosition="bottom"
+                                emptyMessage="">
+                        <li class="collection-item avatar #{ airlineCompany.available ? '' : 'grey lighten-2'}">
+                            <i class="material-icons circle blue">local_airport</i>
+                            <span class="title">#{airlineCompany.name}</span>
+
+                            <h:form styleClass="secondary-content">
+                                <h:commandLink rendered="#{airlineCompany.available}"
+                                               action="#{airlineBean.toggleAirlineCompanyAvailability(airlineCompany.id)}"
+                                               value="#{msg['admin.airports.deactivate']}"/>
+
+                                <h:commandLink rendered="#{!airlineCompany.available}"
+                                               action="#{airlineBean.toggleAirlineCompanyAvailability(airlineCompany.id)}"
+                                               value="#{msg['admin.airports.activate']}"/>
+                            </h:form>
+                        </li>
+                    </p:dataList>
+                </ul>
+            </h:panelGroup>
+        </h:panelGroup>
     </ui:define>
 </ui:composition>

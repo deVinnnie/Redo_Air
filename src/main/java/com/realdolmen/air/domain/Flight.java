@@ -8,7 +8,10 @@ import java.util.Set;
 
 @Entity
 @NamedQueries({
-        @NamedQuery(name = Flight.FIND_ALL, query = "SELECT f FROM Flight f"),
+        @NamedQuery(name = Flight.FIND_ALL, query = "SELECT f FROM Flight f where " +
+                "f.departure.available = TRUE " +
+                "AND f.arrival.available = TRUE " +
+                "AND f.airlineCompany.available = TRUE"),
         @NamedQuery(name = Flight.FIND_SEARCH, query = "SELECT f from Flight f inner join f.travelClasses t where" +
                 " t.name = :flightClass " +
                 "AND t.remainingSeats >= :numberOfSeats " +

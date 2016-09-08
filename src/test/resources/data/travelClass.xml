@@ -3,6 +3,7 @@
     <airlinecompany
             ID="1"
             NAME="airlineCompany1"
+            AVAILABLE="1"
     />
     <airport
             ID="1"

@@ -26,7 +26,7 @@ public class CustomerRepositoryTest extends AbstractRepositoryTest<CustomerRepos
     @TestData(dataSet = TestDataLocation.CUSTOMER)
     public void findByNonExistingEmailShouldReturnNoCustomer() {
         List<Customer> customer = getRepository().findCustomerByEmail("Vincent is de beste");
-        assertEquals(null, customer);
+        assertEquals(0, customer.size());
     }
 
     @Test

@@ -34,4 +34,24 @@ public class AirlineCompanyRepository extends AbstractBaseRepository<AirlineComp
         }
         return null;
     }
+
+    @Override
+    public List<AirlineCompany> findAirlineCompaniesSearch(String searchTerm) {
+        try {
+            return getEntityManager().createNamedQuery(AirlineCompany.FIND_ALL_SEARCH, AirlineCompany.class).setParameter("searchString", "%" + searchTerm.toLowerCase() + "%").getResultList();
+        } catch (NoResultException e) {
+            LOGGER.error("No information found: ", e);
+        }
+        return Collections.emptyList();
+    }
+
+    @Override
+    public List<AirlineCompany> findAllActive() {
+        try {
+            return getEntityManager().createNamedQuery(AirlineCompany.FIND_ALL_ACTIVE, AirlineCompany.class).getResultList();
+        } catch (NoResultException e) {
+            LOGGER.error("No information found: ", e);
+        }
+        return Collections.emptyList();
+    }
 }

@@ -115,10 +115,10 @@
     <airport id="9200" name="Sebastian Municipal" country="United States" code="X26" version="1" region_id="1" available="1"></airport>
 
 
-    <airlinecompany id="10" name="Jetairfly"/>
-    <airlinecompany id="20" name="British Airways"/>
-    <airlinecompany id="30" name="Thomas Coock Airlines"/>
-    <airlinecompany id="40" name="ABX Air"/>
+    <airlinecompany id="10" name="Jetairfly" available="1" version="1"/>
+    <airlinecompany id="20" name="British Airways" available="1" version="1"/>
+    <airlinecompany id="30" name="Thomas Coock Airlines" available="1" version="1"/>
+    <airlinecompany id="40" name="ABX Air" available="1" version="1"/>
 
 
 

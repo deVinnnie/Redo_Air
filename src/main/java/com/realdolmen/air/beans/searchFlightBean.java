@@ -52,7 +52,7 @@ public class searchFlightBean implements Serializable {
 
     @PostConstruct
     public void postConstruct(){
-        airlineCompanies = airlineCompanyServiceBean.getAllAirlineCompanies();
+        airlineCompanies = airlineCompanyServiceBean.findAllActive();
         airports = airportServiceBean.getAllAirports();
         flight = new Flight();
         currentDate = Calendar.getInstance().getTime();
