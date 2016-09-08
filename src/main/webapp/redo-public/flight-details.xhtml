@@ -14,9 +14,7 @@
             <f:viewParam name="flightId" value="#{flightDetailsBean.flightId}"/>
             <f:viewParam name="numberOfSeats" value="#{flightDetailsBean.numberOfSeats}"/>
             <f:viewParam name="flightClass" value="#{flightDetailsBean.flightClass}"/>
-            <!--<f:viewParam name="ssn" value="#{passengerBean.currentId.ssn}"/>-->
-            <!--<f:viewParam name="lastName" value="#{passengerBean.currentId.lastName}"/>-->
-            <!--<f:viewAction action="#{passengerBean.setUpAfterParam()}" />-->
+            <f:viewAction action="#{flightDetailsBean.onParametersLoaded()}" />
         </f:metadata>
 
         <h2><h:outputFormat value="#{msg['detailsFlight.title']}"/></h2>
