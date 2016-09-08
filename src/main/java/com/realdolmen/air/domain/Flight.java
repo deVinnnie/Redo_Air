@@ -2,6 +2,8 @@ package com.realdolmen.air.domain;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.time.*;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Set;
@@ -148,5 +150,12 @@ public class Flight extends AbstractEntity{
             }
         }
         return null;
+    }
+
+    public Duration getDuration(){
+        LocalDateTime departure = LocalDateTime.ofInstant(departureTime.toInstant(), ZoneId.systemDefault()).withNano(0);
+        LocalDateTime arrival = LocalDateTime.ofInstant(arrivalTime.toInstant(), ZoneId.systemDefault()).withNano(0);
+
+        return Duration.between(departure, arrival);
     }
 }

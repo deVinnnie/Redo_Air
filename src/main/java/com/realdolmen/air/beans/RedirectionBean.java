@@ -12,4 +12,10 @@ public class RedirectionBean {
     public void doRedirect() throws IOException {
         FacesContext.getCurrentInstance().getExternalContext().redirect("./redo-public/search-flight.jsf");
     }
+
+    public void throw404() throws IOException {
+        FacesContext context= FacesContext.getCurrentInstance();
+        context.getExternalContext().responseSendError(404, "The resource you requested does not exist");
+        context.responseComplete();
+    }
 }
