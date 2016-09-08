@@ -33,6 +33,11 @@
         <location>/WEB-INF/error-pages/403.jsf</location>
     </error-page>
 
+    <error-page>
+        <exception-type>javax.servlet.ServletException</exception-type>
+        <location>/WEB-INF/error-pages/500.jsf</location>
+    </error-page>
+
     <!--
         Use Cookies for session tracking
         This eliminates the ugly jsessionid string which is
