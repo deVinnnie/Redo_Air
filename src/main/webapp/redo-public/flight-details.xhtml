@@ -17,7 +17,9 @@
             <f:viewAction action="#{flightDetailsBean.onParametersLoaded()}" />
         </f:metadata>
 
-        <h2><h:outputFormat value="#{msg['detailsFlight.title']}"/></h2>
+        <h2>
+            <h:outputFormat value="#{msg['detailsFlight.title']}"/>
+        </h2>
 
         <h:dataTable id="detailTable" value="#{flightDetailsBean.flight}" var="flight" styleClass="table table-striped">
             <h:column>

@@ -11,7 +11,7 @@
         </f:metadata>
 
         <h1>#{travelClassBean.travelClass.flight.number}</h1>
-        <p>Travel Class: #{travelClassBean.travelClass.name}</p>
+        <p>#{travelClassBean.travelClass.name} Class</p>
 
         <h:form id="travelclass-price-override">
             <h:outputLabel for="price" value="Overridden Price"/>
@@ -25,7 +25,10 @@
 
             <h:message for="price"/>
 
-            <h:commandLink action="#{travelClassBean.save()}">Save</h:commandLink>
+            <h:commandButton action="#{travelClassBean.save()}"
+                             value="#{msg['admin.travelclass.save']}"
+                             styleClass="btn"
+            />
         </h:form>
     </ui:define>
 </ui:composition>

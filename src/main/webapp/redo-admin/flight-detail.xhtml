@@ -28,43 +28,58 @@
         <h:dataTable value="#{flightBean.travelClassSet}" var="travelClass" styleClass="striped">
             <h:column>
                 <f:facet name="header">
-                    Travel Class
+                    <h:outputText value="#{msg['admin.flight.detail.travel-class']}"/>
                 </f:facet>
                 <h:outputText value="#{travelClass.name}"/>
             </h:column>
 
             <h:column>
                 <f:facet name="header">
-                    Base Price
+                    <h:outputText value="#{msg['admin.flight.detail.base-price']}"/>
                 </f:facet>
-                <h:outputText value="#{travelClass.basePrice}"/>
+
+                &#8364;
+                <h:outputFormat value="#{travelClass.basePrice}">
+                    <f:convertNumber maxFractionDigits="2" minFractionDigits="2" groupingUsed="false" />
+                </h:outputFormat>
             </h:column>
 
             <h:column>
                 <f:facet name="header">
-                    Margin
+                    <h:outputText value="#{msg['admin.flight.detail.margin']}"/>
                 </f:facet>
-                <h:outputText value="#{travelClass.margin}"/>
+                <h:outputText value="#{(travelClass.margin-1.0)*100.00} %"/>
             </h:column>
 
             <h:column>
                 <f:facet name="header">
-                    Override
+                    <h:outputText value="#{msg['admin.flight.detail.overridden-price']}"/>
                 </f:facet>
-                <h:outputText value="#{travelClass.overriddenPrice}"/>
-            </h:column>
 
+                <h:panelGroup rendered="#{not empty travelClass.overriddenPrice}">
+                    &#8364;
+                    <h:outputFormat value="#{travelClass.overriddenPrice}">
+                        <f:convertNumber maxFractionDigits="2" minFractionDigits="2" groupingUsed="false" />
+                    </h:outputFormat>
+                </h:panelGroup>
+                <h:outputText value="/" rendered="#{empty travelClass.overriddenPrice}"/>
+            </h:column>
 
             <h:column>
                 <f:facet name="header">
-                    Retail Price
+                   <h:outputText value="#{msg['admin.flight.detail.retail-price']}"/>
                 </f:facet>
-                <h:outputText value="#{travelClass.endUserPrice}"/>
+
+
+                &#8364;
+                <h:outputFormat value="#{travelClass.endUserPrice}">
+                    <f:convertNumber maxFractionDigits="2" minFractionDigits="2" groupingUsed="false" />
+                </h:outputFormat>
             </h:column>
 
             <h:column>
                 <f:facet name="header">
-                    Remaining Seats
+                    <h:outputText value="#{msg['admin.flight.detail.remaining-seats']}"/>
                 </f:facet>
                 <h:outputText value="#{travelClass.remainingSeats}"/>
             </h:column>
@@ -72,7 +87,7 @@
             <h:column>
                 <h:form>
                     <h:link outcome="/redo-admin/travelclass.xhtml">
-                        Edit
+                        <h:outputText value="#{msg['admin.flight.detail.edit']}"/>
                         <f:param name="id" value="#{travelClass.id}"/>
                     </h:link>
                 </h:form>
