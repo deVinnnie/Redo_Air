@@ -3,7 +3,6 @@ package com.realdolmen.air.beans;
 import com.realdolmen.air.domain.Customer;
 import com.realdolmen.air.domain.Employee;
 import com.realdolmen.air.domain.User;
-import com.realdolmen.air.service.UserService;
 import com.realdolmen.air.service.UserServiceBean;
 
 import javax.annotation.PostConstruct;
@@ -38,7 +37,7 @@ public class UserBean implements Serializable{
         return user;
     }
 
-    public void setUser(Customer user) {
+    public void setUser(User user) {
         this.user = user;
     }
 
