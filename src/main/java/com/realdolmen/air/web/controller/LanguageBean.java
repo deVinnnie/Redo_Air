@@ -10,6 +10,9 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
 
+/**
+ * Backing Bean to change the Language of the site.
+ */
 @Named
 @SessionScoped
 public class LanguageBean implements Serializable {

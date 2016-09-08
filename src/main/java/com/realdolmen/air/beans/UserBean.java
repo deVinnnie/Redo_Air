@@ -42,6 +42,12 @@ public class UserBean implements Serializable{
         this.user = user;
     }
 
+    /**
+     * Tries to cast the current user to an Employee and returns the result.
+     *
+     * @return An Employee object, or null no user is logged in,
+     *              or the user is not an employee.
+     */
     public Customer getUserAsCustomer(){
         if(user instanceof Customer){
             return (Customer) user;
@@ -49,6 +55,12 @@ public class UserBean implements Serializable{
         return null;
     }
 
+    /**
+     * Tries to cast the current user to an Employee and returns the result.
+     *
+     * @return An Employee object, or null no user is logged in,
+     *              or the user is not an employee.
+     */
     public Employee getUserAsEmployee(){
         if(user instanceof Employee){
             return (Employee) user;
