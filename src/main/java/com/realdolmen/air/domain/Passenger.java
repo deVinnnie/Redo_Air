@@ -1,11 +1,18 @@
 package com.realdolmen.air.domain;
 
+import org.hibernate.validator.constraints.NotBlank;
+
 import javax.persistence.Embeddable;
+import javax.validation.constraints.Size;
 
 @Embeddable
 public class Passenger{
+    @NotBlank
+    @Size(min = 1, max = 255)
     private String firstName;
 
+    @NotBlank
+    @Size(min = 1, max = 255)
     private String lastName;
 
     public Passenger() {
