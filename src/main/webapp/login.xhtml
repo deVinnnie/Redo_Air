@@ -1,9 +1,7 @@
 <ui:composition template="/WEB-INF/template.xhtml"
                 xmlns:h="http://xmlns.jcp.org/jsf/html"
                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-                xmlns:f="http://xmlns.jcp.org/jsf/core"
-                xmlns:c="http://java.sun.com/jsp/jstl/core">
-
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
     <ui:define name="pageTitle">
         <h:outputFormat value="#{msg['login.login']}"/>
     </ui:define>
@@ -42,36 +40,9 @@
                         <input class="btn" type="submit" value="Login"/>
                     </div>
                 </div>
-                    <h:link id="registerLink" value="#{msg['login.register']}" outcome="/redo-public/register"/>
+
+                <h:link id="registerLink" value="#{msg['login.register']}" outcome="/redo-public/register"/>
             </form>
         </div>
-
-
-        <!--
-        <h:form id="loginForm">
-            <h:panelGrid columns="2">
-                <h:outputLabel>
-                    <h:outputFormat value="#{msg['login.customer.email']}"/>
-                </h:outputLabel>
-                <h:panelGroup>
-                    <h:inputText id="email" value="#{loginBean.customer.email}">
-                        <f:ajax event="blur" render="errorEmail"/>
-                    </h:inputText>
-                    <h:message id="errorEmail" for="email"/>
-                </h:panelGroup>
-
-                <h:outputLabel>
-                    <h:outputFormat value="#{msg['login.customer.password']}"/>
-                </h:outputLabel>
-                <h:panelGroup>
-                    <h:inputSecret id="password" value="#{loginBean.password}"/>
-                    <h:message for="password" />
-                </h:panelGroup>
-
-                <h:commandButton value="#{msg['login.customer.loginButton']}"/>
-
-            </h:panelGrid>
-        </h:form>
-        -->
     </ui:define>
 </ui:composition>

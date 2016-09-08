@@ -9,13 +9,9 @@
     </ui:define>
 
     <ui:define name="content">
-        <f:metadata>
-            <!--<f:viewParam name="ssn" value="#{passengerBean.currentId.ssn}"/>-->
-            <!--<f:viewParam name="lastName" value="#{passengerBean.currentId.lastName}"/>-->
-            <!--<f:viewAction action="#{passengerBean.setUpAfterParam()}" />-->
-        </f:metadata>
-
-        <h2><h:outputFormat value="#{msg['registration.registration']}"/></h2>
+        <h2>
+            <h:outputFormat value="#{msg['registration.registration']}"/>
+        </h2>
 
         <h:form id="registerForm">
             <h:panelGrid columns="2">
@@ -68,7 +64,10 @@
                     <h:message for="confirmPassword" />
                 </h:panelGroup>
 
-                <h:commandButton value="#{msg['registration.customer.saveButton']}" action="#{registerBean.persistCustomer}"/>
+                <h:commandButton value="#{msg['registration.customer.saveButton']}"
+                                 action="#{registerBean.createCustomer}"
+                                styleClass="btn"
+                />
 
             </h:panelGrid>
         </h:form>
