@@ -29,7 +29,10 @@ public class UserBean implements Serializable{
     @PostConstruct
     public void setUp(){
         Principal userPrincipal = FacesContext.getCurrentInstance().getExternalContext().getUserPrincipal();
-        user = userService.findUserByEmail(userPrincipal.getName());
+
+        if(userPrincipal != null) {
+            user = userService.findUserByEmail(userPrincipal.getName());
+        }
     }
 
     public User getUser() {
