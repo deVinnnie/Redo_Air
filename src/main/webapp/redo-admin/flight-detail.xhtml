@@ -9,7 +9,10 @@
     </ui:define>
 
     <ui:define name="content">
-
+        <f:metadata>
+            <f:viewParam name="id" value="#{flightBean.flightId}" required="true"/>
+            <f:viewAction action="#{flightBean.onParametersLoaded()}" />
+        </f:metadata>
 
         <p:messages id="messages" showDetail="true" autoUpdate="true" closable="true" />
         <h:panelGroup rendered="#{not empty flash.success}">
