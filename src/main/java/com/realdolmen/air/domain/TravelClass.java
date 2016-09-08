@@ -42,6 +42,7 @@ public class TravelClass extends AbstractEntity{
      * Number of seats still available for purchase.
      */
     @Min(0)
+    @NotNull
     private Integer remainingSeats;
 
     /**

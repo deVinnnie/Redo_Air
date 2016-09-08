@@ -29,6 +29,15 @@ public class TravelClassTest {
         this.validator = factory.getValidator();
     }
 
+    //<editor-fold desc="Base Price">
+    @Test
+    public void basePriceEqualToNullShouldBeInvalid(){
+        travelClass.setBasePrice(null);
+
+        Set<ConstraintViolation<TravelClass>> violations = validator.validate(travelClass);
+        assertEquals(1, violations.size());
+    }
+
     @Test
     public void basePriceWithMoreThanTwoDecimalPlacesShouldBeInvalid(){
         travelClass.setBasePrice(
@@ -49,13 +58,22 @@ public class TravelClassTest {
         Set<ConstraintViolation<TravelClass>> violations = validator.validate(travelClass);
         assertEquals(0, violations.size());
     }
+    //</editor-fold>
+
+    //<editor-fold desc="Overridden Price">
+    @Test
+    public void overriddenPriceEqualToNullTwoDecimalPlacesShouldBeValid(){
+        travelClass.setOverriddenPrice(null);
+
+        Set<ConstraintViolation<TravelClass>> violations = validator.validate(travelClass);
+        assertEquals(0, violations.size());
+    }
 
     @Test
     public void overriddenPriceWithMoreThanTwoDecimalPlacesShouldBeInvalid(){
         travelClass.setBasePrice(
                 new BigDecimal("3.141592")
         );
-
 
         Set<ConstraintViolation<TravelClass>> violations = validator.validate(travelClass);
         assertEquals(1, violations.size());
@@ -70,8 +88,9 @@ public class TravelClassTest {
         Set<ConstraintViolation<TravelClass>> violations = validator.validate(travelClass);
         assertEquals(0, violations.size());
     }
+    //</editor-fold>
 
-
+    //<editor-fold desc="End User Price">
     @Test
     public void test_getEndUserPrice_WithNormalBasePrice_GivesCorrectResult(){
         BigDecimal expected = new BigDecimal("105.00");
@@ -107,4 +126,39 @@ public class TravelClassTest {
 
         asserter.assertBigDecimalEqual(overriddenPrice, travelClass.getEndUserPrice());
     }
+    //</editor-fold>
+
+    //<editor-fold desc="Remaining Seats">
+    @Test
+    public void remainingSeatsEqualToNullShouldBeInvalid(){
+        travelClass.setRemainingSeats(null);
+
+        Set<ConstraintViolation<TravelClass>> violations = validator.validate(travelClass);
+        assertEquals(1, violations.size());
+    }
+
+    @Test
+    public void remainingSeatsEqualToZeroShouldBeValid(){
+        travelClass.setRemainingSeats(0);
+
+        Set<ConstraintViolation<TravelClass>> violations = validator.validate(travelClass);
+        assertEquals(0, violations.size());
+    }
+
+    @Test
+    public void negativeRemainingSeatsShouldBeInValid(){
+        travelClass.setRemainingSeats(-1);
+
+        Set<ConstraintViolation<TravelClass>> violations = validator.validate(travelClass);
+        assertEquals(1, violations.size());
+    }
+
+    @Test
+    public void remainingSeatsEqualToOneShouldBeValid(){
+        travelClass.setRemainingSeats(1);
+
+        Set<ConstraintViolation<TravelClass>> violations = validator.validate(travelClass);
+        assertEquals(0, violations.size());
+    }
+    //</editor-fold>
 }
