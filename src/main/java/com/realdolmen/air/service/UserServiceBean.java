@@ -17,7 +17,7 @@ public class UserServiceBean implements UserService{
     public User findUserByEmail(String email){
         List<User> users = userRepository.findUserByEmail(email);
         User user = null;
-        if(users.isEmpty()){
+        if(!users.isEmpty()){
             user = users.get(0);
         }
         return user;
