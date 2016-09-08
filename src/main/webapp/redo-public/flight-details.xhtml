@@ -47,7 +47,9 @@
                 <f:facet name="header">
                     <h:outputText value="#{msg['searchFlight.search.searchDepartureDate']}"/>
                 </f:facet>
-                <h:outputText value="#{flight.departureTime}"/>
+                <h:outputText value="#{flight.departureTime}">
+                    <f:convertDateTime pattern="yyyy-MM-dd HH:mm"/>
+                </h:outputText>
             </h:column>
 
             <h:column>
@@ -61,7 +63,9 @@
                 <f:facet name="header">
                     <h:outputText value="#{msg['searchFlight.details.arrivalTime']}"/>
                 </f:facet>
-                <h:outputText value="#{flight.arrivalTime}"/>
+                <h:outputText value="#{flight.arrivalTime}">
+                    <f:convertDateTime pattern="yyyy-MM-dd HH:mm"/>
+                </h:outputText>
             </h:column>
 
             <h:column>
