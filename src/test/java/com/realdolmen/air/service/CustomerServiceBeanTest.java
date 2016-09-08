@@ -1,8 +1,6 @@
 package com.realdolmen.air.service;
 
-import com.realdolmen.air.domain.AirlineCompany;
 import com.realdolmen.air.domain.Customer;
-import com.realdolmen.air.repository.AirlineCompanyRepositoryInterface;
 import com.realdolmen.air.repository.CustomerRepositoryInterface;
 import org.junit.Before;
 import org.junit.Test;
@@ -14,7 +12,8 @@ import org.mockito.runners.MockitoJUnitRunner;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 import static org.mockito.Mockito.*;
 
 @RunWith(MockitoJUnitRunner.class)
@@ -65,7 +64,8 @@ public class CustomerServiceBeanTest {
 
     @Test
     public void test_createCustomerOnlyPerformsOneAction(){
-        Customer customerAfterCreate = customerServiceBean.createCustomer(customer);
+        customer.setEmail("email2");
+        Customer customerAfterCreate = customerServiceBean.createCustomer(customer, "password");
         assertNotNull(customerAfterCreate);
         assertNotNull(customerAfterCreate.getId());
 
@@ -73,6 +73,7 @@ public class CustomerServiceBeanTest {
         assertEquals(expected, customerAfterCreate.getId());
 
         verify(customerRepositoryInterface).createCustomer(customer);
+        verify(customerRepositoryInterface).findCustomerByEmail("email2");
         verifyNoMoreInteractions(customerRepositoryInterface);
     }
 }

@@ -17,8 +17,11 @@ import java.util.List;
 @ManagedBean
 public class RegisterBean implements Serializable {
     private Customer customer;
+
     @Size(min = 5, max = 20)
     private String password;
+
+    @Size(min = 5, max = 20)
     private String repeatedPassword;
 
     @Inject
@@ -61,24 +64,11 @@ public class RegisterBean implements Serializable {
         this.repeatedPassword = repeatedPassword;
     }
 
-    public String persistCustomer(){
-        if(!checkIfExists(customer.getEmail())){
-            hashPassword();
-            customerServiceBean.createCustomer(customer);
-            return "/redo-public/search-flight.jsf";
+    public String createCustomer(){
+        Customer customer = customerServiceBean.createCustomer(this.customer, password);
+        if(customer != null){
+            return "site-index";
         }
         return "#";
-    }
-
-    private boolean checkIfExists(String email){
-        List<Customer> customerByEmail = customerServiceBean.findCustomerByEmail(email);
-        if(0 == customerByEmail.size())
-            return false;
-        return true;
-    }
-
-    private void hashPassword(){
-        String hashed = BCrypt.hashpw(password,BCrypt.gensalt());
-        customer.setPassword(hashed);
     }
 }
