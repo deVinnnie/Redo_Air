@@ -112,12 +112,16 @@ public class BookingService {
             this.makeTickets();
 
             Payment payment = new Payment();
+            payment.setMethod(this.paymentMethod);
 
             // Credit Card
-            paymentService.doPayment(null, null);
-
-            payment.setMethod(this.paymentMethod);
-            payment.setStatus(PaymentStatus.SUCCEEDED);
+            if(paymentMethod instanceof CreditCard) {
+                paymentService.doPayment(null, null);
+                payment.setStatus(PaymentStatus.SUCCEEDED);
+            }
+            else{
+                payment.setStatus(PaymentStatus.PENDING);
+            }
             booking.setPayment(payment);
 
 
