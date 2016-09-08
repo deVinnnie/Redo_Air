@@ -8,6 +8,7 @@ import com.realdolmen.air.service.TravelClassServiceBean;
 import javax.ejb.LocalBean;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.bean.ViewScoped;
 import javax.inject.Inject;
 import javax.validation.constraints.Min;
 import java.io.IOException;
@@ -16,6 +17,7 @@ import java.math.BigDecimal;
 import java.util.List;
 
 @ManagedBean
+@ViewScoped
 public class FlightDetailsBean implements Serializable {
     private Long flightId;
 
@@ -98,5 +100,10 @@ public class FlightDetailsBean implements Serializable {
 
     public BigDecimal totalPrice(BigDecimal base){
         return base.multiply(new BigDecimal(numberOfSeats));
+    }
+
+    public String goToBooking(Long id){
+        String url = String.format("/redo-customer/booking.xhtml?travelClassID=%d&seats=%d&faces-redirect=true", id, this.numberOfSeats);
+        return url;
     }
 }

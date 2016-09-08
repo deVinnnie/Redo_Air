@@ -3,8 +3,8 @@
                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
                 xmlns:f="http://xmlns.jcp.org/jsf/core"
                 xmlns:c="http://java.sun.com/jsp/jstl/core"
-                xmlns:p="http://primefaces.org/ui">
-
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:jsf="http://xmlns.jcp.org/jsf">
     <ui:define name="pageTitle">
 
     </ui:define>
@@ -68,18 +68,34 @@
                 <li>
                     <div class="collapsible-header #{flightDetailsBean.isActive(tClass.name)}">#{tClass.name}</div>
                     <div class="collapsible-body">
-                        <p>
-                            #{msg['detailsFlight.details.priceByTicket']} &#8364; #{tClass.endUserPrice}<br/>
-                            #{msg['detailsFlight.details.numberOfTickets']} #{flightDetailsBean.numberOfSeats}<br/>
-                            #{msg['detailsFlight.details.totalPrice']} &#8364; #{flightDetailsBean.totalPrice(tClass.endUserPrice)}
-                            <br/><br/>
 
-                            <h:outputLink id="detailsLink" value="../redo-customer/booking.jsf">
-                                <f:param name="travelClassID" value="#{tClass.id}"/>
-                                <f:param name="seats" value="#{flightDetailsBean.numberOfSeats}"/>
-                                <h:outputText value="#{msg['detailsFlight.book']}"/>
-                            </h:outputLink>
-                        </p>
+                        <div class="row">
+                            <div class="col s12 m6">
+                                <p>
+                                    #{msg['detailsFlight.details.priceByTicket']} &#8364; #{tClass.endUserPrice}<br/>
+                                    #{msg['detailsFlight.details.numberOfTickets']} #{flightDetailsBean.numberOfSeats}<br/>
+                                    #{msg['detailsFlight.details.totalPrice']} &#8364; #{flightDetailsBean.totalPrice(tClass.endUserPrice)}
+                                </p>
+                            </div>
+
+                            <div class="col s12 m6">
+                                <h:form>
+                                    <div class="row">
+                                        <h:panelGrid columns="2">
+                                            <h:outputLabel for="seats" value="Number of seats"/>
+                                            <p:spinner id="seats" value="#{flightDetailsBean.numberOfSeats}" min="1" />
+                                        </h:panelGrid>
+                                    </div>
+                                    <div class="row">
+                                        <h:commandButton id="detailsLink"
+                                                         action="#{flightDetailsBean.goToBooking(tClass.id)}"
+                                                        value="#{msg['detailsFlight.book']}"
+                                                         styleClass="btn"
+                                        />
+                                    </div>
+                                </h:form>
+                            </div>
+                        </div>
                     </div>
                 </li>
             </c:forEach>
