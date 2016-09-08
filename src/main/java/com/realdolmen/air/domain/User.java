@@ -17,14 +17,15 @@ public abstract class User extends AbstractEntity{
     @Email
     private String email;
 
+    /**
+     * Hashed password of the user.
+     * Should be set by the service creating the user!
+     */
     @NotBlank
     private String password;
 
-    @Transient
-    private String passwordRepeated;
-
     @Enumerated(EnumType.STRING)
-    private Role role = Role.CUSTOMER;
+    private Role role;
 
     public User(){
         this(Role.NONE);
@@ -48,14 +49,6 @@ public abstract class User extends AbstractEntity{
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    public String getPasswordRepeated() {
-        return passwordRepeated;
-    }
-
-    public void setPasswordRepeated(String passwordRepeated) {
-        this.passwordRepeated = passwordRepeated;
     }
 
     public Role getRole() {
