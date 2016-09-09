@@ -4,3 +4,11 @@ jdk:
   - oraclejdk8
 
 script: "mvn test -DdatabaseEngine=h2"
+
+notifications:
+  email:
+    recipients:
+      - deVinnnie@users.noreply.github.com 
+
+    on_success: change
+    on_failure: always
