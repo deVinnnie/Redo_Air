@@ -6,6 +6,7 @@ import com.realdolmen.air.domain.payement.Endorsement;
 import com.realdolmen.util.integration.RemoteIntegrationTest;
 import org.junit.Test;
 
+import javax.ejb.EJBTransactionRolledbackException;
 import java.util.Arrays;
 
 public class BookingServiceBeanIntegrationTest extends RemoteIntegrationTest {
@@ -13,13 +14,14 @@ public class BookingServiceBeanIntegrationTest extends RemoteIntegrationTest {
     private Customer customer1 = new Customer("River", "Tam");
     private Customer customer2 = new Customer("Simon", "Tam");
 
-    @Test
+    @Test(expected = EJBTransactionRolledbackException.class)
     public void testGetAllAirports() throws Exception {
         BookingService service1 = lookup("quickstart/BookingServiceBean!com.realdolmen.air.service.BookingService");
 
         BookingService service2 = lookup("quickstart/BookingServiceBean!com.realdolmen.air.service.BookingService");
 
         Customer customer1 = service1.findCustomerById(10L);
+        assertEquals(5, (long) service1.findTravelClass(200200L).getRemainingSeats());
 
         service1.setCustomer(customer1);
         service1.setNumberOfSeats(5);
@@ -60,7 +62,10 @@ public class BookingServiceBeanIntegrationTest extends RemoteIntegrationTest {
 
         service2.doBooking();
 
+        assertEquals(0, (long) service2.findTravelClass(200200L).getRemainingSeats());
+
         service1.doBooking();
+
 
     }
 }
