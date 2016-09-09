@@ -18,7 +18,7 @@
                 </div>
             </div>
         </h:panelGroup>
-        <h:panelGroup rendered="#{not empty overviewBean.bookings}">
+        <h:panelGroup id="bookings" layout="block" rendered="#{not empty overviewBean.bookings}">
             <ul class="collapsible" data-collapsible="expandable" >
                 <c:forEach items="#{overviewBean.bookings}" var="booking">
                     <li>
