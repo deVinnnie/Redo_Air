@@ -15,7 +15,7 @@ import java.util.List;
 
 @Stateless
 @Transactional
-public class BookingRepository extends AbstractBaseRepository<BookingRepository, Long> {
+public class BookingRepository extends AbstractBaseRepository<Booking, Long> {
     private static final Logger LOGGER = LoggerFactory.getLogger(FlightRepository.class);
 
     public TravelClass findTravelClass(Long id) {

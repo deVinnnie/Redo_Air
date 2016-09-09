@@ -10,5 +10,6 @@ import java.util.List;
 public interface TravelClassRepositoryInterface {
     TravelClass update(TravelClass travelClass);
     TravelClass find(Long travelClassId);
+    List<TravelClass> findAll();
     List<TravelClass> findAllTravelClassesOfAFlight(Long flightId, int numberOfSeats);
 }
