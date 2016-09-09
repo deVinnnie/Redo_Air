@@ -38,9 +38,10 @@
                     <h:outputText value="#{msg['admin.flight.detail.base-price']}"/>
                 </f:facet>
 
-                &#8364;
                 <h:outputFormat value="#{travelClass.basePrice}">
-                    <f:convertNumber maxFractionDigits="2" minFractionDigits="2" groupingUsed="false" />
+                    <f:convertNumber type="currency" currencySymbol="€"
+                                     maxFractionDigits="2" minFractionDigits="2"
+                                     groupingUsed="false"/>
                 </h:outputFormat>
             </h:column>
 
@@ -57,9 +58,10 @@
                 </f:facet>
 
                 <h:panelGroup rendered="#{not empty travelClass.overriddenPrice}">
-                    &#8364;
                     <h:outputFormat value="#{travelClass.overriddenPrice}">
-                        <f:convertNumber maxFractionDigits="2" minFractionDigits="2" groupingUsed="false" />
+                        <f:convertNumber type="currency" currencySymbol="€"
+                                         maxFractionDigits="2" minFractionDigits="2"
+                                         groupingUsed="false"/>
                     </h:outputFormat>
                 </h:panelGroup>
                 <h:outputText value="/" rendered="#{empty travelClass.overriddenPrice}"/>
@@ -70,10 +72,10 @@
                    <h:outputText value="#{msg['admin.flight.detail.retail-price']}"/>
                 </f:facet>
 
-
-                &#8364;
                 <h:outputFormat value="#{travelClass.endUserPrice}">
-                    <f:convertNumber maxFractionDigits="2" minFractionDigits="2" groupingUsed="false" />
+                    <f:convertNumber type="currency" currencySymbol="€"
+                                     maxFractionDigits="2" minFractionDigits="2"
+                                     groupingUsed="false"/>
                 </h:outputFormat>
             </h:column>
 

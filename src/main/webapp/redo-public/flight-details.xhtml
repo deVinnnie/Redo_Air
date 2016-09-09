@@ -93,9 +93,28 @@
                         <div class="row">
                             <div class="col s12 m6">
                                 <p>
-                                    #{msg['detailsFlight.details.priceByTicket']} &#8364; #{tClass.endUserPrice}<br/>
-                                    #{msg['detailsFlight.details.numberOfTickets']} #{flightDetailsBean.numberOfSeats}<br/>
-                                    #{msg['detailsFlight.details.totalPrice']} &#8364; #{flightDetailsBean.totalPrice(tClass.endUserPrice)}
+                                    #{msg['detailsFlight.details.priceByTicket']}
+                                    <h:outputText value="#{tClass.endUserPrice}">
+                                        <f:convertNumber type="currency" currencySymbol="€"
+                                                         maxFractionDigits="2" minFractionDigits="2"
+                                                         groupingUsed="false"/>
+                                    </h:outputText>
+                                    <br/>
+
+                                    #{msg['detailsFlight.details.numberOfTickets']}
+                                    <h:outputText value="#{flightDetailsBean.numberOfSeats}">
+                                        <f:convertNumber type="currency" currencySymbol="€"
+                                                         maxFractionDigits="2" minFractionDigits="2"
+                                                         groupingUsed="false"/>
+                                    </h:outputText>
+                                    <br/>
+
+                                    #{msg['detailsFlight.details.totalPrice']}
+                                    <h:outputText value="#{flightDetailsBean.totalPrice(tClass.endUserPrice)}">
+                                        <f:convertNumber type="currency" currencySymbol="€"
+                                                         maxFractionDigits="2" minFractionDigits="2"
+                                                         groupingUsed="false"/>
+                                    </h:outputText>
                                 </p>
                             </div>
 

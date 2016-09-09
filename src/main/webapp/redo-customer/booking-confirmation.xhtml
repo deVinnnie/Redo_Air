@@ -81,9 +81,12 @@
                     <td>
                         <h:outputText value="#{msg['booking.confirmation.price-per-ticket']}"/>
                     </td>
-                    <td>&#8364;
+                    <td>
                         <h:outputText value="#{bookingBean.booking.pricePerTicket}">
-                            <f:convertNumber maxFractionDigits="2" minFractionDigits="2" groupingUsed="false" />
+                            <f:convertNumber type="currency" currencySymbol="€"
+                                             maxFractionDigits="2" minFractionDigits="2"
+                                             groupingUsed="false"
+                            />
                         </h:outputText>
                     </td>
                 </tr>
@@ -97,9 +100,12 @@
                     <td>
                         <h:outputText value="#{msg['booking.confirmation.price']}"/>
                     </td>
-                    <td>&#8364;
+                    <td>
                         <h:outputText value="#{bookingBean.booking.totalPriceWithoutDiscount}">
-                            <f:convertNumber maxFractionDigits="2" minFractionDigits="2" groupingUsed="false" />
+                            <f:convertNumber type="currency" currencySymbol="€"
+                                             maxFractionDigits="2" minFractionDigits="2"
+                                             groupingUsed="false"
+                            />
                         </h:outputText>
                     </td>
                 </tr>
@@ -123,9 +129,11 @@
                     </td>
                     <td>
                         <strong>
-                            &#8364;
                             <h:outputText value="#{bookingBean.booking.totalPrice}">
-                                <f:convertNumber maxFractionDigits="2" minFractionDigits="2" groupingUsed="false" />
+                                <f:convertNumber type="currency" currencySymbol="€"
+                                                 maxFractionDigits="2" minFractionDigits="2"
+                                                 groupingUsed="false"
+                                />
                             </h:outputText>
                         </strong>
                     </td>
