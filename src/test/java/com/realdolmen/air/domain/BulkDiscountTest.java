@@ -5,6 +5,7 @@ import org.junit.Test;
 
 import javax.validation.*;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
@@ -36,17 +37,17 @@ public class BulkDiscountTest {
         BulkDiscount bulkDiscount;
         Set<ConstraintViolation<BulkDiscount>> violations;
 
-        bulkDiscount = new BulkDiscount(5, 10);
+        bulkDiscount = new BulkDiscount(5, new BigDecimal("0.10"));
 
         violations = validator.validate(bulkDiscount);
         assertEquals(0, violations.size());
 
-        bulkDiscount = new BulkDiscount(5, 55);
+        bulkDiscount = new BulkDiscount(5, new BigDecimal("0.55"));
 
         violations = validator.validate(bulkDiscount);
         assertEquals(0, violations.size());
 
-        bulkDiscount = new BulkDiscount(5, 95);
+        bulkDiscount = new BulkDiscount(5, new BigDecimal("0.95"));
 
         violations = validator.validate(bulkDiscount);
         assertEquals(0, violations.size());
@@ -54,7 +55,7 @@ public class BulkDiscountTest {
 
     @Test
     public void testNegativeDiscountReturnsConstraintViolation() {
-        BulkDiscount bulkDiscount = new BulkDiscount(5, -1);
+        BulkDiscount bulkDiscount = new BulkDiscount(5, new BigDecimal("-1"));
 
         Set<ConstraintViolation<BulkDiscount>> violations = validator.validate(bulkDiscount);
         assertEquals(1, violations.size());
@@ -62,7 +63,7 @@ public class BulkDiscountTest {
 
     @Test
     public void testDiscountEqualTo100IsValid(){
-        BulkDiscount bulkDiscount = new BulkDiscount(1, 100);
+        BulkDiscount bulkDiscount = new BulkDiscount(1, new BigDecimal("1.00"));
 
         Set<ConstraintViolation<BulkDiscount>> violations = validator.validate(bulkDiscount);
         assertEquals(0, violations.size());
@@ -70,7 +71,7 @@ public class BulkDiscountTest {
 
     @Test
     public void testMinimumSeatsEqualToZeroReturnsConstraintViolation(){
-        BulkDiscount bulkDiscount = new BulkDiscount(0, 1);
+        BulkDiscount bulkDiscount = new BulkDiscount(0, new BigDecimal("0.10"));
 
         Set<ConstraintViolation<BulkDiscount>> violations = validator.validate(bulkDiscount);
         assertEquals(1, violations.size());
@@ -78,7 +79,7 @@ public class BulkDiscountTest {
 
     @Test
     public void testMinimumSeatsLessToZeroReturnsConstraintViolation(){
-        BulkDiscount bulkDiscount = new BulkDiscount(-1, 1);
+        BulkDiscount bulkDiscount = new BulkDiscount(-1, new BigDecimal("0.10"));
 
         Set<ConstraintViolation<BulkDiscount>> violations = validator.validate(bulkDiscount);
         assertEquals(1, violations.size());

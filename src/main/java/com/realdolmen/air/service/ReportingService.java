@@ -1,6 +1,7 @@
 package com.realdolmen.air.service;
 
 import com.realdolmen.air.domain.Booking;
+import com.realdolmen.air.domain.BulkDiscount;
 import com.realdolmen.air.domain.TravelClass;
 import com.realdolmen.air.repository.BookingRepository;
 import com.realdolmen.air.repository.TravelClassRepositoryInterface;
@@ -81,6 +82,23 @@ public class ReportingService {
                     travelClass.getBasePrice().multiply(
                         new BigDecimal(travelClass.getNumberOfSeatsBooked())
                     );
+
+
+            // Discounts are ordered descending by minimum seats.
+            BulkDiscount finalDiscount = null;
+            for(BulkDiscount discount : travelClass.getBulkDiscounts()){
+               if(discount.getMinimumSeats() <= travelClass.getNumberOfSeatsBooked()){
+                   finalDiscount = discount;
+                   break;
+               }
+            }
+
+            if(finalDiscount != null){
+                purchasePriceForEntireClass =
+                        purchasePriceForEntireClass.subtract(
+                                purchasePriceForEntireClass.multiply(finalDiscount.getDiscountPercentage())
+                        );
+            }
 
             total = total.add(purchasePriceForEntireClass);
         }

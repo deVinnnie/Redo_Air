@@ -44,7 +44,7 @@ public class OverviewServiceBeanTest {
     }
 
     @Test
-    public void test_getAllAirportsShouldReturnAll(){
+    public void findBookingByCustomerShouldReturnAll(){
         List<Booking> results = overviewBookingService.findBookingsByCustomerId(1L);
 
         assertNotNull(results);

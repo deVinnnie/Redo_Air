@@ -1,6 +1,7 @@
 package com.realdolmen.air.domain;
 
 import javax.persistence.*;
+import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.Digits;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
@@ -42,17 +43,17 @@ public class TravelClass extends AbstractEntity{
     /**
      * Number of seats still available for purchase.
      */
-    @Min(0)
+    @DecimalMin("0.00")
     @NotNull
     private Integer remainingSeats;
 
     /**
      * Base price in euro's set by the Airline Company.
      */
-    @Min(0)
+    @DecimalMin("0.00")
     @Digits(integer = 12, fraction = 2)
     @NotNull
-    private BigDecimal basePrice;
+    private BigDecimal basePrice = new BigDecimal("0.00");
 
     /**
      * An overridden price (specified in euro's) set by ReDo Air.
@@ -60,13 +61,21 @@ public class TravelClass extends AbstractEntity{
      * If this field is set then the consumer will pay this amount
      * for his ticket instead of the base price * margin set by the Airline.
      */
-    @Min(0)
+    @DecimalMin("0.00")
     @Digits(integer = 12, fraction = 2)
     private BigDecimal overriddenPrice = null;
 
-
     @OneToMany(mappedBy = "travelClass")
     private List<Ticket> tickets;
+
+    /**
+     * A list of discounts associated to this travel class.
+     */
+    @ElementCollection(fetch = FetchType.EAGER)
+    @CollectionTable(name = "BulkDiscount")
+    @OrderBy("minimumSeats DESC")
+    @Column(name = "flight")
+    private List<BulkDiscount> bulkDiscounts;
 
     public TravelClass() {
     }
@@ -128,6 +137,13 @@ public class TravelClass extends AbstractEntity{
         this.tickets = tickets;
     }
 
+    public List<BulkDiscount> getBulkDiscounts() {
+        return bulkDiscounts;
+    }
+
+    public void setBulkDiscounts(List<BulkDiscount> bulkDiscounts) {
+        this.bulkDiscounts = bulkDiscounts;
+    }
     //</editor-fold>
 
     // Make package protected. These should only be changed by Test cases.

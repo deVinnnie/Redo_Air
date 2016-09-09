@@ -1,8 +1,11 @@
 package com.realdolmen.air.domain;
 
 import javax.persistence.Embeddable;
+import javax.validation.constraints.DecimalMax;
+import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
+import java.math.BigDecimal;
 
 /**
  * A bulk discount is a discount given when buying a lot of seats in one go.
@@ -22,15 +25,19 @@ public class BulkDiscount {
      * The discount percentage to be applied to the base price.
      *
      * Since a discount of 0% has no effect the minimum is 1%.
+     *
+     * Price before discount = 100EUR.
+     * 50% -> Resulting price = 50EUR.
+     * 100% -> Resulting price = 0EUR.
      */
-    @Min(1)
-    @Max(100)
-    private Integer discountPercentage;
+    @DecimalMin("0.01")
+    @DecimalMax("1.00")
+    private BigDecimal discountPercentage;
 
     public BulkDiscount() {
     }
 
-    public BulkDiscount(Integer minimumSeats, Integer discountPercentage) {
+    public BulkDiscount(Integer minimumSeats, BigDecimal discountPercentage) {
         this.minimumSeats = minimumSeats;
         this.discountPercentage = discountPercentage;
     }
@@ -43,11 +50,11 @@ public class BulkDiscount {
         this.minimumSeats = minimumSeats;
     }
 
-    public Integer getDiscountPercentage() {
+    public BigDecimal getDiscountPercentage() {
         return discountPercentage;
     }
 
-    public void setDiscountPercentage(Integer discountPercentage) {
+    public void setDiscountPercentage(BigDecimal discountPercentage) {
         this.discountPercentage = discountPercentage;
     }
 }

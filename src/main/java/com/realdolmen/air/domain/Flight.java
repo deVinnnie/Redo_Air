@@ -1,12 +1,11 @@
 package com.realdolmen.air.domain;
 
 import javax.persistence.*;
-import java.io.Serializable;
-import java.time.*;
-import java.util.Calendar;
+import java.time.Duration;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.util.Date;
 import java.util.List;
-import java.util.Set;
 
 @Entity
 @NamedQueries({
@@ -24,6 +23,7 @@ import java.util.Set;
 public class Flight extends AbstractEntity{
     public static final String FIND_ALL = "Flight.findAll";
     public static final String FIND_SEARCH = "Flight.findSearch";
+
     /**
      * Identification number of the flight.
      *
@@ -48,20 +48,10 @@ public class Flight extends AbstractEntity{
     @OneToMany(mappedBy = "flight")
     private List<TravelClass> travelClasses;
 
-    /**
-     * A list of discounts associated to this flight.
-     */
-    @ElementCollection(fetch = FetchType.EAGER)
-    @CollectionTable(name = "BulkDiscount")
-    @Column(name = "flight")
-    private List<BulkDiscount> discounts;
-
     @OneToMany
     private List<Ticket> tickets;
 
-
-    public Flight() {
-    }
+    public Flight() {}
 
     public Flight(String number, Date departureTime, Date arrivalTime) {
         this.number = number;
@@ -69,7 +59,7 @@ public class Flight extends AbstractEntity{
         this.arrivalTime = arrivalTime;
     }
 
-    //<editor-fold="Getters & Setters">
+    //<editor-fold desc="Getters & Setters">
     public String getNumber() {
         return number;
     }
@@ -132,14 +122,6 @@ public class Flight extends AbstractEntity{
 
     public void setTravelClasses(List<TravelClass> travelClasses) {
         this.travelClasses = travelClasses;
-    }
-
-    public List<BulkDiscount> getDiscounts() {
-        return discounts;
-    }
-
-    public void setDiscounts(List<BulkDiscount> discounts) {
-        this.discounts = discounts;
     }
     //</editor-fold>
 
