@@ -1,6 +1,5 @@
 package com.realdolmen.air.beans;
 
-import com.sun.xml.internal.ws.policy.privateutil.PolicyUtils;
 import org.slf4j.Logger;
 
 import javax.enterprise.context.RequestScoped;
