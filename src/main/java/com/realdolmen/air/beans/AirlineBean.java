@@ -67,7 +67,7 @@ public class AirlineBean {
         }
     }
 
-    public void searchAirports(AjaxBehaviorEvent event){
+    public void searchAirlines(AjaxBehaviorEvent event){
         this.searchAirlines();
     }
 }

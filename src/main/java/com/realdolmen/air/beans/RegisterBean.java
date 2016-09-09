@@ -2,17 +2,14 @@ package com.realdolmen.air.beans;
 
 import com.realdolmen.air.domain.Customer;
 import com.realdolmen.air.service.CustomerServiceBean;
-import org.mindrot.jbcrypt.BCrypt;
 
 import javax.annotation.PostConstruct;
-import javax.ejb.LocalBean;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
-import java.util.List;
 
 @ManagedBean
 public class RegisterBean implements Serializable {
@@ -65,8 +62,8 @@ public class RegisterBean implements Serializable {
     }
 
     public String createCustomer(){
-        Customer customer = customerServiceBean.createCustomer(this.customer, password);
-        if(customer != null){
+        Customer newCustomer = customerServiceBean.createCustomer(this.customer, password);
+        if(newCustomer != null){
             return "site-index";
         }
         return "#";

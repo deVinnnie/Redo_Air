@@ -1,12 +1,9 @@
 package com.realdolmen.air.beans;
 
 import com.realdolmen.air.domain.TravelClass;
-import com.realdolmen.air.repository.TravelClassRepository;
 import com.realdolmen.air.service.TravelClassServiceBean;
 
-
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import javax.faces.context.Flash;
@@ -14,7 +11,6 @@ import javax.inject.Inject;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import java.io.IOException;
-import java.util.ResourceBundle;
 
 @ManagedBean
 @ViewScoped

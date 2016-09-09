@@ -3,7 +3,10 @@ package com.realdolmen.air.beans;
 import com.realdolmen.air.domain.Customer;
 import com.realdolmen.air.domain.Employee;
 import com.realdolmen.air.domain.User;
+import com.realdolmen.air.repository.FlightRepository;
 import com.realdolmen.air.service.UserServiceBean;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.SessionScoped;
@@ -18,6 +21,7 @@ import java.security.Principal;
 @Named
 @SessionScoped
 public class UserBean implements Serializable{
+    private static final Logger LOGGER = LoggerFactory.getLogger(FlightRepository.class);
 
     @Inject
     private UserServiceBean userService;
@@ -72,7 +76,7 @@ public class UserBean implements Serializable{
         try {
             request.logout();
         } catch (ServletException e) {
-            e.printStackTrace();
+            LOGGER.error("Servlet Exception in logout", e);
         }
 
         return "site-index";

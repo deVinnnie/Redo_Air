@@ -5,9 +5,7 @@ import com.realdolmen.air.domain.TravelClass;
 import com.realdolmen.air.service.FlightServiceBean;
 import com.realdolmen.air.service.TravelClassServiceBean;
 
-import javax.ejb.LocalBean;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
 import javax.faces.bean.ViewScoped;
 import javax.inject.Inject;
 import javax.validation.constraints.Min;
@@ -45,7 +43,7 @@ public class FlightDetailsBean implements Serializable {
             return;
         }
 
-        getAllClassesFromFlight(flightId,numberOfSeats,flightClass);
+        getAllClassesFromFlight(flightId,numberOfSeats);
     }
 
     public Long getFlightId() {
@@ -72,7 +70,7 @@ public class FlightDetailsBean implements Serializable {
         this.flight = flight;
     }
 
-    private void getAllClassesFromFlight(Long id, int numberOfSeats, String flightClass){
+    private void getAllClassesFromFlight(Long id, int numberOfSeats){
         travelClasses = travelClassServiceBean.findAllTravelClassesOfAFlight(id, numberOfSeats);
     }
 
@@ -93,7 +91,7 @@ public class FlightDetailsBean implements Serializable {
     }
 
     public String isActive(String name){
-        if(name.toLowerCase().equals(flightClass.toLowerCase()))
+        if(name.equalsIgnoreCase(flightClass.toLowerCase()))
             return "active";
         return null;
     }
@@ -103,7 +101,6 @@ public class FlightDetailsBean implements Serializable {
     }
 
     public String goToBooking(Long id){
-        String url = String.format("/redo-customer/booking.xhtml?travelClassID=%d&seats=%d&faces-redirect=true", id, this.numberOfSeats);
-        return url;
+        return String.format("/redo-customer/booking.xhtml?travelClassID=%d&seats=%d&faces-redirect=true", id, this.numberOfSeats);
     }
 }

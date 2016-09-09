@@ -1,6 +1,5 @@
 package com.realdolmen.air.web.controller;
 
-import org.apache.commons.lang3.tuple.ImmutablePair;
 import org.apache.commons.lang3.tuple.ImmutableTriple;
 
 import javax.faces.bean.ApplicationScoped;

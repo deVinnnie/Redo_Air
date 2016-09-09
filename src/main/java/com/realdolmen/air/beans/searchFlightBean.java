@@ -9,12 +9,10 @@ import com.realdolmen.air.service.FlightServiceBean;
 import org.primefaces.event.SelectEvent;
 
 import javax.annotation.PostConstruct;
-import javax.ejb.LocalBean;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
-import javax.validation.constraints.Future;
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -146,8 +144,8 @@ public class searchFlightBean implements Serializable {
     }
 
     public String getById(Long id){
-        AirlineCompany airlineCompany = airlineCompanyServiceBean.findById(id);
-        return airlineCompany.getName();
+        AirlineCompany airlineCompanyById = airlineCompanyServiceBean.findById(id);
+        return airlineCompanyById.getName();
     }
 
     public String findCompanyById(Long id){
