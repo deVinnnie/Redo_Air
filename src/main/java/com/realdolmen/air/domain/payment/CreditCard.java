@@ -7,6 +7,11 @@ import javax.persistence.Entity;
 import javax.validation.constraints.Future;
 import java.util.Date;
 
+/**
+ * See http://www.getcreditcardnumbers.com/ for examples
+ * of valid credit card numbers.
+ *
+ */
 @Entity
 public class CreditCard extends PaymentMethod{
 
