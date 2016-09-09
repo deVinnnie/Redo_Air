@@ -16,8 +16,7 @@ import java.util.List;
 
 
 @ManagedBean
-@SessionScoped
-public class overviewBean implements Serializable{
+public class OverviewBean implements Serializable{
     @Inject
     private OverviewBookingService overviewBookingService;
 
