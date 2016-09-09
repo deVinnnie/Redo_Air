@@ -1,11 +1,36 @@
 <ui:composition template="template.xhtml"
                 xmlns="http://www.w3.org/1999/xhtml"
                 xmlns:h="http://xmlns.jcp.org/jsf/html"
-                xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
 
     <ui:param name="page" value="reports" />
 
     <ui:define name="content">
-        This section is still under construction!
+        <p>
+            <h:outputText value="#{msg['reporting.last-updated']} "/>
+            <h:outputText value="#{reportingBean.lastUpdated}">
+                <f:convertDateTime pattern="d MMMM yyyy HH:mm"/>
+            </h:outputText>
+        </p>
+
+
+        <p>Total Sold:
+            <h:outputText value="#{reportingBean.totalSold}">
+                <f:convertNumber type="currency" currencySymbol="€"
+                                 maxFractionDigits="2" minFractionDigits="2"
+                                 groupingUsed="false"
+                />
+            </h:outputText>
+        </p>
+
+        <p>Total Purchased:
+            <h:outputText value="#{reportingBean.totalPurchased}">
+                <f:convertNumber type="currency" currencySymbol="€"
+                                 maxFractionDigits="2" minFractionDigits="2"
+                                 groupingUsed="false"
+                />
+            </h:outputText>
+        </p>
     </ui:define>
 </ui:composition>

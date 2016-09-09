@@ -5,6 +5,7 @@ import javax.validation.constraints.Digits;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
+import java.util.List;
 
 /**
  * TODO: Abstract price calculation away into a strategy.
@@ -63,6 +64,10 @@ public class TravelClass extends AbstractEntity{
     @Digits(integer = 12, fraction = 2)
     private BigDecimal overriddenPrice = null;
 
+
+    @OneToMany(mappedBy = "travelClass")
+    private List<Ticket> tickets;
+
     public TravelClass() {
     }
 
@@ -114,6 +119,15 @@ public class TravelClass extends AbstractEntity{
     public void setFlight(Flight flight) {
         this.flight = flight;
     }
+
+    public List<Ticket> getTickets() {
+        return tickets;
+    }
+
+    public void setTickets(List<Ticket> tickets) {
+        this.tickets = tickets;
+    }
+
     //</editor-fold>
 
     // Make package protected. These should only be changed by Test cases.
@@ -147,5 +161,20 @@ public class TravelClass extends AbstractEntity{
         else{
             return null;
         }
+    }
+
+    /**
+     * @return The number of seats that are 'sold' / 'booked'.
+     */
+    public Integer getNumberOfSeatsBooked(){
+        return this.getTickets().size();
+    }
+
+    /**
+     * Calculate the number of seats remaining.
+     * @return Number of seats still available.
+     */
+    private Integer getNumberOfSeatsAvailable(){
+        return 0;
     }
 }

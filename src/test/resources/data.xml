@@ -145,4 +145,9 @@
     <travelclass version="1" flight_id="500" id="500100" basePrice="100.0" name="Economy" remainingSeats="100"/>
     <travelclass version="1" flight_id="500" id="500200" basePrice="150.0" name="Business" remainingSeats="100"/>
     <travelclass version="1" flight_id="500" id="500300" basePrice="200.0" name="First Class" remainingSeats="50"/>
+
+    <ticket id="10" version="0" buyPrice="0.00" soldPrice="0.00"
+            firstName="Harry" lastName="Potter" flight_id="400"
+            travelClass_id="400100"/>
+
 </dataset>

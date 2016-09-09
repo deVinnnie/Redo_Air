@@ -1,9 +1,6 @@
 package com.realdolmen.air.domain;
 
-import javax.persistence.Embedded;
-import javax.persistence.Entity;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
 import javax.validation.constraints.Min;
 import java.io.Serializable;
 import java.math.BigDecimal;
@@ -34,6 +31,7 @@ public class Ticket extends AbstractEntity implements Serializable{
     private Flight flight;
 
     @ManyToOne
+    @JoinColumn(name = "travelClass_id")
     private TravelClass travelClass;
 
     public Ticket() {}
