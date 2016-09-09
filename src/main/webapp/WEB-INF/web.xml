@@ -57,68 +57,68 @@
         </form-login-config>
     </login-config>
 
-    <!--<security-constraint>-->
-        <!--<display-name>Admin Pages</display-name>-->
-        <!--<web-resource-collection>-->
-            <!--<web-resource-name>Protected Admin Area</web-resource-name>-->
-            <!--<description></description>-->
-            <!--<url-pattern>/redo-admin/*</url-pattern>-->
-            <!--<http-method>GET</http-method>-->
-            <!--<http-method>POST</http-method>-->
-            <!--<http-method>HEAD</http-method>-->
-            <!--<http-method>PUT</http-method>-->
-            <!--<http-method>OPTIONS</http-method>-->
-            <!--<http-method>TRACE</http-method>-->
-            <!--<http-method>DELETE</http-method>-->
-        <!--</web-resource-collection>-->
-        <!--<auth-constraint>-->
-            <!--<description/>-->
-            <!--<role-name>EMPLOYEE</role-name>-->
-        <!--</auth-constraint>-->
-        <!--<user-data-constraint>-->
-            <!--<transport-guarantee>NONE</transport-guarantee>-->
-        <!--</user-data-constraint>-->
-    <!--</security-constraint>-->
-    <!--<security-constraint>-->
-        <!--<display-name>Customer Personal Pages</display-name>-->
-        <!--<web-resource-collection>-->
-            <!--<web-resource-name>Protected Customer Area</web-resource-name>-->
-            <!--<description></description>-->
-            <!--<url-pattern>/redo-customer/*</url-pattern>-->
-            <!--<http-method>GET</http-method>-->
-            <!--<http-method>POST</http-method>-->
-            <!--<http-method>HEAD</http-method>-->
-            <!--<http-method>PUT</http-method>-->
-            <!--<http-method>OPTIONS</http-method>-->
-            <!--<http-method>TRACE</http-method>-->
-            <!--<http-method>DELETE</http-method>-->
-        <!--</web-resource-collection>-->
-        <!--<auth-constraint>-->
-            <!--<description/>-->
-            <!--<role-name>CUSTOMER</role-name>-->
-        <!--</auth-constraint>-->
-        <!--<user-data-constraint>-->
-            <!--<transport-guarantee>NONE</transport-guarantee>-->
-        <!--</user-data-constraint>-->
-    <!--</security-constraint>-->
-    <!--<security-constraint>-->
-        <!--<display-name>All Access</display-name>-->
-        <!--<web-resource-collection>-->
-            <!--<web-resource-name>None Protected User Area</web-resource-name>-->
-            <!--<description/>-->
-            <!--<url-pattern>/redo-public/*</url-pattern>-->
-            <!--<http-method>GET</http-method>-->
-            <!--<http-method>POST</http-method>-->
-            <!--<http-method>HEAD</http-method>-->
-            <!--<http-method>PUT</http-method>-->
-            <!--<http-method>OPTIONS</http-method>-->
-            <!--<http-method>TRACE</http-method>-->
-            <!--<http-method>DELETE</http-method>-->
-        <!--</web-resource-collection>-->
-        <!--<user-data-constraint>-->
-            <!--<transport-guarantee>NONE</transport-guarantee>-->
-        <!--</user-data-constraint>-->
-    <!--</security-constraint>-->
+    <security-constraint>
+        <display-name>Admin Pages</display-name>
+        <web-resource-collection>
+            <web-resource-name>Protected Admin Area</web-resource-name>
+            <description></description>
+            <url-pattern>/redo-admin/*</url-pattern>
+            <http-method>GET</http-method>
+            <http-method>POST</http-method>
+            <http-method>HEAD</http-method>
+            <http-method>PUT</http-method>
+            <http-method>OPTIONS</http-method>
+            <http-method>TRACE</http-method>
+            <http-method>DELETE</http-method>
+        </web-resource-collection>
+        <auth-constraint>
+            <description/>
+            <role-name>EMPLOYEE</role-name>
+        </auth-constraint>
+        <user-data-constraint>
+            <transport-guarantee>NONE</transport-guarantee>
+        </user-data-constraint>
+    </security-constraint>
+    <security-constraint>
+        <display-name>Customer Personal Pages</display-name>
+        <web-resource-collection>
+            <web-resource-name>Protected Customer Area</web-resource-name>
+            <description></description>
+            <url-pattern>/redo-customer/*</url-pattern>
+            <http-method>GET</http-method>
+            <http-method>POST</http-method>
+            <http-method>HEAD</http-method>
+            <http-method>PUT</http-method>
+            <http-method>OPTIONS</http-method>
+            <http-method>TRACE</http-method>
+            <http-method>DELETE</http-method>
+        </web-resource-collection>
+        <auth-constraint>
+            <description/>
+            <role-name>CUSTOMER</role-name>
+        </auth-constraint>
+        <user-data-constraint>
+            <transport-guarantee>NONE</transport-guarantee>
+        </user-data-constraint>
+    </security-constraint>
+    <security-constraint>
+        <display-name>All Access</display-name>
+        <web-resource-collection>
+            <web-resource-name>None Protected User Area</web-resource-name>
+            <description/>
+            <url-pattern>/redo-public/*</url-pattern>
+            <http-method>GET</http-method>
+            <http-method>POST</http-method>
+            <http-method>HEAD</http-method>
+            <http-method>PUT</http-method>
+            <http-method>OPTIONS</http-method>
+            <http-method>TRACE</http-method>
+            <http-method>DELETE</http-method>
+        </web-resource-collection>
+        <user-data-constraint>
+            <transport-guarantee>NONE</transport-guarantee>
+        </user-data-constraint>
+    </security-constraint>
 
     <security-role>
         <role-name>EMPLOYEE</role-name>
