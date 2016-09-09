@@ -5,31 +5,31 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.ejb.Stateless;
-import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
-import javax.persistence.PersistenceContext;
 import java.util.Collections;
 import java.util.List;
 
 @Stateless
 public class AirportRepository extends AbstractBaseRepository<Airport, Long> implements AirportRepositoryInterface {
     private static final Logger LOGGER = LoggerFactory.getLogger(FlightRepository.class);
+    private static String info = "No information found: ";
 
     @Override
     public List<Airport> findAll() {
         try {
             return getEntityManager().createNamedQuery(Airport.FIND_ALL_ACTIVE, Airport.class).getResultList();
         } catch (NoResultException e) {
-            LOGGER.error("No information found: ", e);
+            LOGGER.error(info, e);
         }
         return Collections.emptyList();
     }
 
+    @Override
     public List<Airport> findAllActiveAndNonActive() {
         try {
             return getEntityManager().createNamedQuery(Airport.FIND_ALL, Airport.class).getResultList();
         } catch (NoResultException e) {
-            LOGGER.error("No information found: ", e);
+            LOGGER.error(info, e);
         }
         return Collections.emptyList();
     }
@@ -40,7 +40,7 @@ public class AirportRepository extends AbstractBaseRepository<Airport, Long> imp
         try {
             return getEntityManager().find(Airport.class, id);
         } catch (NoResultException e) {
-            LOGGER.error("No information found: ", e);
+            LOGGER.error(info, e);
         }
         return null;
     }
@@ -58,7 +58,7 @@ public class AirportRepository extends AbstractBaseRepository<Airport, Long> imp
                     .setParameter("search", "%" + searchTerm.toLowerCase() + "%")
                     .getResultList();
         } catch (NoResultException e) {
-            LOGGER.error("No information found: ", e);
+            LOGGER.error(info, e);
         }
         return Collections.emptyList();
 

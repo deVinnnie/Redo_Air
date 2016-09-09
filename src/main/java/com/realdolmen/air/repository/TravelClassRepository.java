@@ -25,8 +25,7 @@ public class TravelClassRepository extends AbstractBaseRepository<TravelClass, L
 
     @Override
     public TravelClass update(TravelClass travelClass) {
-        travelClass = getEntityManager().merge(travelClass);
-        return travelClass;
+        return getEntityManager().merge(travelClass);
     }
 
     @Override

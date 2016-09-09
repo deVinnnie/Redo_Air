@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:c="http://java.sun.com/jsp/jstl/core"
+      xmlns:cc="http://java.sun.com/jsf/composite" xmlns:f="http://xmlns.jcp.org/jsf/core">
+<cc:interface></cc:interface>
+
+<cc:implementation>
+    <h:form id="search-form-company">
+        <div class="row">
+            <div class="input-field">
+                <div class="col s6 l6">
+                    <i class="material-icons prefix">search</i>
+                    <h:outputLabel for="search">Search</h:outputLabel>
+                    <h:inputText id="search" value="#{airlineBean.searchTerm}">
+                        <f:ajax event="keyup" listener="#{airlineBean.searchAirlines()}" render="search-results"/>
+                    </h:inputText>
+                </div>
+
+                <div class="col s6 l6">
+                    <h:commandButton value="Search" action="#{airlineBean.searchAirlines()}" styleClass="btn"/>
+                </div>
+            </div>
+        </div>
+    </h:form>
+</cc:implementation>
+</html>

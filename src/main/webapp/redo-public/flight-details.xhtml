@@ -104,7 +104,7 @@
                                     <div class="row">
                                         <h:panelGrid columns="2">
                                             <h:outputLabel for="seats" value="Number of seats"/>
-                                            <p:spinner id="seats" value="#{flightDetailsBean.numberOfSeats}" min="1" />
+                                            <p:spinner id="seats" value="#{flightDetailsBean.numberOfSeats}" min="1" max="#{tClass.remainingSeats}" />
                                         </h:panelGrid>
                                     </div>
                                     <div class="row">

@@ -11,7 +11,7 @@ import java.util.List;
 
 @Entity
 @NamedQueries({
-    @NamedQuery(name = Booking.FIND_ALL_BY_CUSTOMERID, query = "SELECT b FROM Booking b where b.customer.id = :id")
+        @NamedQuery(name = Booking.FIND_ALL_BY_CUSTOMERID, query = "SELECT b FROM Booking b where b.customer.id = :id")
 })
 public class Booking extends AbstractEntity {
     public static final String FIND_ALL_BY_CUSTOMERID = "Booking.findAllByCustomerId";

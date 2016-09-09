@@ -19,13 +19,11 @@ public class BookingRepository extends AbstractBaseRepository<Booking, Long> {
     private static final Logger LOGGER = LoggerFactory.getLogger(FlightRepository.class);
 
     public TravelClass findTravelClass(Long id) {
-        TravelClass travelClass = getEntityManager().find(TravelClass.class, id);/*, LockModeType.OPTIMISTIC_FORCE_INCREMENT);*/
-        return travelClass;
+        return getEntityManager().find(TravelClass.class, id);/*, LockModeType.OPTIMISTIC_FORCE_INCREMENT);*/
     }
 
     public TravelClass updateTravelClass(TravelClass travelClass) {
-        travelClass = getEntityManager().merge(travelClass);
-        return travelClass;
+        return getEntityManager().merge(travelClass);
     }
 
     public void create(Booking booking) {

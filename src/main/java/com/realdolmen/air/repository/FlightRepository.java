@@ -6,23 +6,21 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.ejb.Stateless;
-import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
-import javax.persistence.PersistenceContext;
 import java.util.Collections;
-import java.util.Date;
 import java.util.List;
 
 @Stateless
 public class FlightRepository extends AbstractBaseRepository<Flight, Long> implements FlightRepositoryInterface {
     private static final Logger LOGGER = LoggerFactory.getLogger(FlightRepository.class);
+    private static String info = "No information found: ";
 
     @Override
     public Flight findById(Long id) {
         try {
             return getEntityManager().find(Flight.class, id);
         } catch (NoResultException e) {
-            LOGGER.error("No information found: ", e);
+            LOGGER.error(info, e);
         }
         return null;
     }
@@ -34,15 +32,14 @@ public class FlightRepository extends AbstractBaseRepository<Flight, Long> imple
                     .setParameter("flight", flightId)
                     .getResultList();
         } catch (NoResultException e) {
-            LOGGER.error("No information found: ", e);
+            LOGGER.error(info, e);
         }
         return Collections.emptyList();
     }
 
     @Override
     public Flight update(Flight flight) {
-        flight = getEntityManager().merge(flight);
-        return flight;
+        return getEntityManager().merge(flight);
     }
 
     @Override
@@ -50,7 +47,7 @@ public class FlightRepository extends AbstractBaseRepository<Flight, Long> imple
         try {
             return getEntityManager().createNamedQuery(Flight.FIND_ALL, Flight.class).getResultList();
         } catch (NoResultException e) {
-            LOGGER.error("No information found: ", e);
+            LOGGER.error(info, e);
         }
         return Collections.emptyList();
     }
@@ -66,7 +63,7 @@ public class FlightRepository extends AbstractBaseRepository<Flight, Long> imple
                     .setParameter("arrivalAirportId", arrivalAirportId)
                     .getResultList();
         } catch (NoResultException e) {
-            LOGGER.error("No information found: ", e);
+            LOGGER.error(info, e);
         }
         return Collections.emptyList();
     }

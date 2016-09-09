@@ -13,6 +13,7 @@ import java.util.List;
 public class UserRepository extends AbstractBaseRepository<User, Long> implements UserRepositoryInterface{
     private static final Logger LOGGER = LoggerFactory.getLogger(FlightRepository.class);
 
+    @Override
     public List<User> findUserByEmail(String email){
         try{
             TypedQuery<User> query = getEntityManager().createNamedQuery(User.FIND_BY_EMAIL, User.class);

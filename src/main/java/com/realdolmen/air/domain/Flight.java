@@ -153,9 +153,9 @@ public class Flight extends AbstractEntity{
     }
 
     public Duration getDuration(){
-        LocalDateTime departure = LocalDateTime.ofInstant(departureTime.toInstant(), ZoneId.systemDefault()).withNano(0);
-        LocalDateTime arrival = LocalDateTime.ofInstant(arrivalTime.toInstant(), ZoneId.systemDefault()).withNano(0);
+        LocalDateTime departureTimeCalc = LocalDateTime.ofInstant(departureTime.toInstant(), ZoneId.systemDefault()).withNano(0);
+        LocalDateTime arrivalTimeCalc = LocalDateTime.ofInstant(arrivalTime.toInstant(), ZoneId.systemDefault()).withNano(0);
 
-        return Duration.between(departure, arrival);
+        return Duration.between(departureTimeCalc, arrivalTimeCalc);
     }
 }

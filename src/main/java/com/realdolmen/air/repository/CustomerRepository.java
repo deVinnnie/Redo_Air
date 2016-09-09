@@ -5,9 +5,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.ejb.Stateless;
-import javax.persistence.EntityManager;
-import javax.persistence.NoResultException;
-import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 import java.util.Collections;
 import java.util.List;
@@ -16,11 +13,13 @@ import java.util.List;
 public class CustomerRepository extends AbstractBaseRepository<Customer, Long> implements CustomerRepositoryInterface{
     private static final Logger LOGGER = LoggerFactory.getLogger(FlightRepository.class);
 
+    @Override
     public Customer createCustomer(Customer customer){
         getEntityManager().persist(customer);
         return customer;
     }
 
+    @Override
     public List<Customer> findCustomerByEmail(String email){
         try{
             TypedQuery<Customer> query = getEntityManager().createNamedQuery(Customer.FIND_BY_EMAIL2, Customer.class);
