@@ -35,8 +35,6 @@
             <p:menuitem value="#{msg['booking.phase.confirmation']}" />
         </p:steps>
 
-        <h:messages/>
-
         <h:panelGroup rendered="#{bookingBean.phase eq 'PASSENGER_INFORMATION'}">
             <ui:include src="booking-passengers.xhtml"/>
         </h:panelGroup>

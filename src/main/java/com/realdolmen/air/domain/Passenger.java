@@ -8,12 +8,12 @@ import java.io.Serializable;
 
 @Embeddable
 public class Passenger implements Serializable{
-    @NotBlank
-    @Size(min = 1, max = 255)
+    @NotBlank(message = "{firstname.empty}")
+    @Size(min = 1, max = 255, message = "{firstname.size}")
     private String firstName;
 
-    @NotBlank
-    @Size(min = 1, max = 255)
+    @NotBlank(message = "{lastname.empty}")
+    @Size(min = 1, max = 255, message = "{lastname.size}")
     private String lastName;
 
     public Passenger() {
