@@ -17,7 +17,7 @@ public class RedirectionBean {
      * Redirect to the home page of the site.
      * Used in /index.xhtml, so that requests on the root url go to the correct page.
      *
-     * @throws IOException
+     * @throws IOException if an input/output error occurs
      */
     public void doRedirect() throws IOException {
         FacesContext.getCurrentInstance().getExternalContext().redirect("./redo-public/search-flight.jsf");
@@ -26,7 +26,7 @@ public class RedirectionBean {
     /**
      * Send a 404 Page Not Found response.
      *
-     * @throws IOException
+     * @throws IOException if an input/output error occurs
      */
     public void throw404() throws IOException {
         FacesContext context= FacesContext.getCurrentInstance();

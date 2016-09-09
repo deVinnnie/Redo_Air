@@ -28,8 +28,8 @@ public class BulkDiscount implements Serializable{
      * Since a discount of 0% has no effect the minimum is 1%.
      *
      * Price before discount = 100EUR.
-     * 50% -> Resulting price = 50EUR.
-     * 100% -> Resulting price = 0EUR.
+     * 50% gives 50EUR.
+     * 100% gives 0EUR.
      */
     @DecimalMin("0.01")
     @DecimalMax("1.00")
