@@ -1,6 +1,6 @@
 package com.realdolmen.air.service;
 
-import com.realdolmen.air.domain.payement.CreditCard;
+import com.realdolmen.air.domain.payment.CreditCard;
 import org.junit.Before;
 import org.junit.Test;
 

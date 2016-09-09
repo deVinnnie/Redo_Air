@@ -1,6 +1,6 @@
 package com.realdolmen.air.domain;
 
-import com.realdolmen.air.domain.payement.Payment;
+import com.realdolmen.air.domain.payment.Payment;
 
 import javax.persistence.*;
 import javax.validation.Valid;

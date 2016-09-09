@@ -1,4 +1,4 @@
-package com.realdolmen.air.domain.payement;
+package com.realdolmen.air.domain.payment;
 
 import javax.persistence.Entity;
 

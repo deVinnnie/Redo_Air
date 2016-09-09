@@ -2,7 +2,7 @@ package com.realdolmen.air.service;
 
 import com.realdolmen.air.domain.Customer;
 import com.realdolmen.air.domain.Passenger;
-import com.realdolmen.air.domain.payement.Endorsement;
+import com.realdolmen.air.domain.payment.Endorsement;
 import com.realdolmen.util.integration.RemoteIntegrationTest;
 import org.junit.Test;
 

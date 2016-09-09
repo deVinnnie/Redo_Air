@@ -1,4 +1,4 @@
-package com.realdolmen.air.domain.payement;
+package com.realdolmen.air.domain.payment;
 
 import org.hibernate.validator.constraints.CreditCardNumber;
 import org.hibernate.validator.constraints.NotBlank;

@@ -1,10 +1,10 @@
 package com.realdolmen.air.service;
 
 import com.realdolmen.air.domain.*;
-import com.realdolmen.air.domain.payement.CreditCard;
-import com.realdolmen.air.domain.payement.Payment;
-import com.realdolmen.air.domain.payement.PaymentMethod;
-import com.realdolmen.air.domain.payement.PaymentStatus;
+import com.realdolmen.air.domain.payment.CreditCard;
+import com.realdolmen.air.domain.payment.Payment;
+import com.realdolmen.air.domain.payment.PaymentMethod;
+import com.realdolmen.air.domain.payment.PaymentStatus;
 import com.realdolmen.air.repository.BookingRepository;
 import com.realdolmen.air.repository.CustomerRepositoryInterface;
 import com.realdolmen.air.repository.TravelClassRepositoryInterface;

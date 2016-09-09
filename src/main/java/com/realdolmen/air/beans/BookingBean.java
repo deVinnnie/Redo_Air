@@ -1,8 +1,8 @@
 package com.realdolmen.air.beans;
 
 import com.realdolmen.air.domain.*;
-import com.realdolmen.air.domain.payement.CreditCard;
-import com.realdolmen.air.domain.payement.Endorsement;
+import com.realdolmen.air.domain.payment.CreditCard;
+import com.realdolmen.air.domain.payment.Endorsement;
 import com.realdolmen.air.service.BookingServiceBean;
 import com.realdolmen.air.web.controller.Phase;
 import org.slf4j.Logger;
@@ -15,7 +15,6 @@ import javax.faces.bean.ViewScoped;
 import javax.inject.Inject;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
-import java.awt.print.Book;
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
