@@ -40,6 +40,12 @@
           role="EMPLOYEE"
           version="0"/>
     <employee id="20"/>
+
+    <user id="30" email="albus.dumbledore@hogwarts.org"
+          password="$2a$10$z5vr/uy/47FSkbtRjE4J2.Y/0MkeldTPKXoHvrK8FGYc..qcRlOAi"
+          role="CUSTOMER"
+          version="0"/>
+    <customer id="30" firstName="Albus" lastName="Dumbledore"/>
     <!--<userroles username="harry.potter@hogwarts.org" role="ADMIN"/>-->
 
 
@@ -149,7 +155,7 @@
     <bulkdiscount discountPercentage="0.10" minimumSeats="5" TravelClass_id="500100"/>
 
     <ticket id="10" version="0" buyPrice="0.00" soldPrice="0.00"
-            firstName="Harry" lastName="Potter" flight_id="400"
+            firstName="Harry" lastName="Potter"
             travelClass_id="400100"/>
 
 </dataset>

@@ -3,16 +3,19 @@ package com.realdolmen.air.beans;
 import com.realdolmen.air.domain.*;
 import com.realdolmen.air.domain.payement.CreditCard;
 import com.realdolmen.air.domain.payement.Endorsement;
-import com.realdolmen.air.service.BookingService;
+import com.realdolmen.air.service.BookingServiceBean;
 import com.realdolmen.air.web.controller.Phase;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.annotation.PostConstruct;
+import javax.ejb.EJBTransactionRolledbackException;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.inject.Inject;
-import javax.validation.ConstraintViolationException;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
+import java.awt.print.Book;
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -28,8 +31,10 @@ import java.util.List;
 @ViewScoped
 public class BookingBean implements Serializable{
 
+    private Logger logger = LoggerFactory.getLogger(BookingBean.class);
+
     @Inject
-    private BookingService service;
+    private BookingServiceBean service;
 
     @Inject
     private UserBean userBean;
@@ -226,6 +231,11 @@ public class BookingBean implements Serializable{
         try {
             service.doBooking();
             return "/redo-customer/success.xhtml?faces-redirect=true";
+        }
+        catch(EJBTransactionRolledbackException e){
+            logger.info("--------- Booking failed. ------------");
+            logger.info(e.getMessage());
+            return "/redo-customer/failure.xhtml?faces-redirect=true";
         }
         catch(Exception e){
             return "/redo-customer/failure.xhtml?faces-redirect=true";

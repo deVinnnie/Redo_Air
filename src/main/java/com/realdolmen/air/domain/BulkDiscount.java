@@ -5,6 +5,7 @@ import javax.validation.constraints.DecimalMax;
 import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
+import java.io.Serializable;
 import java.math.BigDecimal;
 
 /**
@@ -17,7 +18,7 @@ import java.math.BigDecimal;
  * 5 seats or more : -10%
  */
 @Embeddable
-public class BulkDiscount {
+public class BulkDiscount implements Serializable{
     @Min(1)
     private Integer minimumSeats;
 

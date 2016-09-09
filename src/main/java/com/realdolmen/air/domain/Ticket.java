@@ -28,9 +28,6 @@ public class Ticket extends AbstractEntity implements Serializable{
     private Passenger passenger;
 
     @ManyToOne
-    private Flight flight;
-
-    @ManyToOne
     @JoinColumn(name = "travelClass_id")
     private TravelClass travelClass;
 
@@ -48,14 +45,6 @@ public class Ticket extends AbstractEntity implements Serializable{
 
     public void setPassenger(Passenger passenger) {
         this.passenger = passenger;
-    }
-
-    public Flight getFlight() {
-        return flight;
-    }
-
-    public void setFlight(Flight outFlight) {
-        this.flight = outFlight;
     }
 
     public BigDecimal getSoldPrice() {

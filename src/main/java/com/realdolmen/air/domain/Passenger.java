@@ -4,9 +4,10 @@ import org.hibernate.validator.constraints.NotBlank;
 
 import javax.persistence.Embeddable;
 import javax.validation.constraints.Size;
+import java.io.Serializable;
 
 @Embeddable
-public class Passenger{
+public class Passenger implements Serializable{
     @NotBlank
     @Size(min = 1, max = 255)
     private String firstName;

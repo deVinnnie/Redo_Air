@@ -16,7 +16,7 @@ import java.math.BigDecimal;
 import java.util.Arrays;
 
 @RunWith(MockitoJUnitRunner.class)
-public class BookingServiceTest {
+public class BookingServiceBeanTest {
 
     @Mock
     private PaymentService service;
@@ -25,7 +25,7 @@ public class BookingServiceTest {
     private BookingRepository bookingRepository;
 
     @InjectMocks
-    private BookingService bookingService;
+    private BookingServiceBean bookingServiceBean;
 
     private Customer customer = new Customer("River", "Tam");
 
@@ -39,11 +39,11 @@ public class BookingServiceTest {
      */
     @Test
     public void testDoBookingWithOnePassenger(){
-        bookingService.setUp();
+        bookingServiceBean.setUp();
 
-        bookingService.setCustomer(customer);
-        bookingService.setNumberOfSeats(1);
-        bookingService.setTravelClass(
+        bookingServiceBean.setCustomer(customer);
+        bookingServiceBean.setNumberOfSeats(1);
+        bookingServiceBean.setTravelClass(
                 new TravelClass(
                         "Business",
                         100,
@@ -51,16 +51,16 @@ public class BookingServiceTest {
                         null
                 )
         );
-        bookingService.setPassengers(
+        bookingServiceBean.setPassengers(
                 Arrays.asList(
                         new Passenger("Harry", "Potter")
                 )
         );
 
-        bookingService.setPaymentMethod(new Endorsement());
+        bookingServiceBean.setPaymentMethod(new Endorsement());
 
-        bookingService.doBooking();
+        bookingServiceBean.doBooking();
 
-        System.out.println(bookingService.getBooking().getId());
+        System.out.println(bookingServiceBean.getBooking().getId());
     }
 }

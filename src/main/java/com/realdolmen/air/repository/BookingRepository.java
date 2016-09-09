@@ -8,6 +8,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.ejb.Stateless;
+import javax.persistence.LockModeType;
 import javax.persistence.NoResultException;
 import javax.transaction.Transactional;
 import java.util.Collections;
@@ -19,7 +20,7 @@ public class BookingRepository extends AbstractBaseRepository<Booking, Long> {
     private static final Logger LOGGER = LoggerFactory.getLogger(FlightRepository.class);
 
     public TravelClass findTravelClass(Long id) {
-        return getEntityManager().find(TravelClass.class, id);/*, LockModeType.OPTIMISTIC_FORCE_INCREMENT);*/
+        return getEntityManager().find(TravelClass.class, id, LockModeType.OPTIMISTIC_FORCE_INCREMENT);
     }
 
     public TravelClass updateTravelClass(TravelClass travelClass) {
