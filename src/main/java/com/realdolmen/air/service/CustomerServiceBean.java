@@ -4,7 +4,6 @@ import com.realdolmen.air.domain.Customer;
 import com.realdolmen.air.repository.CustomerRepositoryInterface;
 import org.mindrot.jbcrypt.BCrypt;
 
-import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
@@ -37,7 +36,7 @@ public class CustomerServiceBean {
      */
     private boolean checkIfCustomerExists(String email){
         List<Customer> customerByEmail = this.findCustomerByEmail(email);
-        if(0 == customerByEmail.size())
+        if(customerByEmail.isEmpty())
             return false;
         return true;
     }

@@ -1,7 +1,6 @@
 package com.realdolmen.air.service;
 
 import com.realdolmen.air.domain.TravelClass;
-import com.realdolmen.air.repository.TravelClassRepository;
 import com.realdolmen.air.repository.TravelClassRepositoryInterface;
 
 import javax.ejb.EJB;

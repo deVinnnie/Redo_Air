@@ -41,7 +41,7 @@ public class FlightServiceBean implements FlightService{
         if(departureTime != null){
             for(Flight flight: possibleFlights){
                 if(checkSameDate(departureTime, flight.getDepartureTime())){
-                    System.out.println("true");
+//                    System.out.println("true");
                     correctDateFlights.add(flight);
                 }
             }

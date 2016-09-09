@@ -14,6 +14,7 @@ public class UserServiceBean implements UserService{
     @EJB
     UserRepositoryInterface userRepository;
 
+    @Override
     public User findUserByEmail(String email){
         List<User> users = userRepository.findUserByEmail(email);
         User user = null;
