@@ -1,4 +1,4 @@
-package com.realdolmen.air.web.controller;
+package com.realdolmen.air.beans;
 
 /**
  * Booking phase, used by the wizard.

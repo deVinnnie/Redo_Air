@@ -4,7 +4,6 @@ import com.realdolmen.air.domain.*;
 import com.realdolmen.air.domain.payment.CreditCard;
 import com.realdolmen.air.domain.payment.Endorsement;
 import com.realdolmen.air.service.BookingServiceBean;
-import com.realdolmen.air.web.controller.Phase;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

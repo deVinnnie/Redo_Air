@@ -1,4 +1,4 @@
-package com.realdolmen.air.web.validator;
+package com.realdolmen.air.beans.validator;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.component.UIComponent;

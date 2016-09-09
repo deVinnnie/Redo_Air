@@ -1,4 +1,4 @@
-package com.realdolmen.air.web;
+package com.realdolmen.air.servlet;
 
 import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;

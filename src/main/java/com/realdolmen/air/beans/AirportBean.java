@@ -1,4 +1,4 @@
-package com.realdolmen.air.web.controller;
+package com.realdolmen.air.beans;
 
 import com.realdolmen.air.domain.Airport;
 import com.realdolmen.air.service.AirportServiceBean;

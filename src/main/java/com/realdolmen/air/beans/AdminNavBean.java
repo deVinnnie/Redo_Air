@@ -1,4 +1,4 @@
-package com.realdolmen.air.web.controller;
+package com.realdolmen.air.beans;
 
 import org.apache.commons.lang3.tuple.ImmutableTriple;
 
