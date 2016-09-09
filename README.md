@@ -1,34 +1,33 @@
-JEE7 Starter
-============
+ReDo Air
+========
 
 [![Build Status](https://travis-ci.org/deVinnnie/Redo_Air.svg?branch=master)](https://travis-ci.org/deVinnnie/Redo_Air)
 
-This project serves as a demo/template for JEE6 and JEE7 development. It is used as a starting point for a number of RealDolmen courses.
+Adapted from [jee7-starter](https://github.com/kvanrobbroeck/jee7-starter).
 
-Version 2.0 is now heavily simplified, to make use of the trends in JEE7 to allow more simplified project packaging such
-as web-profile only.
 
-RealDolmen courses
-------------------
-    * Developing Java Enterprise Applications with JEE 6
-    * Building Enterprise Applications with JEE 7
-    * Enterprise JavaBeans (EJB) 3.1
-    * Java Enterprise Component Development with JPA 2 and EJB 3.1
-    * Java Persistence API (JPA) 2
-    * Java Server Faces 2
+Running with Integration Tests
+------------------------------
 
-Demonstrated features
----------------------
-    * JEE7
-    * EJB
-    * CDI
-    * JSF
-    * JPA
-    * JMS
-    * Remote JNDI using unit tests (run them with -Dintegration or they will be skipped)
-    * JAX-RS web service
-    * JAX-WS web service
-    * Servlets & JSP
+    mvn clean package -Dintegration
+    
+Running with Integration Tests and Selenium Tests
+-------------------------------------------------
+
+Set the webdriver.gecko.driver property to the correct path.
+(See [https://www.seleniumeasy.com/selenium-tutorials/launching-firefox-browser-with-geckodriver-selenium-3](https://www.seleniumeasy.com/selenium-tutorials/launching-firefox-browser-with-geckodriver-selenium-3))
+
+    mvn clean package -Dwebdriver.gecko.driver=C:\Users\..\bin\geckodriver.exe -Dintegration
+
+Activating security realm on Wildfly
+------------------------------------
+
+Copy the contents of `/src/main/webapp/WEB-INF/wildfly-standalone-snippet.xml` and insert it into the Wildfly standalone.xml file.
+
+Other useful information
+========================
+
+(Taken from original Readme)
 
 Platform
 --------
