@@ -1,7 +1,11 @@
 package com.realdolmen.air.beans;
 
+import com.sun.xml.internal.ws.policy.privateutil.PolicyUtils;
+import org.slf4j.Logger;
+
 import javax.enterprise.context.RequestScoped;
 import javax.faces.context.FacesContext;
+import javax.inject.Inject;
 import javax.inject.Named;
 import java.io.IOException;
 
@@ -12,6 +16,9 @@ import java.io.IOException;
 @Named
 @RequestScoped
 public class RedirectionBean {
+
+    @Inject
+    private Logger logger;
 
     /**
      * Redirect to the home page of the site.
@@ -26,11 +33,15 @@ public class RedirectionBean {
     /**
      * Send a 404 Page Not Found response.
      *
-     * @throws IOException if an input/output error occurs
      */
-    public void throw404() throws IOException {
-        FacesContext context= FacesContext.getCurrentInstance();
-        context.getExternalContext().responseSendError(404, "The resource you requested does not exist");
-        context.responseComplete();
+    public void throw404() {
+        try {
+            FacesContext context = FacesContext.getCurrentInstance();
+            context.getExternalContext().responseSendError(404, "The resource you requested does not exist");
+            context.responseComplete();
+        }
+        catch(IOException ex){
+            logger.error("Error occurred while trying to redirect to 404 page", ex);
+        }
     }
 }

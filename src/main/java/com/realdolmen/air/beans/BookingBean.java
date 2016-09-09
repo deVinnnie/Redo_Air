@@ -37,6 +37,9 @@ public class BookingBean implements Serializable{
     @Inject
     private UserBean userBean;
 
+    @Inject
+    private RedirectionBean redirectionBean;
+
     private List<Passenger> passengerList;
 
     @Min(1)
@@ -65,32 +68,15 @@ public class BookingBean implements Serializable{
     @PostConstruct()
     public void setUp(){
         this.service.setCustomer(userBean.getUserAsCustomer());
-
-
-        //this.seatsWanted = 3
-        //phase = Phase.CONFIRMATION;
-
-        /*service.setNumberOfSeats(1);
-        service.setTravelClass(
-                new TravelClass(
-                        "Business",
-                        100,
-                        new BigDecimal("10.0"),
-                        null
-                )
-        );
-        service.setPassengers(
-            Arrays.asList(
-                    new Passenger("Harry", "Potter")
-            )
-        );
-
-        service.setPaymentMethod(new Endorsement());*/
-
     }
 
     public void setUpAfterParam(){
         this.travelClass = service.findTravelClass(travelClassID);
+        if(travelClass == null){
+            redirectionBean.throw404();
+            return;
+        }
+
         this.service.setTravelClass(travelClass);
 
         this.flight = travelClass.getFlight();
