@@ -30,6 +30,21 @@ public class RedirectionBean {
     }
 
     /**
+     * Redirect to the specified url.
+     *
+     * Fails gracefully when an IOException occurs.
+     * (A log will printed)
+     */
+    public void doRedirect(String url) throws IOException {
+        try{
+            FacesContext.getCurrentInstance().getExternalContext().redirect(url);
+        }
+        catch(IOException ex){
+            logger.error("Error occurred while trying to redirect to 404 page", ex);
+        }
+    }
+
+    /**
      * Send a 404 Page Not Found response.
      *
      */

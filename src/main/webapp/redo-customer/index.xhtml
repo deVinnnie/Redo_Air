@@ -1,8 +1,8 @@
 <ui:composition template="/WEB-INF/template.xhtml"
                 xmlns="http://www.w3.org/1999/xhtml"
                 xmlns:h="http://xmlns.jcp.org/jsf/html"
-                xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
-
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
     <ui:param name="page" value="index" />
 
     <ui:define name="pageTitle">
@@ -10,7 +10,12 @@
     </ui:define>
 
     <ui:define name="content">
-        <h:link outcome="booking.xhtml">Book a flight</h:link>
+        <f:view>
+            <!-- Redirect to the actual home page of the site, which is located elsewhere -->
+            <f:event type="preRenderView" listener="#{redirectionBean.doRedirect('overview.jsf')}" />
+        </f:view>
+
+        <!--<h:link outcome="booking.xhtml">Book a flight</h:link>-->
         This section is still under construction!
     </ui:define>
 </ui:composition>
