@@ -83,7 +83,10 @@
                     <p:calendar id="calender" pattern="dd/MM/yyyy" value="#{searchFlightBean.departureTime}" mindate="#{searchFlightBean.currentDate}" />
                 </h:panelGroup>
             </h:panelGrid>
-            <h:commandButton value="#{msg['searchFlight.search.searchButton']}" action="#{searchFlightBean.searchFlights}"/>
+
+            <h:commandButton value="#{msg['searchFlight.search.searchButton']}"
+                             action="#{searchFlightBean.searchFlights}"
+                             styleClass="btn" />
         </h:form>
 
 
