@@ -23,7 +23,7 @@
 
                 <p:fieldset style="margin-bottom:20px">
                     <h:panelGrid columns="2" cellpadding="5">
-                        <p:graphicImage name="demo/images/godfather/godfather1.jpg"/>
+                        <p:barcode value="#{overviewBookingBean.encrypt(tick.id)}" type="qr"/>
                         <h:form id="searchForm">
                             <h:panelGrid columns="2">
                                 <h:panelGroup>
@@ -50,11 +50,11 @@
                                     <b>arrival</b>
                                 </h:panelGroup>
                                 <h:panelGroup>
-                                    <h:outputText value="#{tick.flight.departure.name}"/>
+                                    <h:outputText value="#{tick.travelClass.flight.departure.name}"/>
                                 </h:panelGroup>
 
                                 <h:panelGroup>
-                                    <h:outputText value="#{tick.flight.arrival.name}"/>
+                                    <h:outputText value="#{tick.travelClass.flight.arrival.name}"/>
                                 </h:panelGroup>
 
                                 <h:panelGroup>
@@ -79,13 +79,13 @@
                                     <b>arrival time</b>
                                 </h:panelGroup>
                                 <h:panelGroup>
-                                    <h:outputText value="#{tick.flight.departureTime}">
+                                    <h:outputText value="#{tick.travelClass.flight.departureTime}">
                                         <f:convertDateTime pattern="yyyy-MM-dd HH:mm"/>
                                     </h:outputText>
                                 </h:panelGroup>
 
                                 <h:panelGroup>
-                                    <h:outputText value="#{tick.flight.arrivalTime}">
+                                    <h:outputText value="#{tick.travelClass.flight.arrivalTime}">
                                         <f:convertDateTime pattern="yyyy-MM-dd HH:mm"/>
                                     </h:outputText>
                                 </h:panelGroup>

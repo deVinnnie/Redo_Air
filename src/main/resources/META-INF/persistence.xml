@@ -32,7 +32,7 @@
             interested in seeing to happen. Note that we only use this on the test persistence.xml!
         -->
         <property name="hibernate.connection.isolation" value="TRANSACTION_READ_COMMITTED" />
-        <property name="hibernate.hbm2ddl.import_files" value="META-INF/insert.sql"/>
+        <!--<property name="hibernate.hbm2ddl.import_files" value="META-INF/insert.sql"/>-->
     </properties>
     </persistence-unit>
 

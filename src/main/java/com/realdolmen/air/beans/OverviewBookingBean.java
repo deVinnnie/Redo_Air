@@ -3,6 +3,7 @@ package com.realdolmen.air.beans;
 import com.realdolmen.air.domain.Ticket;
 import com.realdolmen.air.service.BookingService;
 import com.realdolmen.air.service.TicketService;
+import org.mindrot.jbcrypt.BCrypt;
 
 import javax.faces.bean.ManagedBean;
 import javax.inject.Inject;
@@ -37,5 +38,9 @@ public class OverviewBookingBean implements Serializable {
 
     public void setTickets(List<Ticket> tickets) {
         this.tickets = tickets;
+    }
+
+    public String encrypt(Long id){
+        return BCrypt.hashpw(id.toString(),BCrypt.gensalt());
     }
 }
