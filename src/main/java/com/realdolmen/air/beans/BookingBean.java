@@ -1,6 +1,10 @@
 package com.realdolmen.air.beans;
 
-import com.realdolmen.air.domain.*;
+
+import com.realdolmen.air.domain.Booking;
+import com.realdolmen.air.domain.Flight;
+import com.realdolmen.air.domain.Passenger;
+import com.realdolmen.air.domain.TravelClass;
 import com.realdolmen.air.domain.payment.CreditCard;
 import com.realdolmen.air.domain.payment.Endorsement;
 import com.realdolmen.air.service.BookingServiceBean;
@@ -160,9 +164,6 @@ public class BookingBean implements Serializable{
     // Every ticket is coupled to a passenger.
     // -----------------------------------------------------------------------------------------------------------------
     public void savePassengers(){
-        for(Passenger passenger : passengerList){
-            System.out.println(passenger.getFirstName());
-        }
         service.setPassengers(passengerList);
         this.phase = Phase.PAYMENT_METHOD;
     }
@@ -194,7 +195,6 @@ public class BookingBean implements Serializable{
     // -----------------------------------------------------------------------------------------------------------------
     public void saveCreditCard(){
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
-        System.out.println(formatter.format(creditCard.getExpiryDate()));
 
         this.service.setPaymentMethod(this.creditCard);
         this.phase = Phase.CONFIRMATION;

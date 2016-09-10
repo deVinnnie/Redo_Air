@@ -15,6 +15,7 @@ import java.util.List;
 
 
 @ManagedBean
+
 public class OverviewBean implements Serializable{
     @Inject
     private OverviewBookingService overviewBookingService;

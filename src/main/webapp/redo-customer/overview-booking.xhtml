@@ -1,0 +1,103 @@
+<ui:composition template="/WEB-INF/template.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:c="http://java.sun.com/jsp/jstl/core"
+                xmlns:p="http://primefaces.org/ui">
+
+    <ui:define name="pageTitle">
+        #{msg['overview.title']}
+    </ui:define>
+
+    <ui:define name="content">
+        <f:metadata>
+            <f:viewParam name="bookingId" value="#{overviewBookingBean.bookingId}"/>
+            <f:viewAction action="#{overviewBookingBean.onParametersLoaded()}"/>
+        </f:metadata>
+
+
+        <c:forEach items="#{overviewBookingBean.tickets}" var="tick">
+            <h:form>
+                <p:growl id="msgs" showDetail="true"/>
+
+                <p:fieldset style="margin-bottom:20px">
+                    <h:panelGrid columns="2" cellpadding="5">
+                        <p:graphicImage name="demo/images/godfather/godfather1.jpg"/>
+                        <h:form id="searchForm">
+                            <h:panelGrid columns="2">
+                                <h:panelGroup>
+                                    <b>firstname</b>
+                                </h:panelGroup>
+
+                                <h:panelGroup>
+                                    <b>lastname</b>
+                                </h:panelGroup>
+                                <h:panelGroup>
+                                    <h:outputText value="#{tick.passenger.firstName}"/>
+                                </h:panelGroup>
+
+                                <h:panelGroup>
+                                    <h:outputText value="#{tick.passenger.lastName}"/>
+                                </h:panelGroup>
+
+
+                                <h:panelGroup>
+                                    <b>departure</b>
+                                </h:panelGroup>
+
+                                <h:panelGroup>
+                                    <b>arrival</b>
+                                </h:panelGroup>
+                                <h:panelGroup>
+                                    <h:outputText value="#{tick.flight.departure.name}"/>
+                                </h:panelGroup>
+
+                                <h:panelGroup>
+                                    <h:outputText value="#{tick.flight.arrival.name}"/>
+                                </h:panelGroup>
+
+                                <h:panelGroup>
+                                    <b>class</b>
+                                </h:panelGroup>
+
+                                <h:panelGroup>
+                                </h:panelGroup>
+
+                                <h:panelGroup>
+                                    <h:outputText value="#{tick.travelClass.name}"/>
+                                </h:panelGroup>
+
+                                <h:panelGroup>
+                                </h:panelGroup>
+
+                                <h:panelGroup>
+                                    <b>departure date and time</b>
+                                </h:panelGroup>
+
+                                <h:panelGroup>
+                                    <b>arrival time</b>
+                                </h:panelGroup>
+                                <h:panelGroup>
+                                    <h:outputText value="#{tick.flight.departureTime}">
+                                        <f:convertDateTime pattern="yyyy-MM-dd HH:mm"/>
+                                    </h:outputText>
+                                </h:panelGroup>
+
+                                <h:panelGroup>
+                                    <h:outputText value="#{tick.flight.arrivalTime}">
+                                        <f:convertDateTime pattern="yyyy-MM-dd HH:mm"/>
+                                    </h:outputText>
+                                </h:panelGroup>
+
+                            </h:panelGrid>
+
+                        </h:form>
+                    </h:panelGrid>
+                </p:fieldset>
+            </h:form>
+        </c:forEach>
+
+
+    </ui:define>
+</ui:composition>
