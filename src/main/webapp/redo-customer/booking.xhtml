@@ -10,8 +10,12 @@
 
     <ui:define name="content">
         <f:metadata>
-            <f:viewParam name="travelClassID" value="#{bookingBean.travelClassID}" required="true"/>
-            <f:viewParam name="seats" value="#{bookingBean.seatsWanted}" required="true"/>
+            <!--
+                 Params are required, but are checked in the viewAction.
+                 This is to be able to redirect to a 404 page.
+            -->
+            <f:viewParam name="travelClassID" value="#{bookingBean.travelClassID}" />
+            <f:viewParam name="seats" value="#{bookingBean.seatsWanted}" />
             <f:viewAction action="#{bookingBean.setUpAfterParam()}" />
         </f:metadata>
 

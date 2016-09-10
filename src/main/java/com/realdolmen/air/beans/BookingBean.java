@@ -47,10 +47,8 @@ public class BookingBean implements Serializable{
     private List<Passenger> passengerList;
 
     @Min(1)
-    private int seatsWanted;
+    private int seatsWanted = 1;
 
-    @Min(0)
-    @NotNull
     private Long travelClassID;
 
     private TravelClass travelClass;
@@ -75,6 +73,11 @@ public class BookingBean implements Serializable{
     }
 
     public void setUpAfterParam(){
+        if(travelClassID == null){
+            redirectionBean.throw404();
+            return;
+        }
+
         this.travelClass = service.findTravelClass(travelClassID);
         if(travelClass == null){
             redirectionBean.throw404();
