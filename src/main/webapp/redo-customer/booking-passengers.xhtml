@@ -13,13 +13,13 @@
             <h:column>
                 <h:outputLabel for="first-name" value="#{msg['booking.passenger-details.firstname']}"/>
                 <h:inputText id="first-name" value="#{passenger.firstName}"/>
-                <h:message for="first-name"/>
+                <h:message for="first-name" errorClass="error-message"/>
             </h:column>
 
             <h:column>
                 <h:outputLabel for="last-name" value="#{msg['booking.passenger-details.lastname']}"/>
                 <h:inputText id="last-name" value="#{passenger.lastName}"/>
-                <h:message for="last-name"/>
+                <h:message for="last-name" errorClass="error-message"/>
             </h:column>
         </h:dataTable>
 

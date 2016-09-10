@@ -3,20 +3,28 @@
               xmlns:f="http://xmlns.jcp.org/jsf/core"
               xmlns:p="http://primefaces.org/ui">
     <h:panelGroup rendered="#{bookingBean.paymentMethod eq 'payment.credit-card'}">
-        <h:messages/>
         <h:form>
-            <h:outputLabel value="#{msg['booking.payment-method.credit-card.number']}"/>
-            <h:inputText value="#{bookingBean.creditCard.number}"/>
+            <div class="input-field">
+                <h:outputLabel for="credit-card-number" value="#{msg['booking.payment-method.credit-card.number']}"/>
+                <h:inputText id="credit-card-number" value="#{bookingBean.creditCard.number}"/>
+                <h:message for="credit-card-number" errorClass="error-message"/>
+            </div>
 
-            <h:outputLabel value="#{msg['booking.payment-method.credit-card.expiry']}"/>
-            <p:inputMask id="date" value="#{bookingBean.creditCard.expiryDate}" mask="99/9999">
-                <f:convertDateTime timeZone="EST" type="date" pattern="MM/yyyy"/>
-            </p:inputMask>
+            <br/>
+
+            <div class="input-field">
+                <h:outputLabel for="credit-card-number" value="#{msg['booking.payment-method.credit-card.expiry']}"/>
+                <p:inputMask id="date" value="#{bookingBean.creditCard.expiryDate}" mask="99/9999">
+                    <f:convertDateTime timeZone="EST" type="date" pattern="MM/yyyy"/>
+                </p:inputMask>
+                <h:message for="date" data-error="true" errorClass="error-message"/>
+            </div>
+
+            <br/>
 
             <h:commandLink action="#{bookingBean.saveCreditCard()}"
                            value="#{msg['booking.phase.button-next']}"
-                           styleClass="btn"
-            />
+                           styleClass="btn"/>
         </h:form>
     </h:panelGroup>
 

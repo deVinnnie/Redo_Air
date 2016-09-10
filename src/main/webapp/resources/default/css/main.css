@@ -27,6 +27,16 @@
     border-radius: 4px;
 }
 
+.error-message{
+    color: #F44336;
+}
+
+/* Override font color, error state would hide the PrimeFaces inputtext. */
+.ui-state-error {
+    color: #000;
+}
+
+
 /*
 @font-face {
     font-family:"Roboto";

@@ -16,7 +16,7 @@
                     <h:inputText id="firstName" value="#{registerBean.customer.firstName}">
                         <f:ajax event="blur" render="errorFirstName"/>
                     </h:inputText>
-                    <h:message id="errorFirstName" for="firstName"/>
+                    <h:message id="errorFirstName" for="firstName" errorClass="error-message"/>
                 </h:panelGroup>
 
                 <h:outputLabel>
@@ -26,7 +26,7 @@
                     <h:inputText id="lastName" value="#{registerBean.customer.lastName}">
                         <f:ajax event="blur" render="errorLastName"/>
                     </h:inputText>
-                    <h:message id="errorLastName" for="lastName"/>
+                    <h:message id="errorLastName" for="lastName"  errorClass="error-message"/>
                 </h:panelGroup>
 
                 <h:outputLabel>
@@ -36,7 +36,7 @@
                     <h:inputText id="email" value="#{registerBean.customer.email}">
                         <f:ajax event="blur" render="errorEmail"/>
                     </h:inputText>
-                    <h:message id="errorEmail" for="email"/>
+                    <h:message id="errorEmail" for="email" errorClass="error-message"/>
                 </h:panelGroup>
 
                 <h:outputLabel>
@@ -44,7 +44,7 @@
                 </h:outputLabel>
                 <h:panelGroup>
                     <h:inputSecret id="password" binding="#{passwordComponent}" value="#{registerBean.password}"/>
-                    <h:message for="confirmPassword" />
+                    <h:message for="confirmPassword" errorClass="error-message"/>
                 </h:panelGroup>
 
                 <h:outputLabel>
@@ -55,7 +55,7 @@
                         <f:validator validatorId="passwordValidator" />
                         <f:attribute name="otherValue" value="#{passwordComponent.value}" />
                     </h:inputSecret>
-                    <h:message for="confirmPassword" />
+                    <h:message for="confirmPassword" errorClass="error-message"/>
                 </h:panelGroup>
 
                 <h:commandButton value="#{msg['registration.customer.saveButton']}"

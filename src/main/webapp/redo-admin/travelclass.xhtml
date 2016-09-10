@@ -23,7 +23,7 @@
                 <f:converter converterId="javax.faces.BigDecimal" />
             </p:inputNumber>
 
-            <h:message for="price"/>
+            <h:message for="price" errorClass="error-message"/>
 
             <h:commandButton action="#{travelClassBean.save()}"
                              value="#{msg['admin.travelclass.save']}"
