@@ -15,11 +15,11 @@ import java.util.Date;
 @Entity
 public class CreditCard extends PaymentMethod{
 
-    @NotBlank
-    @CreditCardNumber
+    @NotBlank(message = "{validation.credit-card.blank}")
+    @CreditCardNumber(message = "{validation.credit-card.number}")
     private String number;
 
-    @Future
+    @Future(message = "{validation.credit-card.future}")
     private Date expiryDate;
 
     public CreditCard() {}
