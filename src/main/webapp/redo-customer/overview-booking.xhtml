@@ -27,11 +27,11 @@
                         <h:form id="searchForm">
                             <h:panelGrid columns="2">
                                 <h:panelGroup>
-                                    <b>firstname</b>
+                                    <b>#{msg['booking.passenger-details.firstname']}</b>
                                 </h:panelGroup>
 
                                 <h:panelGroup>
-                                    <b>lastname</b>
+                                    <b>#{msg['booking.passenger-details.lastname']}</b>
                                 </h:panelGroup>
                                 <h:panelGroup>
                                     <h:outputText value="#{tick.passenger.firstName}"/>
@@ -43,11 +43,11 @@
 
 
                                 <h:panelGroup>
-                                    <b>departure</b>
+                                    <b>#{msg['booking.confirmation.flight.departure']}</b>
                                 </h:panelGroup>
 
                                 <h:panelGroup>
-                                    <b>arrival</b>
+                                    <b>#{msg['booking.confirmation.flight.arrival']}</b>
                                 </h:panelGroup>
                                 <h:panelGroup>
                                     <h:outputText value="#{tick.travelClass.flight.departure.name}"/>
@@ -58,7 +58,7 @@
                                 </h:panelGroup>
 
                                 <h:panelGroup>
-                                    <b>class</b>
+                                    <b>#{msg['admin.flight.detail.travel-class']}</b>
                                 </h:panelGroup>
 
                                 <h:panelGroup>
@@ -72,11 +72,11 @@
                                 </h:panelGroup>
 
                                 <h:panelGroup>
-                                    <b>departure date and time</b>
+                                    <b>#{msg['tickets.departure-time']}</b>
                                 </h:panelGroup>
 
                                 <h:panelGroup>
-                                    <b>arrival time</b>
+                                    <b>#{msg['tickets.departure-time']}</b>
                                 </h:panelGroup>
                                 <h:panelGroup>
                                     <h:outputText value="#{tick.travelClass.flight.departureTime}">

@@ -75,6 +75,7 @@ public class UserBean implements Serializable{
         HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
         try {
             request.logout();
+            FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
         } catch (ServletException e) {
             LOGGER.error("Servlet Exception in logout", e);
         }

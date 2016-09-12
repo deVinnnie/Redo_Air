@@ -36,6 +36,8 @@ public class FlightDetailsBean implements Serializable {
     private RedirectionBean redirectionBean;
 
     public void onParametersLoaded() throws IOException {
+
+
         flight = flightServiceBean.findFlightById(flightId);
 
         if(flight == null){
