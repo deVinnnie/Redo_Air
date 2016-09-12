@@ -54,7 +54,7 @@ public class searchFlightBean implements Serializable {
         airports = airportServiceBean.getAllAirports();
         flight = new Flight();
         currentDate = Calendar.getInstance().getTime();
-        flights = flightServiceBean.findAllFlights();
+//        flights = flightServiceBean.findAllFlights();
     }
 
     public Flight getFlight() {
@@ -183,7 +183,8 @@ public class searchFlightBean implements Serializable {
         searchFlights();
     }
 
-    public void searchFlights(){
+    public String searchFlights(){
         flights = flightServiceBean.findFlightsWithParams(airlineCompanyId,flightClass,numberOfSeats,departureAirportId,arrivalAirportId,departureTime);
+        return "search-flight";
     }
 }
