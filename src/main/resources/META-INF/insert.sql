@@ -1,4 +1,19 @@
 --------------------------------------------------------
+--  Inserting Users
+--------------------------------------------------------
+INSERT INTO user (id,version,email, password, role) VALUES (10,1, 'arne@redo-air.com' ,'$2a$10$z5vr/uy/47FSkbtRjE4J2.Y/0MkeldTPKXoHvrK8FGYc..qcRlOAi', 'EMPLOYEE');
+INSERT INTO employee (id) VALUES (10);
+INSERT INTO user (id,version,email, password, role) VALUES (20,1, 'vincent@redo-air.com' ,'$2a$10$z5vr/uy/47FSkbtRjE4J2.Y/0MkeldTPKXoHvrK8FGYc..qcRlOAi', 'EMPLOYEE');
+INSERT INTO employee (id) VALUES (20);
+
+INSERT INTO user (id,version,email, password, role) VALUES (40,1, 'river@coldmail.com' ,'$2a$10$z5vr/uy/47FSkbtRjE4J2.Y/0MkeldTPKXoHvrK8FGYc..qcRlOAi', 'CUSTOMER');
+INSERT INTO customer (id, firstName, lastName) VALUES (40, 'River', 'Tam');
+INSERT INTO user (id,version,email, password, role) VALUES (50,1, 'malcolm@coldmail.com' ,'$2a$10$z5vr/uy/47FSkbtRjE4J2.Y/0MkeldTPKXoHvrK8FGYc..qcRlOAi', 'CUSTOMER');
+INSERT INTO customer (id, firstName, lastName) VALUES (50, 'Malcolm', 'Reynolds');
+
+
+
+--------------------------------------------------------
 --  Inserting AirlineCompanies
 --------------------------------------------------------
 INSERT INTO airlinecompany (id,version,available,name) VALUES (10,1,TRUE ,'Jetairfly');

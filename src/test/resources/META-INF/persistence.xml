@@ -99,15 +99,9 @@
         <class>com.realdolmen.air.domain.Booking</class>
         <class>com.realdolmen.air.domain.Customer</class>
         <class>com.realdolmen.air.domain.TravelClass</class>
-<<<<<<< Updated upstream
         <class>com.realdolmen.air.domain.payment.Payment</class>
         <class>com.realdolmen.air.domain.payment.PaymentMethod</class>
         <class>com.realdolmen.air.domain.payment.CreditCard</class>
-=======
-        <class>com.realdolmen.air.domain.payement.Payment</class>
-        <class>com.realdolmen.air.domain.payement.PaymentMethod</class>
-        <class>com.realdolmen.air.domain.payement.CreditCard</class>
->>>>>>> Stashed changes
         <class>com.realdolmen.air.domain.Employee</class>
         <class>com.realdolmen.air.domain.User</class>
 

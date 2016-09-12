@@ -102,11 +102,7 @@
                                     <br/>
 
                                     #{msg['detailsFlight.details.numberOfTickets']}
-                                    <h:outputText value="#{flightDetailsBean.numberOfSeats}">
-                                        <f:convertNumber type="currency" currencySymbol="€"
-                                                         maxFractionDigits="2" minFractionDigits="2"
-                                                         groupingUsed="false"/>
-                                    </h:outputText>
+                                    <h:outputText value="#{flightDetailsBean.numberOfSeats}"/>
                                     <br/>
 
                                     #{msg['detailsFlight.details.totalPrice']}
@@ -122,8 +118,8 @@
                                 <h:form>
                                     <div class="row">
                                         <h:panelGrid columns="2">
-                                            <h:outputLabel for="seats" value="Number of seats"/>
-                                            <p:spinner id="seats" value="#{flightDetailsBean.numberOfSeats}" min="1" max="#{tClass.remainingSeats}" />
+                                            <h:outputLabel for="seats" value="Number of seats" style="display: none;"/>
+                                            <p:spinner id="seats" value="#{flightDetailsBean.numberOfSeats}" min="1" max="#{tClass.remainingSeats}" style="display: none;"/>
                                         </h:panelGrid>
                                     </div>
                                     <div class="row">
