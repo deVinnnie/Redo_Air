@@ -1,20 +1,13 @@
 package com.realdolmen.air.repository;
 
-import com.realdolmen.air.domain.Airport;
 import com.realdolmen.air.domain.Customer;
 import com.realdolmen.testutil.TestData;
 import com.realdolmen.testutil.TestDataLocation;
-import org.junit.Ignore;
 import org.junit.Test;
-
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 
-/**
- * Created by knockaert on 5/04/2016.
- */
-@Ignore
 public class CustomerRepositoryTest extends AbstractRepositoryTest<CustomerRepository> {
     @Test
     @TestData(dataSet = TestDataLocation.CUSTOMER)

@@ -9,6 +9,8 @@ Adapted from [jee7-starter](https://github.com/kvanrobbroeck/jee7-starter).
 Running with Integration Tests
 ------------------------------
 
+Make sure the server is running with application deployed and database filled with test data.
+
     mvn clean package -Dintegration
     
 Running with Integration Tests and Selenium Tests
